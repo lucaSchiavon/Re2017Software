@@ -16,3 +16,6 @@ user:lucadeploy.slack.co
 [14:06, 14/9/2018] Riccardo Nieto: "Bank of America"
 [14:06, 14/9/2018] Riccardo Nieto: o "Checking1"
 
+
+
+
