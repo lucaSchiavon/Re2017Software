@@ -1,0 +1,91 @@
+## Default .gitignore
+## For other languages / frameworks / editors
+## See: https://github.com/github/gitignore
+
+
+
+#################
+## OS generated
+#################
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+#Mac
+.DS_Store
+.DS_Store?
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+
+############
+### SASS
+############
+*.sass-cache
+
+
+
+################
+## Application
+################
+
+var/*
+#Exclude logs
+log
+*.log
+
+
+
+############
+## Misc
+############
+*.mo
+.svn
+.phptidy-cache
+_svn
+node_modules
+packages
+bin
+obj
+.vs
+.suo
+/lib
+assets.json
+public/*
+AIChatbot/bin/*
+AIChatbot/Prj.DTO/bin/*
+Aq.Ef/bin/*
+AIChatbot/Prj.EF/bin/*
+AIChatbot/Prj.EFRepository/bin/*
+AIChatbot/Prj.Entity/bin/*
+AIChatbot/Prj.Utility/bin/*
+
+AIChatbot/obj/*
+AIChatbot/Prj.DTO/obj/*
+Aq.Ef/obj/*
+AIChatbot/Prj.EF/bin/*
+AIChatbot/Prj.EFRepository/obj/*
+AIChatbot/Prj.Entity/obj/*
+AIChatbot/Prj.Utility/obj/*
+.vs
+.vs/*
+.vs/**/.
+.suo
+static/*
+public/.htaccess
+public/htaccess
+public/favicon.ico
+www/assets
+!www/.htaccess
+!www/htaccess
+!www/favicon.ico
+var/tmp
+_tmp
+packages/**
+**/Bin/**/*.*

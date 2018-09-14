@@ -1,0 +1,18 @@
+link dorpbox:
+https://www.dropbox.com/sh/1xke5vhac3o2lto/AADX10k1qrdsnCa2XJiFfWxha?dl=0
+
+link swagger
+http://2.235.241.7:8080/swagger-ui.html#!/bank45report45entries45controller/uploadBankReportUsingPOST
+
+trello:
+usr: lully.schiavon@gmail.com
+pwd: trellolully
+
+slack:
+email: lully.schiavon@gmail.com
+user:lucadeploy.slack.co
+
+
+[14:06, 14/9/2018] Riccardo Nieto: "Bank of America"
+[14:06, 14/9/2018] Riccardo Nieto: o "Checking1"
+
