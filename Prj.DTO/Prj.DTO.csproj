@@ -57,6 +57,7 @@
     <Compile Include="DocumentDto.cs" />
     <Compile Include="TagDto.cs" />
     <Compile Include="AuditDto.cs" />
+    <Compile Include="BankDto.cs" />
     <Compile Include="UserDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masterpages/ChatBotGskAdm.Master" MaintainScrollPositionOnPostback="true" AutoEventWireup="true" CodeBehind="Audit.aspx.cs" Inherits="Ls.Re2017.PigeonCms.pgn_content.Contents.Audit" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masterpages/ChatBotGskAdm.Master" MaintainScrollPositionOnPostback="true" AutoEventWireup="true" CodeBehind="TrackManagement.aspx.cs" Inherits="Ls.Re2017.Contents.TrackManagement" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
 </asp:Content>

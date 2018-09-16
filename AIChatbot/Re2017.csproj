@@ -69,6 +69,14 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.6\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
@@ -91,7 +99,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Contents\Audit.aspx" />
+    <Content Include="Contents\TrackManagement.aspx" />
     <Content Include="css\AiChatbot.css" />
     <Content Include="index.html" />
     <Content Include="js\ImageDetail.js" />
@@ -105,6 +113,7 @@
     <Content Include="lightbox.htm" />
     <Content Include="masterpages\ChatBotGskAdm.Master" />
     <None Include="packages.config" />
+    <Content Include="TestcallMultipartFormdata.aspx" />
     <Content Include="TestDragImage.aspx" />
     <Content Include="TestFancy.aspx" />
     <Content Include="TestImageResizing.aspx" />
@@ -319,14 +328,14 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Classes\AICBBasePageManager.cs" />
-    <Compile Include="Classes\AuditPageManager.cs" />
+    <Compile Include="Classes\TrackManagementPageManager.cs" />
     <Compile Include="Classes\LoginPageManager.cs" />
-    <Compile Include="Contents\Audit.aspx.cs">
-      <DependentUpon>Audit.aspx</DependentUpon>
+    <Compile Include="Contents\TrackManagement.aspx.cs">
+      <DependentUpon>TrackManagement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Contents\Audit.aspx.designer.cs">
-      <DependentUpon>Audit.aspx</DependentUpon>
+    <Compile Include="Contents\TrackManagement.aspx.designer.cs">
+      <DependentUpon>TrackManagement.aspx</DependentUpon>
     </Compile>
     <Compile Include="Contents\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -357,6 +366,13 @@
       <DependentUpon>ChatBotGskAdm.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestcallMultipartFormdata.aspx.cs">
+      <DependentUpon>TestcallMultipartFormdata.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TestcallMultipartFormdata.aspx.designer.cs">
+      <DependentUpon>TestcallMultipartFormdata.aspx</DependentUpon>
+    </Compile>
     <Compile Include="TestDragImage.aspx.cs">
       <DependentUpon>TestDragImage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

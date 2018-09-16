@@ -7,10 +7,10 @@
 // </generato automaticamente>
 //------------------------------------------------------------------------------
 
-namespace Ls.Re2017.PigeonCms.pgn_content.Contents {
+namespace Ls.Re2017.Contents {
     
     
-    public partial class Audit {
+    public partial class TrackManagement {
         
         /// <summary>
         /// Controllo DivError.
