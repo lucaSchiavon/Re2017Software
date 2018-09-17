@@ -53,6 +53,7 @@
     <Compile Include="ApiDTO\LuisEntityAlarmDTO.cs" />
     <Compile Include="ApiDTO\LuisEntityDocumentDTO.cs" />
     <Compile Include="ApiDTO\ContainerDTO.cs" />
+    <Compile Include="EventoDto.cs" />
     <Compile Include="ImageDto.cs" />
     <Compile Include="DocumentDto.cs" />
     <Compile Include="TagDto.cs" />

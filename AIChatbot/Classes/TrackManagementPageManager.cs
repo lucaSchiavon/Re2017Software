@@ -165,13 +165,13 @@ namespace Re2017.Classes
         }
         static async Task<List<BankDTO>> GetAsyncBanks(string path)
         {
-            List<BankDTO> LstEvento = null;
+            List<BankDTO> LstBank = null;
             HttpResponseMessage response = await client.GetAsync(path, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
             if (response.IsSuccessStatusCode)
             {
-                LstEvento = await response.Content.ReadAsAsync<List<BankDTO>>();
+                LstBank = await response.Content.ReadAsAsync<List<BankDTO>>();
             }
-            return LstEvento;
+            return LstBank;
         }
       
     }
