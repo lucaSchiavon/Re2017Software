@@ -117,12 +117,13 @@ namespace Ls.Re2017.Contents
                 }
                 TrackManagement2PageManager ObjTrackManagement2PageManager = new TrackManagement2PageManager();
                 
-                //*******************
-                UpdateHouseEvtInputDto ObjUpdateHouseEvtInputDto = new UpdateHouseEvtInputDto(); //data = "{'id': 99,'houseId':6}";
-                ObjUpdateHouseEvtInputDto.id = 99;
-                ObjUpdateHouseEvtInputDto.houseId = 7;
-                ObjTrackManagement2PageManager.UpdateHouseEvt(ObjUpdateHouseEvtInputDto);
-                //*****************
+                ////*******************
+                ////chiamata put da togliere
+                //UpdateHouseEvtInputDto ObjUpdateHouseEvtInputDto = new UpdateHouseEvtInputDto(); //data = "{'id': 99,'houseId':6}";
+                //ObjUpdateHouseEvtInputDto.id = 99;
+                //ObjUpdateHouseEvtInputDto.houseId = 7;
+                //ObjTrackManagement2PageManager.UpdateHouseEvt(ObjUpdateHouseEvtInputDto);
+                ////*****************
 
                LstEvtType = ObjTrackManagement2PageManager.GetEventsType();
                 LstHouse = ObjTrackManagement2PageManager.GetHouse();

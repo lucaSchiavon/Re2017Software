@@ -225,41 +225,16 @@ namespace Re2017.Classes
             return Lst;
         }
 
-
-
         public void UpdateHouseEvt(UpdateHouseEvtInputDto ObjUpdateHouseEvtInputDto)
         {
 
-            //List<HouseDTO> LstHouse = new List<HouseDTO>();
-
-            //LstHouse = UpdateEvtAsyncHouse("events/99").Result;
-
-            
             var myContent = JsonConvert.SerializeObject(ObjUpdateHouseEvtInputDto);
             var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
             var byteContent = new ByteArrayContent(buffer);
             byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             var result = client.PutAsync("events/" + ObjUpdateHouseEvtInputDto.id, byteContent).Result;
         }
-        //async Task<List<HouseDTO>> UpdateEvtAsyncHouse(string path)
-        //{
-        //    List<HouseDTO> Lst = null;
-        //    string data = "{'id': 99,'houseId':6}";
-        //    var myContent = JsonConvert.SerializeObject(data);
-        //    var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
-        //    var byteContent = new ByteArrayContent(buffer);
-        //    byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-        //    var result = client.PostAsync(path, byteContent).Result;
-
-        //    HttpResponseMessage response = await client.PutAsync(path, queryString).ConfigureAwait(false);
-
-        //    HttpResponseMessage response = await client.PutAsync(path, queryString).ConfigureAwait(false);
-        //    if (response.IsSuccessStatusCode)
-        //    {
-        //        Lst = await response.Content.ReadAsAsync<List<HouseDTO>>();
-        //    }
-        //    return Lst;
-        //}
+       
         #endregion
 
     }
