@@ -83,13 +83,17 @@ namespace Ls.Re2017.Contents
         }
         #endregion
 
+       private  List<EventTypeDTO> LstEvtType;
+        private List<HouseDTO> LstHouse;
+        
         protected void Page_Load(object sender, EventArgs e)
         {
+           
             try
             {
                 if (!Page.IsPostBack)
                 {
-                    
+
                     TxtDa.Text = (new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1)).ToString("yyyy-MM-dd");
                     TxtA.Text = (new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month))).ToString("yyyy-MM-dd");
                     //TextBox1.Text = (new DateTime(DateTime.Now.Year, DateTime.Now.Month, 30)).ToString();
@@ -107,9 +111,21 @@ namespace Ls.Re2017.Contents
 
                     //bindong a tabella
                     BindRepeater();
-                }
                    
-              
+                   
+                   // ViewState["LstEvtType"] = LstEvtType;
+                }
+                TrackManagement2PageManager ObjTrackManagement2PageManager = new TrackManagement2PageManager();
+                
+                //*******************
+                UpdateHouseEvtInputDto ObjUpdateHouseEvtInputDto = new UpdateHouseEvtInputDto(); //data = "{'id': 99,'houseId':6}";
+                ObjUpdateHouseEvtInputDto.id = 99;
+                ObjUpdateHouseEvtInputDto.houseId = 7;
+                ObjTrackManagement2PageManager.UpdateHouseEvt(ObjUpdateHouseEvtInputDto);
+                //*****************
+
+               LstEvtType = ObjTrackManagement2PageManager.GetEventsType();
+                LstHouse = ObjTrackManagement2PageManager.GetHouse();
             }
             catch (Exception ex)
             {
@@ -200,15 +216,19 @@ namespace Ls.Re2017.Contents
             //}
             TrackManagement2PageManager ObjTrackManagement2PageManager = new TrackManagement2PageManager();
             List<EventoDTO> LstEvtDto = ObjTrackManagement2PageManager.GetEventi(Convert.ToDateTime(TxtDa.Text), Convert.ToDateTime(TxtA.Text));
-            
+            //List<EventoDTO> LstEvtDto = TrackManagement2PageManager.GetEventi(Convert.ToDateTime(TxtDa.Text), Convert.ToDateTime(TxtA.Text));
+
             //Create the PagedDataSource that will be used in paging
             PagedDataSource pgitems = new PagedDataSource();
             //List<EventoDTO> LstEvtDto =(List<EventoDTO>)ViewState["LstEvtDto"];
-            pgitems.DataSource = LstEvtDto.OrderByDescending(x=>x.date).ToList();
+            //pgitems.DataSource = LstEvtDto.OrderByDescending(x => x.date).ToList();
+            List<EventoDTO> LstEvtDtoOrdered = LstEvtDto.OrderByDescending(x => x.date).ToList();
+            pgitems.DataSource = LstEvtDtoOrdered;
+            //pgitems.DataSource = LstEvtDto.ToList();
             pgitems.AllowPaging = true;
 
             //Control page size from here 
-            pgitems.PageSize =Convert.ToInt32(CboRowsInPages.SelectedValue);
+            pgitems.PageSize = Convert.ToInt32(CboRowsInPages.SelectedValue);
             //pgitems.PageSize = 5;
             pgitems.CurrentPageIndex = PageNumber;
             //Raccolgo il numero pagine
@@ -236,7 +256,7 @@ namespace Ls.Re2017.Contents
 
             LitShowOneOf.Text = "Showing 1 to " + pgitems.PageSize + " of " + LstEvtDto.Count + " entries";
             btnPage.Text = "Pag. " + (PageNumber + 1);
-           
+
         }
 
         //private List<AuditDTO> LoadList()
@@ -245,7 +265,7 @@ namespace Ls.Re2017.Contents
         //    DateTime Da = Ls.Prj.Utility.Utility.DateParse(TxtDa.Text);
         //    DateTime A = Ls.Prj.Utility.Utility.DateParse(TxtA.Text);
         //    List<AuditDTO> LstDto = ObjPageManager.GetAudits(Da, A, Convert.ToInt32(CboUsers.SelectedValue));
-            
+
 
 
 
@@ -256,11 +276,58 @@ namespace Ls.Re2017.Contents
             LitError.Text = "An unhandled error occurred:<br>" + ex.Message;
             DivError.Attributes.Add("Class", "ParentDivDeleting Attivo");
         }
-     
+
+        private void PopolaCboEventi(DropDownList drop)
+        {
+            //List<EventTypeDTO> LstDto = (List<EventTypeDTO>)ViewState["LstEvtType"];
+            // TrackManagement2PageManager ObjTrackManagement2PageManager = new TrackManagement2PageManager();
+            //List<EventTypeDTO> LstEvtType = ObjTrackManagement2PageManager.GetEventsType();
+           
+            foreach (EventTypeDTO Curr in LstEvtType)
+            {
+                var listItem = new ListItem();
+                listItem.Value = Curr.id.ToString();
+                listItem.Text = Curr.displayValue;
+                drop.Items.Add(listItem);
+              
+            }
+            drop.Items.Add(new ListItem("--Select event type--", "0"));
+            Utility.SetDropByValue(drop, "0");
+        }
+
+        private void PopolaCboCase(DropDownList drop)
+        {
+           
+            foreach (HouseDTO Curr in LstHouse)
+            {
+                var listItem = new ListItem();
+                listItem.Value = Curr.id.ToString();
+                listItem.Text = Curr.nickname;
+                drop.Items.Add(listItem);
+
+            }
+            drop.Items.Add(new ListItem("--Select house--", "0"));
+            Utility.SetDropByValue(drop, "0");
+        }
         #endregion
 
-       
+        protected void Repeater1_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                DropDownList CboEventi = e.Item.FindControl("CboEventi") as DropDownList;
+                PopolaCboEventi(CboEventi);
+                DropDownList CboCase = e.Item.FindControl("CboCase") as DropDownList;
+                PopolaCboCase(CboCase);
+               
+                Ls.Prj.DTO.EventoDTO drv =(Ls.Prj.DTO.EventoDTO)e.Item.DataItem;
+               
+                //DataRowView drv = e.Row.DataItem as DataRowView;
+                Utility.SetDropByValue(CboEventi, CboEventi.Attributes["MemId"]);
+                Utility.SetDropByValue(CboCase, CboCase.Attributes["MemId"]);
+
+            }
+        }
+
     }
-
-
 }

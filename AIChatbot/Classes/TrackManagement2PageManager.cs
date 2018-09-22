@@ -10,10 +10,11 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Ls.Prj.Utility;
+using Newtonsoft.Json;
 
 namespace Re2017.Classes
 {
-     public class TrackManagement2PageManager
+     public  class TrackManagement2PageManager
     {
 
         #region "codice vecchio"
@@ -77,12 +78,19 @@ namespace Re2017.Classes
 
 
          HttpClient client = new HttpClient();
-        public List<EventoDTO> GetEventi(DateTime Da, DateTime A)
+
+       public TrackManagement2PageManager()
         {
             client.BaseAddress = new Uri(Utility.ReadSetting("Re2017ApiUrl"));
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
+        }
+
+        #region Eventi
+        public List<EventoDTO> GetEventi(DateTime Da, DateTime A)
+        {
+
             List<Evento> LstEventi = new List<Evento>();
             string da = Da.ToString("yyyy-MM-dd");
             string a = A.ToString("yyyy-MM-dd");
@@ -148,7 +156,7 @@ namespace Re2017.Classes
 
 
         }
-    
+
         async Task<List<Evento>> GetAsyncEventi(string path)
         {
             List<Evento> LstEvento = null;
@@ -160,6 +168,99 @@ namespace Re2017.Classes
             return LstEvento;
         }
 
+        #endregion
+
+
+        #region eventsType
+        public List<EventTypeDTO> GetEventsType()
+        {
+
+            //client.BaseAddress = new Uri(Utility.ReadSetting("Re2017ApiUrl"));
+            //client.DefaultRequestHeaders.Accept.Clear();
+            //client.DefaultRequestHeaders.Accept.Add(
+            //    new MediaTypeWithQualityHeaderValue("application/json"));
+            List<EventTypeDTO> LstEventType = new List<EventTypeDTO>();
+
+            LstEventType = GetAsyncEventsType("event-types").Result;
+
+            return LstEventType;
+        }
+        async Task<List<EventTypeDTO>> GetAsyncEventsType(string path)
+        {
+            List<EventTypeDTO> Lstevt = null;
+            HttpResponseMessage response = await client.GetAsync(path, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
+            if (response.IsSuccessStatusCode)
+            {
+                Lstevt = await response.Content.ReadAsAsync<List<EventTypeDTO>>();
+            }
+            return Lstevt;
+        }
+
+        #endregion
+
+        #region House
+        public List<HouseDTO> GetHouse()
+        {
+
+            //client.BaseAddress = new Uri(Utility.ReadSetting("Re2017ApiUrl"));
+            //client.DefaultRequestHeaders.Accept.Clear();
+            //client.DefaultRequestHeaders.Accept.Add(
+            //    new MediaTypeWithQualityHeaderValue("application/json"));
+            List<HouseDTO> LstHouse = new List<HouseDTO>();
+
+            LstHouse = GetAsyncHouse("houses/names").Result;
+
+            return LstHouse;
+        }
+        async Task<List<HouseDTO>> GetAsyncHouse(string path)
+        {
+            List<HouseDTO> Lst = null;
+           
+           
+            HttpResponseMessage response = await client.GetAsync(path, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
+            if (response.IsSuccessStatusCode)
+            {
+                Lst = await response.Content.ReadAsAsync<List<HouseDTO>>();
+            }
+            return Lst;
+        }
+
+
+
+        public void UpdateHouseEvt(UpdateHouseEvtInputDto ObjUpdateHouseEvtInputDto)
+        {
+
+            //List<HouseDTO> LstHouse = new List<HouseDTO>();
+
+            //LstHouse = UpdateEvtAsyncHouse("events/99").Result;
+
+            
+            var myContent = JsonConvert.SerializeObject(ObjUpdateHouseEvtInputDto);
+            var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+            var byteContent = new ByteArrayContent(buffer);
+            byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            var result = client.PutAsync("events/" + ObjUpdateHouseEvtInputDto.id, byteContent).Result;
+        }
+        //async Task<List<HouseDTO>> UpdateEvtAsyncHouse(string path)
+        //{
+        //    List<HouseDTO> Lst = null;
+        //    string data = "{'id': 99,'houseId':6}";
+        //    var myContent = JsonConvert.SerializeObject(data);
+        //    var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+        //    var byteContent = new ByteArrayContent(buffer);
+        //    byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+        //    var result = client.PostAsync(path, byteContent).Result;
+
+        //    HttpResponseMessage response = await client.PutAsync(path, queryString).ConfigureAwait(false);
+
+        //    HttpResponseMessage response = await client.PutAsync(path, queryString).ConfigureAwait(false);
+        //    if (response.IsSuccessStatusCode)
+        //    {
+        //        Lst = await response.Content.ReadAsAsync<List<HouseDTO>>();
+        //    }
+        //    return Lst;
+        //}
+        #endregion
 
     }
 }

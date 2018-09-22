@@ -42,6 +42,7 @@
                                   
                                         <div class="form-group">
                                             <label>From</label>
+                                          
                                             <asp:TextBox ID="TxtDa" runat="server" type="date" class="form-control" Text="2018-09-01"></asp:TextBox>    
                                            
                                         </div>
@@ -87,7 +88,7 @@
                                                  <asp:ListItem Text="300" Value="300"></asp:ListItem>
                                                  <asp:ListItem Text="500" Value="500"></asp:ListItem>
                                   </asp:DropDownList> entries</label></div></div></div>
-                           <asp:Repeater ID="Repeater1" runat="server">
+                           <asp:Repeater ID="Repeater1" runat="server" OnItemDataBound="Repeater1_ItemDataBound">
                                     <HeaderTemplate>
                                      <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
@@ -104,10 +105,10 @@
                                 <tbody>
                                 </HeaderTemplate>
                                 <ItemTemplate>
-                                   <tr class="gradeA odd" role="row"><td><%#Eval("id") %></td><td><%#Eval("date") %></td><td><%#Eval("bankReportEntryId") %></td><td><%#Eval("amount") %></td><td><%#Eval("description") %></td><td></td><td></td></tr>     
+                                   <tr class="gradeA odd" role="row"><td><%#Eval("id") %></td><td><%#Eval("date") %></td><td><%#Eval("bankReportEntryId") %></td><td><%#Eval("amount") %></td><td><%#Eval("description") %></td><td><asp:DropDownList ID="CboEventi" MemId='<%#Eval("eventTypeId") %>' runat="server" class="form-control"></asp:DropDownList></td><td><asp:DropDownList ID="CboCase" MemId='<%#Eval("houseId") %>' runat="server" class="form-control"></asp:DropDownList><%#Eval("houseId") %></td></tr>     
                                 </ItemTemplate>
                                 <AlternatingItemTemplate>
-                                     <tr class="gradeA even" role="row"><td><%#Eval("id") %></td><td><%#Eval("date") %></td><td><%#Eval("bankReportEntryId") %></td><td><%#Eval("amount") %></td><td><%#Eval("description") %></td><td></td><td></td></tr>
+                                     <tr class="gradeA even" role="row"><td><%#Eval("id") %></td><td><%#Eval("date") %></td><td><%#Eval("bankReportEntryId") %></td><td><%#Eval("amount") %></td><td><%#Eval("description") %></td><td><asp:DropDownList ID="CboEventi" MemId='<%#Eval("eventTypeId") %>' runat="server" class="form-control"></asp:DropDownList></td><td><asp:DropDownList ID="CboCase" MemId='<%#Eval("houseId") %>' runat="server" class="form-control"></asp:DropDownList><%#Eval("houseId") %></td></tr>
                                 </AlternatingItemTemplate>
                                 <FooterTemplate>
                                    </tbody>
