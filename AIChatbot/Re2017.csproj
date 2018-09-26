@@ -99,14 +99,13 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Contents\Error.aspx" />
+    <Content Include="Contents\PageNotFound.aspx" />
     <Content Include="Contents\TrackManagement2.aspx" />
     <Content Include="Contents\TrackManagement.aspx" />
     <Content Include="css\AiChatbot.css" />
     <Content Include="index.html" />
-    <Content Include="js\ImageDetail.js" />
-    <Content Include="js\DocumentDetail.js" />
-    <Content Include="js\TagDetail.js" />
-    <Content Include="js\UserDetail.js" />
+    <Content Include="js\TrackManagement.js" />
     <Content Include="js\Login.js" />
     <Content Include="less\mixins.less" />
     <Content Include="less\sb-admin-2.less" />
@@ -332,6 +331,20 @@
     <Compile Include="Classes\TrackManagement2PageManager.cs" />
     <Compile Include="Classes\TrackManagementPageManager.cs" />
     <Compile Include="Classes\LoginPageManager.cs" />
+    <Compile Include="Contents\Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contents\Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Contents\PageNotFound.aspx.cs">
+      <DependentUpon>PageNotFound.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contents\PageNotFound.aspx.designer.cs">
+      <DependentUpon>PageNotFound.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Contents\TrackManagement2.aspx.cs">
       <DependentUpon>TrackManagement2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

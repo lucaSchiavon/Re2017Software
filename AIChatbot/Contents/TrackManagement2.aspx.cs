@@ -111,9 +111,11 @@ namespace Ls.Re2017.Contents
 
                     //bindong a tabella
                     BindRepeater();
-                   
-                   
-                   // ViewState["LstEvtType"] = LstEvtType;
+
+                    //aggiunge il tag script con il path del file jquery con la validazione della pagina nella masterpage
+                    Literal LitPathFormScriptValidation = (Literal)Master.FindControl("LitPathFormScriptValidation");
+                    LitPathFormScriptValidation.Text = "<script src='../js/TrackManagement.js'></script>";
+                    // ViewState["LstEvtType"] = LstEvtType;
                 }
                 TrackManagement2PageManager ObjTrackManagement2PageManager = new TrackManagement2PageManager();
                 
@@ -322,7 +324,7 @@ namespace Ls.Re2017.Contents
                 PopolaCboCase(CboCase);
                
                 Ls.Prj.DTO.EventoDTO drv =(Ls.Prj.DTO.EventoDTO)e.Item.DataItem;
-               
+               CboEventi.Attributes.Add("OnClick", "UpdateHouse(" + CboEventi.Attributes["MemId"] + ")");
                 //DataRowView drv = e.Row.DataItem as DataRowView;
                 Utility.SetDropByValue(CboEventi, CboEventi.Attributes["MemId"]);
                 Utility.SetDropByValue(CboCase, CboCase.Attributes["MemId"]);
