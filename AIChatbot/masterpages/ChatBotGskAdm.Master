@@ -164,13 +164,13 @@
         else {
                     e.returnValue = false;
             }
-          var datiInput="{'id': " +IdEvt + ",'houseId':" + IdHouse + "}"
-       
+          //var datiInput="{'id': " +IdEvt + ",'houseId':" + IdHouse + "}"
+                    var datiInput = '{"id": ' + IdEvt + ',"houseId":' + IdHouse + '}'
             $.ajax({
-                type: 'POST', // Use POST with X-HTTP-Method-Override or a straight PUT if appropriate.
+                type: 'PUT', // Use POST with X-HTTP-Method-Override or a straight PUT if appropriate.
                 dataType: 'json', // Set datatype - affects Accept header
                 url: "http://2.235.241.7:8080/events/" + IdEvt, // A valid URL
-                headers: {"X-HTTP-Method-Override": "PUT"}, // X-HTTP-Method-Override set to PUT.
+                headers: {"Content-Type": "application/json"}, // X-HTTP-Method-Override set to PUT.
                 data: datiInput, // Some data e.g. Valid JSON as a string
                 success: function (response) {
                     alert("OK");
@@ -212,13 +212,13 @@
         else {
                     e.returnValue = false;
             }
-          var datiInput="{'id': " +IdEvt + ",'eventTypeId':" + IdEvtType + "}"
-       
+          //var datiInput="{'id': " +IdEvt + ",'eventTypeId':" + IdEvtType + "}"
+                    var datiInput = '{"id": ' + IdEvt + ',"eventTypeId":' + IdEvtType + '}'
             $.ajax({
-                type: 'POST', // Use POST with X-HTTP-Method-Override or a straight PUT if appropriate.
+                type: 'PUT', // Use POST with X-HTTP-Method-Override or a straight PUT if appropriate.
                 dataType: 'json', // Set datatype - affects Accept header
                 url: "http://2.235.241.7:8080/events/" + IdEvt, // A valid URL
-                headers: {"X-HTTP-Method-Override": "PUT"}, // X-HTTP-Method-Override set to PUT.
+                    headers: { "Content-Type": "application/json" }, // X-HTTP-Method-Override set to PUT.
                 data: datiInput, // Some data e.g. Valid JSON as a string
                 success: function (response) {
                     alert("OK");
