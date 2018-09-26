@@ -1,10 +1,10 @@
-﻿var TrackManagement = (function () {
+﻿var TrackManagement2 = (function () {
    
   
-    var UpdateHouse = function (e,idHouse) {
+    var UpdateHouse = function (e) {
 
         debugger;
-        var a = idHouse;
+        //var a = idHouse;
         //var b = idEvent;
         //var email = $("#TxtUsername").val();
         //var pwd = $("#TxtPassword").val();
@@ -64,6 +64,6 @@
 
 
 
-    //$(document).on('click', '#BtnLogin', ValidateForm);
+    $(document).on('click', '#ContentPlaceHolder1_LnkBtnFilter', UpdateHouse);
     
 }());

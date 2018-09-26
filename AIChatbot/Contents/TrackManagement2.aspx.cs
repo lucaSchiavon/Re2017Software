@@ -114,7 +114,8 @@ namespace Ls.Re2017.Contents
 
                     //aggiunge il tag script con il path del file jquery con la validazione della pagina nella masterpage
                     Literal LitPathFormScriptValidation = (Literal)Master.FindControl("LitPathFormScriptValidation");
-                    LitPathFormScriptValidation.Text = "<script src='../js/TrackManagement.js'></script>";
+                    //LitPathFormScriptValidation.Text = "<script src='../js/TrackManagement.js'></script>";
+                    //LitRe2017ScriptInject.Text= "<script src='../js/TrackManagement.js'></script>";
                     // ViewState["LstEvtType"] = LstEvtType;
                 }
                 TrackManagement2PageManager ObjTrackManagement2PageManager = new TrackManagement2PageManager();
@@ -154,6 +155,74 @@ namespace Ls.Re2017.Contents
         {
             BindRepeater();
         }
+
+        protected void Repeater1_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                DropDownList CboEventi = e.Item.FindControl("CboEventi") as DropDownList;
+                PopolaCboEventi(CboEventi);
+                DropDownList CboCase = e.Item.FindControl("CboCase") as DropDownList;
+                PopolaCboCase(CboCase);
+
+                Ls.Prj.DTO.EventoDTO drv = (Ls.Prj.DTO.EventoDTO)e.Item.DataItem;
+
+                CboCase.Attributes.Add("onchange", "UpdateHouse(this)");
+                CboEventi.Attributes.Add("onchange", "UpdateEvtType(this)");
+                //DataRowView drv = e.Row.DataItem as DataRowView;
+                Utility.SetDropByValue(CboEventi, CboEventi.Attributes["MemId"]);
+                Utility.SetDropByValue(CboCase, CboCase.Attributes["MemId"]);
+
+            }
+        }
+
+        #region Gestione lightbox
+
+        protected void BtnCancelDeleting_Click(object sender, EventArgs e)
+        {
+            DivDelete.Attributes.Add("Class", "ParentDivDeleting Disattivato");
+        }
+
+        protected void BtnConfirmDeleting_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Int32 IdToDelete = Convert.ToInt32(HydIdToDelete.Value);
+
+                //ImageEFRepository rep = new ImageEFRepository("");
+                //Ls.Prj.Entity.Image ImgToStoreInAudit = rep.SelectEntity(IdToDelete);
+
+
+                ////cancella la riga 
+                //DeleteEntity(IdToDelete);
+
+                ////cancella l'immagine fisica
+                //string DestPdfFullPath = HttpContext.Current.Server.MapPath("~/Public/Photos/");
+                //string ImgName = ImgToStoreInAudit.ImageName;
+                //System.IO.File.Delete(DestPdfFullPath + ImgName);
+
+                //AuditPageManager ObjPageManager = new AuditPageManager();
+                //ObjPageManager.InsertAudit(LoginUsr, "Image deleted: " + ImgToStoreInAudit.ImageName);
+
+
+                BindRepeater();
+
+                DivDelete.Attributes.Add("Class", "ParentDivDeleting Disattivato");
+            }
+            catch (Exception ex)
+            {
+                PrintError(ex);
+            }
+
+        }
+
+        //protected void BtnClose_Click(object sender, EventArgs e)
+        //{
+        //    DivError.Attributes.Add("Class", "ParentDivDeleting Disattivato");
+
+        //}
+
+        #endregion
 
         #region Gestione paginatore
         protected void BtnPrevious_Click(object sender, EventArgs e)
@@ -314,23 +383,7 @@ namespace Ls.Re2017.Contents
         }
         #endregion
 
-        protected void Repeater1_ItemDataBound(object sender, RepeaterItemEventArgs e)
-        {
-            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
-            {
-                DropDownList CboEventi = e.Item.FindControl("CboEventi") as DropDownList;
-                PopolaCboEventi(CboEventi);
-                DropDownList CboCase = e.Item.FindControl("CboCase") as DropDownList;
-                PopolaCboCase(CboCase);
-               
-                Ls.Prj.DTO.EventoDTO drv =(Ls.Prj.DTO.EventoDTO)e.Item.DataItem;
-               CboEventi.Attributes.Add("OnClick", "UpdateHouse(" + CboEventi.Attributes["MemId"] + ")");
-                //DataRowView drv = e.Row.DataItem as DataRowView;
-                Utility.SetDropByValue(CboEventi, CboEventi.Attributes["MemId"]);
-                Utility.SetDropByValue(CboCase, CboCase.Attributes["MemId"]);
 
-            }
-        }
 
     }
 }

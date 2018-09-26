@@ -99,6 +99,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Contents\Ajax.aspx" />
     <Content Include="Contents\Error.aspx" />
     <Content Include="Contents\PageNotFound.aspx" />
     <Content Include="Contents\TrackManagement2.aspx" />
@@ -331,6 +332,13 @@
     <Compile Include="Classes\TrackManagement2PageManager.cs" />
     <Compile Include="Classes\TrackManagementPageManager.cs" />
     <Compile Include="Classes\LoginPageManager.cs" />
+    <Compile Include="Contents\Ajax.aspx.cs">
+      <DependentUpon>Ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contents\Ajax.aspx.designer.cs">
+      <DependentUpon>Ajax.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Contents\Error.aspx.cs">
       <DependentUpon>Error.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

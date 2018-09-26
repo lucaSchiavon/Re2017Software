@@ -3,7 +3,23 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-  
+  <asp:Literal ID="LitRe2017ScriptInject" runat="server"></asp:Literal>
+       <div id="DivDelete" runat="server" class="ParentDivDeleting Disattivato"><div class="InnerDivDeleting">
+       <div class="panel panel-red" style="width:100%;height:100%">
+                        <div class="panel-heading">
+                            Confirm deleting
+                        </div>
+                        <div class="panel-body text-center" >
+                            <p><asp:Literal ID="LitDeleteMsg" runat="server" Text="Do you really want to delete this row?"></asp:Literal></p>
+                        </div>
+                       <div  class="text-center">
+                           <asp:Button ID="BtnCancelDeleting"  Text="CANCEL" class="btn btn-primary" runat="server" OnClick="BtnCancelDeleting_Click" />&nbsp&nbsp&nbsp&nbsp&nbsp
+                      <asp:Button ID="BtnConfirmDeleting" Text="YES" class="btn btn-danger" runat="server" OnClick="BtnConfirmDeleting_Click" />
+                           
+                       </div>
+                     
+                    </div>
+      </div></div>
       <div id="DivError" runat="server" class="ParentDivDeleting Disattivato"><div class="InnerDivDeleting">
        <div class="panel panel-red" style="width:100%;height:100%">
                         <div class="panel-heading">
@@ -100,15 +116,17 @@
                                         <th>Description</th>
                                          <th>Event</th>
                                          <th>House</th>
+                                         <th></th>
+                                         <th></th>
                                     </tr>
                                   </thead>
                                 <tbody>
                                 </HeaderTemplate>
                                 <ItemTemplate>
-                                   <tr class="gradeA odd" role="row"><td><%#Eval("id") %></td><td><%#Eval("date") %></td><td><%#Eval("bankReportEntryId") %></td><td><%#Eval("amount") %></td><td><%#Eval("description") %></td><td><asp:DropDownList ID="CboEventi" MemId='<%#Eval("eventTypeId") %>' runat="server" class="form-control"></asp:DropDownList></td><td><asp:DropDownList ID="CboCase" MemId='<%#Eval("houseId") %>' runat="server" class="form-control"></asp:DropDownList><%#Eval("houseId") %></td></tr>     
+                                   <tr class="gradeA odd" role="row"><td><%#Eval("id") %></td><td><%#Eval("date") %></td><td><%#Eval("bankReportEntryId") %></td><td><%#Eval("amount") %></td><td><%#Eval("description") %></td><td><asp:DropDownList ID="CboEventi" MemId='<%#Eval("eventTypeId") %>' MemIdEvt='<%#Eval("id") %>' runat="server" class="form-control"></asp:DropDownList></td><td><asp:DropDownList ID="CboCase" MemId='<%#Eval("houseId") %>' MemIdEvt='<%#Eval("id") %>' runat="server" class="form-control"></asp:DropDownList><%#Eval("houseId") %></td><td><a class='btn btn-danger' href='javascript:ShowDelForm(<%#Eval("id") %>);'><i class='fa fa-times'></i> Delete</a></td><td></td></tr>     
                                 </ItemTemplate>
                                 <AlternatingItemTemplate>
-                                     <tr class="gradeA even" role="row"><td><%#Eval("id") %></td><td><%#Eval("date") %></td><td><%#Eval("bankReportEntryId") %></td><td><%#Eval("amount") %></td><td><%#Eval("description") %></td><td><asp:DropDownList ID="CboEventi" MemId='<%#Eval("eventTypeId") %>' runat="server" class="form-control"></asp:DropDownList></td><td><asp:DropDownList ID="CboCase" MemId='<%#Eval("houseId") %>' runat="server" class="form-control"></asp:DropDownList><%#Eval("houseId") %></td></tr>
+                                     <tr class="gradeA even" role="row"><td><%#Eval("id") %></td><td><%#Eval("date") %></td><td><%#Eval("bankReportEntryId") %></td><td><%#Eval("amount") %></td><td><%#Eval("description") %></td><td><asp:DropDownList ID="CboEventi" MemId='<%#Eval("eventTypeId") %>' MemIdEvt='<%#Eval("id") %>' runat="server" class="form-control"></asp:DropDownList></td><td><asp:DropDownList ID="CboCase" MemId='<%#Eval("houseId") %>' MemIdEvt='<%#Eval("id") %>' runat="server" class="form-control"></asp:DropDownList><%#Eval("houseId") %></td><td><a class='btn btn-danger' href='javascript:ShowDelForm(<%#Eval("id") %>);'><i class='fa fa-times'></i> Delete</a></td><td></td></tr>
                                 </AlternatingItemTemplate>
                                 <FooterTemplate>
                                    </tbody>
@@ -163,5 +181,18 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
+      <input id="HydIdToDelete" runat="server" type="hidden"/>
+      <script>
 
+          function ShowDelForm(IdEntity)
+          {
+             
+              document.getElementById('<%= HydIdToDelete.ClientID %>').value = IdEntity;
+              var DivDelete = document.getElementById('<%= DivDelete.ClientID %>');
+              DivDelete.classList.remove("Disattivato");
+              DivDelete.className += " Attivo";
+           
+        }
+      
+    </script>
 </asp:Content>

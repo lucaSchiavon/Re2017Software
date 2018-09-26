@@ -13,6 +13,51 @@ namespace Ls.Re2017.Contents {
     public partial class TrackManagement2 {
         
         /// <summary>
+        /// Controllo LitRe2017ScriptInject.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal LitRe2017ScriptInject;
+        
+        /// <summary>
+        /// Controllo DivDelete.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivDelete;
+        
+        /// <summary>
+        /// Controllo LitDeleteMsg.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal LitDeleteMsg;
+        
+        /// <summary>
+        /// Controllo BtnCancelDeleting.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnCancelDeleting;
+        
+        /// <summary>
+        /// Controllo BtnConfirmDeleting.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnConfirmDeleting;
+        
+        /// <summary>
         /// Controllo DivError.
         /// </summary>
         /// <remarks>
@@ -137,5 +182,14 @@ namespace Ls.Re2017.Contents {
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptPaging;
+        
+        /// <summary>
+        /// Controllo HydIdToDelete.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden HydIdToDelete;
     }
 }
