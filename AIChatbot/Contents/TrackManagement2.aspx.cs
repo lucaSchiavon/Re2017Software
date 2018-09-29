@@ -188,7 +188,8 @@ namespace Ls.Re2017.Contents
             try
             {
                 Int32 IdToDelete = Convert.ToInt32(HydIdToDelete.Value);
-
+                TrackManagement2PageManager ObjTrackManagement2PageManager = new TrackManagement2PageManager();
+                ObjTrackManagement2PageManager.DeleteEvt(IdToDelete);
                 //ImageEFRepository rep = new ImageEFRepository("");
                 //Ls.Prj.Entity.Image ImgToStoreInAudit = rep.SelectEntity(IdToDelete);
 

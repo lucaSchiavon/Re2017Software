@@ -102,8 +102,10 @@
     <Content Include="Contents\Ajax.aspx" />
     <Content Include="Contents\Error.aspx" />
     <Content Include="Contents\PageNotFound.aspx" />
+    <Content Include="Contents\TrackUpload.aspx" />
     <Content Include="Contents\TrackManagement2.aspx" />
     <Content Include="Contents\TrackManagement.aspx" />
+    <Content Include="Contents\UploadTransactions.aspx" />
     <Content Include="css\AiChatbot.css" />
     <Content Include="index.html" />
     <Content Include="js\TrackManagement.js" />
@@ -329,6 +331,7 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Classes\AICBBasePageManager.cs" />
+    <Compile Include="Classes\UploadTransactionsPageManager.cs" />
     <Compile Include="Classes\TrackManagement2PageManager.cs" />
     <Compile Include="Classes\TrackManagementPageManager.cs" />
     <Compile Include="Classes\LoginPageManager.cs" />
@@ -352,6 +355,13 @@
     </Compile>
     <Compile Include="Contents\PageNotFound.aspx.designer.cs">
       <DependentUpon>PageNotFound.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Contents\TrackUpload.aspx.cs">
+      <DependentUpon>TrackUpload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contents\TrackUpload.aspx.designer.cs">
+      <DependentUpon>TrackUpload.aspx</DependentUpon>
     </Compile>
     <Compile Include="Contents\TrackManagement2.aspx.cs">
       <DependentUpon>TrackManagement2.aspx</DependentUpon>
@@ -387,6 +397,13 @@
     </Compile>
     <Compile Include="Contents\Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Contents\UploadTransactions.aspx.cs">
+      <DependentUpon>UploadTransactions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contents\UploadTransactions.aspx.designer.cs">
+      <DependentUpon>UploadTransactions.aspx</DependentUpon>
     </Compile>
     <Compile Include="masterpages\ChatBotGskAdm.Master.cs">
       <DependentUpon>ChatBotGskAdm.Master</DependentUpon>

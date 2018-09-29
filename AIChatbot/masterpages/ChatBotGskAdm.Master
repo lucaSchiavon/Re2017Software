@@ -83,7 +83,7 @@
          $(document).ready(function() {
              $(".fancybox").fancybox();
              $(".various").fancybox({
-		maxWidth	: 800,
+		maxWidth	: 600,
 		maxHeight	: 600,
 		fitToView	: false,
 		width		: '70%',

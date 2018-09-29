@@ -168,6 +168,15 @@ namespace Re2017.Classes
             return LstEvento;
         }
 
+        public void DeleteEvt(int IdEvt)
+        {
+
+            //var myContent = JsonConvert.SerializeObject(ObjUpdateHouseEvtInputDto);
+            //var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+            //var byteContent = new ByteArrayContent(buffer);
+            //byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            var result = client.DeleteAsync("events/" + IdEvt).Result;
+        }
         #endregion
 
 

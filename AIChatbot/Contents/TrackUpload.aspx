@@ -1,25 +1,15 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masterpages/ChatBotGskAdm.Master" MaintainScrollPositionOnPostback="true"   AutoEventWireup="true" CodeBehind="TrackManagement2.aspx.cs" Inherits="Ls.Re2017.Contents.TrackManagement2" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masterpages/ChatBotGskAdm.Master" MaintainScrollPositionOnPostback="true" AutoEventWireup="true" CodeBehind="TrackManagement.aspx.cs" Inherits="Ls.Re2017.Contents.TrackManagement" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-  <asp:Literal ID="LitRe2017ScriptInject" runat="server"></asp:Literal>
-       <div id="DivDelete" runat="server" class="ParentDivDeleting Disattivato"><div class="InnerDivDeleting">
-       <div class="panel panel-red" style="width:100%;height:100%">
-                        <div class="panel-heading">
-                            Confirm deleting
-                        </div>
-                        <div class="panel-body text-center" >
-                            <p><asp:Literal ID="LitDeleteMsg" runat="server" Text="Do you really want to delete this row?"></asp:Literal></p>
-                        </div>
-                       <div  class="text-center">
-                           <asp:Button ID="BtnCancelDeleting"  Text="CANCEL" class="btn btn-primary" runat="server" OnClick="BtnCancelDeleting_Click" />&nbsp&nbsp&nbsp&nbsp&nbsp
-                      <asp:Button ID="BtnConfirmDeleting" Text="YES" class="btn btn-danger" runat="server" OnClick="BtnConfirmDeleting_Click" />
-                           
-                       </div>
-                     
-                    </div>
-      </div></div>
+
+<script type="text/javascript">
+    function fileinfo()
+    {
+        document.getElementById('<%=TextBox1.ClientID%>').value = document.getElementById('<%=FileUpload1.ClientID%>').value;
+    }
+</script>
       <div id="DivError" runat="server" class="ParentDivDeleting Disattivato"><div class="InnerDivDeleting">
        <div class="panel panel-red" style="width:100%;height:100%">
                         <div class="panel-heading">
@@ -40,17 +30,59 @@
     
                 <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Bank transactions</h1>
+                    <h1 class="page-header">Tracks import</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-              
-  
-   
+               
+    <asp:FileUpload ID="FileUpload1" runat="server" onchange="fileinfo()" Style="display:none;" />
             <!-- /.row -->
             <div class="row">
-                 <div class="col-lg-8">
-                <div class="panel panel-primary">
+                                 <div class="col-lg-12">
+                <div class="panel panel-default">
+                        <div class="panel-heading">
+                            import bank transactions (.csv file)
+                            
+                        </div>
+                        <div class="panel-body">
+                      <div class="col-lg-1">
+                                  <div class="form-group">
+                                            <label></label>
+                                           <br /> 
+                                     
+                                         <asp:linkbutton id="LnkBtnBrowse" runat="server" class="btn btn-primary" OnClick="BtnFilter_Click"><%--<i class='fa fa-filter'></i>--%>Browse</asp:linkbutton>         
+                                                                  
+                                        </div>
+                                       </div>
+                               <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label></label>
+                                       <asp:TextBox ID="TextBox1" runat="server"  class="form-control"></asp:TextBox>      
+                                        </div>
+                                      </div>
+                                   <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label></label>
+                                           <asp:DropDownList ID="CboBank" runat="Server" class="form-control"></asp:DropDownList>
+                                        </div>
+                                      </div>
+                             <div class="col-lg-1">
+                                  <div class="form-group">
+                                            <label></label>   
+                                        <br />  
+                                           <asp:linkbutton id="LnkBtnUploadTrack" runat="server" class="btn btn-primary" ><i class='fa fa-upload'></i> Upload</asp:linkbutton>                                                                           
+                                        </div>
+                                       </div>
+                      
+                            
+
+                               
+                        </div>
+                      
+                    </div>
+                     </div>
+                 <div class="col-lg-12">
+                <div class="panel panel-default">
                         <div class="panel-heading">
                             Filters
                         </div>
@@ -58,25 +90,23 @@
                             <div class="col-lg-3">
                                   
                                         <div class="form-group">
-                                            <label>From</label>
-                                          
-                                            <asp:TextBox ID="TxtDa" runat="server" type="date" class="form-control" Text="2018-09-01"></asp:TextBox>    
-                                           
+                                            <label>Da</label>
+                                            <asp:TextBox ID="TxtDa" runat="server" type="date" class="form-control"></asp:TextBox>                                        
                                         </div>
                                  </div>
                              <div class="col-lg-3">
                                   <div class="form-group">
-                                            <label>To</label>                                          
+                                            <label>A</label>                                          
                                        <asp:TextBox ID="TxtA" runat="server" type="date" class="form-control"></asp:TextBox>                                        
                                         </div>
                                        </div>
-                           <%--  <div class="col-lg-3">
+                             <div class="col-lg-3">
                                         <div class="form-group">
                                             <label>Users</label>
                                            <asp:DropDownList ID="CboUsers" runat="Server" class="form-control"></asp:DropDownList>
                                         </div>
-                                      </div>--%>
-                             <div class="col-lg-2" style="text-align:center;Padding-top:3px">
+                                      </div>
+                             <div class="col-lg-3" style="text-align:center;Padding-top:3px">
                                   <div class="form-group">
                                             <label></label>
                                            <br />     
@@ -89,33 +119,11 @@
                       
                     </div>
                      </div>
-                                 <div class="col-lg-4">
-                <div class="panel panel-primary">
-                        <div class="panel-heading">
-                           Imports transactions
-                        </div>
-                        <div class="panel-body">
-                            <div class="col-lg-12">
-                                  
-                                        <div class="form-group">
-                                            <label>Click button to imports transactions from bank's csv:</label>
-                                          <br />
-                                            <a class="various" data-fancybox-type="iframe" class="btn btn-primary" href="/Contents/UploadTransactions.aspx"><i class='fa fa-upload'></i> Upload</a>
-                                          <%--   <asp:linkbutton id="LnkUpload" runat="server" class="btn btn-primary" OnClick="BtnFilter_Click"><i class='fa fa-upload'></i> Upload</asp:linkbutton>     --%>
-                                           
-                                        </div>
-                                 </div>
-                         
-                          
-                        </div>
-                      
-                    </div>
-                     </div>
                 <div class="col-lg-12">
                      
-                    <div class="panel panel-primary">
+                    <div class="panel panel-default">
                         <div class="panel-heading">
-                            Data recorded...
+                            User's operations recorded...
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -127,29 +135,24 @@
                                                  <asp:ListItem Text="300" Value="300"></asp:ListItem>
                                                  <asp:ListItem Text="500" Value="500"></asp:ListItem>
                                   </asp:DropDownList> entries</label></div></div></div>
-                           <asp:Repeater ID="Repeater1" runat="server" OnItemDataBound="Repeater1_ItemDataBound">
+                           <asp:Repeater ID="Repeater1" runat="server">
                                     <HeaderTemplate>
                                      <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                     <tr>
-                                        <th  style="width: 20px">Id</th>
-                                        <th style="width: 150px">Date</th>
-                                        <th>Bank</th>
-                                         <th>Amount</th>
+                                        <th  style="width: 150px">User</th>
+                                        <th>Role</th>
+                                        <th style="width: 150px">Date/Time</th>
                                         <th>Description</th>
-                                         <th>Event</th>
-                                         <th>House</th>
-                                         <th></th>
-                                         <th></th>
                                     </tr>
                                   </thead>
                                 <tbody>
                                 </HeaderTemplate>
                                 <ItemTemplate>
-                                   <tr class="gradeA odd" role="row"><td><%#Eval("id") %></td><td><%#Eval("date") %></td><td><%#Eval("bankReportEntryId") %></td><td><%#Eval("amount") %></td><td><%#Eval("description") %></td><td><asp:DropDownList ID="CboEventi" MemId='<%#Eval("eventTypeId") %>' MemIdEvt='<%#Eval("id") %>' runat="server" class="form-control"></asp:DropDownList></td><td><asp:DropDownList ID="CboCase" MemId='<%#Eval("houseId") %>' MemIdEvt='<%#Eval("id") %>' runat="server" class="form-control"></asp:DropDownList></td><td><a class='btn btn-danger' href='javascript:ShowDelForm(<%#Eval("id") %>);'><i class='fa fa-times'></i></a></td><td><a class='btn btn-warning' href='contents/Split.aspx?IdEvt=<%#Eval("id") %>'>Split</a></td></tr>     
+                                   <tr class="gradeA odd" role="row"><td><%#Eval("AuditUser") %></td><td><%#Eval("Role") %></td><td><%#Eval("ModTime") %></td><td><%#Eval("Description") %></td></tr>     
                                 </ItemTemplate>
                                 <AlternatingItemTemplate>
-                                     <tr class="gradeA even" role="row"><td><%#Eval("id") %></td><td><%#Eval("date") %></td><td><%#Eval("bankReportEntryId") %></td><td><%#Eval("amount") %></td><td><%#Eval("description") %></td><td><asp:DropDownList ID="CboEventi" MemId='<%#Eval("eventTypeId") %>' MemIdEvt='<%#Eval("id") %>' runat="server" class="form-control"></asp:DropDownList></td><td><asp:DropDownList ID="CboCase" MemId='<%#Eval("houseId") %>' MemIdEvt='<%#Eval("id") %>' runat="server" class="form-control"></asp:DropDownList></td><td><a class='btn btn-danger' href='javascript:ShowDelForm(<%#Eval("id") %>);'><i class='fa fa-times'></i></a></td><td><a class='btn btn-warning' href='contents/Split.aspx?IdEvt=<%#Eval("id") %>'>Split</a></td></tr>
+                                     <tr class="gradeA even" role="row"><td><%#Eval("AuditUser") %></td><td><%#Eval("Role") %></td><td><%#Eval("ModTime") %></td><td><%#Eval("Description") %></td></tr>
                                 </AlternatingItemTemplate>
                                 <FooterTemplate>
                                    </tbody>
@@ -204,18 +207,5 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-      <input id="HydIdToDelete" runat="server" type="hidden"/>
-      <script>
 
-          function ShowDelForm(IdEntity)
-          {
-             
-              document.getElementById('<%= HydIdToDelete.ClientID %>').value = IdEntity;
-              var DivDelete = document.getElementById('<%= DivDelete.ClientID %>');
-              DivDelete.classList.remove("Disattivato");
-              DivDelete.className += " Attivo";
-           
-        }
-      
-    </script>
 </asp:Content>
