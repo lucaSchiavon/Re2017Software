@@ -11,6 +11,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using Ls.Prj.Utility;
 using Newtonsoft.Json;
+using System.Globalization;
 
 namespace Re2017.Classes
 {
@@ -100,8 +101,21 @@ namespace Re2017.Classes
             //mapping su DTO
             List<EventoDTO> LstEventoDto = new List<EventoDTO>();
             var config = new MapperConfiguration(cfg => {
-                cfg.CreateMap<Evento, EventoDTO>();
+                cfg.CreateMap<Evento, EventoDTO>()
+                .ForMember(dest => dest.amount, opt => opt.MapFrom(src => string.Format(new System.Globalization.CultureInfo("en-US"), "{0:c}", src.amount)))
+                .ForMember(dest => dest.date, opt => opt.MapFrom(src => string.Format("{0:MM/dd/yyyy}", src.date)));
             });
+           
+             //.ForMember(dest => string.Format(new System.Globalization.CultureInfo("en-GB"), "{0:c}", dest.amount), opt => opt.MapFrom(src => src.amount))
+            //string us = dec.ToString("C", new CultureInfo("en-US"));
+            //var config = new MapperConfiguration(cfg =>
+            //{
+            //    cfg.CreateMap<Document, DocumentDTO>()
+            //     .ForMember(dest => dest.IdDocument, opt => opt.MapFrom(src => src.IdDocument))
+            //      .ForMember(dest => dest.Typology, opt => opt.MapFrom(src => src.Type.Typology))
+            //     .ForMember(dest => dest.Enabled, opt => opt.MapFrom(src => (((bool)src.Enabled) ? "YES" : "NO")));
+            //});
+
             IMapper mapper = config.CreateMapper();
             LstEventoDto = mapper.Map<List<Evento>, List<EventoDTO>>(LstEventi);
 

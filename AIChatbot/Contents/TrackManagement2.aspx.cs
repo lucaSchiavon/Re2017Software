@@ -14,6 +14,7 @@ using System.Collections;
 using Ls.Prj.Utility;
 using Re2017;
 using Re2017.Classes;
+using System.Globalization;
 
 namespace Ls.Re2017.Contents
 {
@@ -91,6 +92,9 @@ namespace Ls.Re2017.Contents
            
             try
             {
+                TrackManagement2PageManager ObjTrackManagement2PageManager = new TrackManagement2PageManager();
+                LstEvtType = ObjTrackManagement2PageManager.GetEventsType();
+                LstHouse = ObjTrackManagement2PageManager.GetHouse();
                 if (!Page.IsPostBack)
                 {
 
@@ -118,7 +122,7 @@ namespace Ls.Re2017.Contents
                     //LitRe2017ScriptInject.Text= "<script src='../js/TrackManagement.js'></script>";
                     // ViewState["LstEvtType"] = LstEvtType;
                 }
-                TrackManagement2PageManager ObjTrackManagement2PageManager = new TrackManagement2PageManager();
+              
                 
                 ////*******************
                 ////chiamata put da togliere
@@ -128,8 +132,7 @@ namespace Ls.Re2017.Contents
                 //ObjTrackManagement2PageManager.UpdateHouseEvt(ObjUpdateHouseEvtInputDto);
                 ////*****************
 
-               LstEvtType = ObjTrackManagement2PageManager.GetEventsType();
-                LstHouse = ObjTrackManagement2PageManager.GetHouse();
+               
             }
             catch (Exception ex)
             {
@@ -173,6 +176,27 @@ namespace Ls.Re2017.Contents
                 Utility.SetDropByValue(CboEventi, CboEventi.Attributes["MemId"]);
                 Utility.SetDropByValue(CboCase, CboCase.Attributes["MemId"]);
 
+                if (CboEventi.Attributes["MemId"] == "0")
+                {
+                    CboEventi.Attributes.Add("style", "font-weight:bold");
+                }
+
+                if (CboCase.Attributes["MemId"] == "0")
+                {
+                    CboCase.Attributes.Add("style", "font-weight:bold");
+                }
+
+                //colora di verde o rosso l'importo a seconda che sia un credito o debito
+                Label LblAmount = e.Item.FindControl("LblAmount") as Label;
+
+                if (LblAmount.Text.Contains("("))
+                {
+                    LblAmount.ForeColor = System.Drawing.Color.Red;
+                }
+                else
+                {
+                    LblAmount.ForeColor = System.Drawing.Color.Green;
+                }
             }
         }
 
@@ -192,7 +216,7 @@ namespace Ls.Re2017.Contents
                 ObjTrackManagement2PageManager.DeleteEvt(IdToDelete);
                 //ImageEFRepository rep = new ImageEFRepository("");
                 //Ls.Prj.Entity.Image ImgToStoreInAudit = rep.SelectEntity(IdToDelete);
-
+             
 
                 ////cancella la riga 
                 //DeleteEntity(IdToDelete);
@@ -355,14 +379,16 @@ namespace Ls.Re2017.Contents
             //List<EventTypeDTO> LstDto = (List<EventTypeDTO>)ViewState["LstEvtType"];
             // TrackManagement2PageManager ObjTrackManagement2PageManager = new TrackManagement2PageManager();
             //List<EventTypeDTO> LstEvtType = ObjTrackManagement2PageManager.GetEventsType();
-           
-            foreach (EventTypeDTO Curr in LstEvtType)
-            {
-                var listItem = new ListItem();
-                listItem.Value = Curr.id.ToString();
-                listItem.Text = Curr.displayValue;
-                drop.Items.Add(listItem);
+            if (LstEvtType != null)
+            { 
+                foreach (EventTypeDTO Curr in LstEvtType)
+                {
+                    var listItem = new ListItem();
+                    listItem.Value = Curr.id.ToString();
+                    listItem.Text = Curr.displayValue;
+                    drop.Items.Add(listItem);
               
+                }
             }
             drop.Items.Add(new ListItem("--Select event type--", "0"));
             Utility.SetDropByValue(drop, "0");
@@ -370,14 +396,17 @@ namespace Ls.Re2017.Contents
 
         private void PopolaCboCase(DropDownList drop)
         {
-           
-            foreach (HouseDTO Curr in LstHouse)
+            if (LstHouse != null)
             {
-                var listItem = new ListItem();
-                listItem.Value = Curr.id.ToString();
-                listItem.Text = Curr.nickname;
-                drop.Items.Add(listItem);
+           
+                foreach (HouseDTO Curr in LstHouse)
+                {
+                    var listItem = new ListItem();
+                    listItem.Value = Curr.id.ToString();
+                    listItem.Text = Curr.nickname;
+                    drop.Items.Add(listItem);
 
+                }
             }
             drop.Items.Add(new ListItem("--Select house--", "0"));
             Utility.SetDropByValue(drop, "0");
