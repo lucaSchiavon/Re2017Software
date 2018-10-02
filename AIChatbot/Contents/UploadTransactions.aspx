@@ -20,6 +20,7 @@
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+
        <div class="row" style="margin-right:0px;margin-left:0px">
                 <div class="col-lg-3">
                     <h1 class="page-header">Upload transactions</h1>
@@ -40,7 +41,7 @@
                                   
                                         <div class="form-group">
                                             <label>Bank</label>
-                                           <asp:DropDownList ID="CboBank"  name="bankId" runat="Server" class="form-control"></asp:DropDownList>
+                                           <asp:DropDownList ID="CboBank" onchange="MemorizeCallUrl(this)" name="bankId" runat="Server" class="form-control"></asp:DropDownList>
                                             <%--<asp:TextBox ID="TxtDa" runat="server" type="date" class="form-control" Text="2018-09-01"></asp:TextBox>    --%>
                                            
                                         </div>
@@ -84,6 +85,23 @@
         <div>
            
         </div>
+         <script src="../vendor/DropzoneJs_scripts/jquery.min.js"></script>
+            <script type="text/javascript">
+                var MemorizeCallUrl = function (e) {
+                    var SelBankIndex = e.options[e.selectedIndex].value;
+                    var urlToCall = 'http://2.235.241.7:8080/bank-report-entries/' + SelBankIndex + '/upload';
+                  
+                    if (e.preventDefault) {
+                        e.preventDefault();
+                    }
+                    else {
+                        e.returnValue = false;
+                    }
+                   //set action property of form
+                    $('#Form1').attr("action", urlToCall);
+
+                };
+            </script>
     </form>
 </body>
 </html>

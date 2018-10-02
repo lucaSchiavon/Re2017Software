@@ -189,7 +189,14 @@ namespace Re2017.Classes
             //var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
             //var byteContent = new ByteArrayContent(buffer);
             //byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            var result = client.DeleteAsync("events/" + IdEvt).Result;
+            //var result = client.DeleteAsync("events/" + IdEvt).Result;
+            HttpResponseMessage response = client.DeleteAsync("events/" + IdEvt).Result;
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("An error occurred during deletion or the record can't be deleted due to the constraint's existence");
+            }
+            //string res = await response.Content.ReadAsStringAsync().Result;
+            //return await JsonConvert.DeserializeObjectAsync<T>(response);
         }
         #endregion
 
