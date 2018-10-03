@@ -13,6 +13,51 @@ namespace Ls.Re2017.Contents {
     public partial class TrackManagement {
         
         /// <summary>
+        /// Controllo LitRe2017ScriptInject.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal LitRe2017ScriptInject;
+        
+        /// <summary>
+        /// Controllo DivDelete.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivDelete;
+        
+        /// <summary>
+        /// Controllo LitDeleteMsg.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal LitDeleteMsg;
+        
+        /// <summary>
+        /// Controllo BtnCancelDeleting.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnCancelDeleting;
+        
+        /// <summary>
+        /// Controllo BtnConfirmDeleting.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnConfirmDeleting;
+        
+        /// <summary>
         /// Controllo DivError.
         /// </summary>
         /// <remarks>
@@ -40,51 +85,6 @@ namespace Ls.Re2017.Contents {
         protected global::System.Web.UI.WebControls.Button BtnClose;
         
         /// <summary>
-        /// Controllo FileUpload1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generato automaticamente.
-        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
-        
-        /// <summary>
-        /// Controllo LnkBtnBrowse.
-        /// </summary>
-        /// <remarks>
-        /// Campo generato automaticamente.
-        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LnkBtnBrowse;
-        
-        /// <summary>
-        /// Controllo TextBox1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generato automaticamente.
-        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
-        
-        /// <summary>
-        /// Controllo CboBank.
-        /// </summary>
-        /// <remarks>
-        /// Campo generato automaticamente.
-        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList CboBank;
-        
-        /// <summary>
-        /// Controllo LnkBtnUploadTrack.
-        /// </summary>
-        /// <remarks>
-        /// Campo generato automaticamente.
-        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LnkBtnUploadTrack;
-        
-        /// <summary>
         /// Controllo TxtDa.
         /// </summary>
         /// <remarks>
@@ -101,15 +101,6 @@ namespace Ls.Re2017.Contents {
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TxtA;
-        
-        /// <summary>
-        /// Controllo CboUsers.
-        /// </summary>
-        /// <remarks>
-        /// Campo generato automaticamente.
-        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList CboUsers;
         
         /// <summary>
         /// Controllo LnkBtnFilter.
@@ -191,5 +182,14 @@ namespace Ls.Re2017.Contents {
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptPaging;
+        
+        /// <summary>
+        /// Controllo HydIdToDelete.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden HydIdToDelete;
     }
 }

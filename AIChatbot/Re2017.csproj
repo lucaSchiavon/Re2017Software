@@ -102,8 +102,8 @@
     <Content Include="Contents\Ajax.aspx" />
     <Content Include="Contents\Error.aspx" />
     <Content Include="Contents\PageNotFound.aspx" />
+    <Content Include="Contents\Split.aspx" />
     <Content Include="Contents\TrackUpload.aspx" />
-    <Content Include="Contents\TrackManagement2.aspx" />
     <Content Include="Contents\TrackManagement.aspx" />
     <Content Include="Contents\UploadTransactions.aspx" />
     <Content Include="css\AiChatbot.css" />
@@ -356,19 +356,19 @@
     <Compile Include="Contents\PageNotFound.aspx.designer.cs">
       <DependentUpon>PageNotFound.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Contents\Split.aspx.cs">
+      <DependentUpon>Split.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contents\Split.aspx.designer.cs">
+      <DependentUpon>Split.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Contents\TrackUpload.aspx.cs">
       <DependentUpon>TrackUpload.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Contents\TrackUpload.aspx.designer.cs">
       <DependentUpon>TrackUpload.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Contents\TrackManagement2.aspx.cs">
-      <DependentUpon>TrackManagement2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Contents\TrackManagement2.aspx.designer.cs">
-      <DependentUpon>TrackManagement2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Contents\TrackManagement.aspx.cs">
       <DependentUpon>TrackManagement.aspx</DependentUpon>

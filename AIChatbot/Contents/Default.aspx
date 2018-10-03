@@ -62,6 +62,7 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
+                            Qui eventualmente andranno delle statistiche generali di re2017 (profitti, fondo cassa, andamento negli anni ecc...)
          <%--                    <div class="row">
                 <div class="col-lg-12 text-right">
                    <a class="btn btn-success" href="UserDetail.aspx"><i class="fa fa-pencil"></i> Insert</a>

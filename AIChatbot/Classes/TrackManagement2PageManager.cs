@@ -89,6 +89,40 @@ namespace Re2017.Classes
         }
 
         #region Eventi
+        public EventoDTO GetEvento(int IdEvt)
+        {
+
+            Evento ObjEvento=null;
+
+            ObjEvento = GetAsyncEvento("events/" + IdEvt.ToString()).Result;
+          
+
+            //mapping su DTO
+            EventoDTO ObjEventoDto = new EventoDTO();
+            var config = new MapperConfiguration(cfg => {
+                cfg.CreateMap<Evento, EventoDTO>()
+                .ForMember(dest => dest.amount, opt => opt.MapFrom(src => string.Format(new System.Globalization.CultureInfo("en-US"), "{0:c}", src.amount)))
+                .ForMember(dest => dest.date, opt => opt.MapFrom(src => string.Format("{0:MM/dd/yyyy}", src.date)));
+            });
+
+            IMapper mapper = config.CreateMapper();
+            ObjEventoDto = mapper.Map<Evento, EventoDTO>(ObjEvento);
+
+            return ObjEventoDto;
+
+        }
+
+        async Task<Evento> GetAsyncEvento(string path)
+        {
+            Evento ObjEvento = null;
+            HttpResponseMessage response = await client.GetAsync(path, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
+            if (response.IsSuccessStatusCode)
+            {
+                ObjEvento = await response.Content.ReadAsAsync<Evento>();
+            }
+            return ObjEvento;
+        }
+
         public List<EventoDTO> GetEventi(DateTime Da, DateTime A)
         {
 

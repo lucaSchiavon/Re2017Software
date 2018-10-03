@@ -18,10 +18,10 @@
                             <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>--%>
                         <li>
-                            <a href="#"><i class="fa fa-tags fa-fw"></i> Track management<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-tags fa-fw"></i> Manage bank transactions<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="TrackManagement.aspx">Track import</a>
+                                    <a href="TrackManagement.aspx">Import/manage transaction</a>
                                 </li>
                                <%-- <li>
                                     <a href="TrackManagement.aspx">New</a>

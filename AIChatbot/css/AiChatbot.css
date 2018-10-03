@@ -31,3 +31,8 @@
 .Disattivato {
     visibility: hidden;
 }
+
+
+.table-hover > tbody > tr:hover td {
+    background-color: #FAED8D !important;
+}

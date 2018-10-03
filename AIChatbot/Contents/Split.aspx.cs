@@ -18,7 +18,7 @@ using System.Globalization;
 
 namespace Ls.Re2017.Contents
 {
-    public partial class TrackManagement2 : System.Web.UI.Page
+    public partial class Split: System.Web.UI.Page
     {
         #region public propery of page
         public int PageNumber
@@ -98,8 +98,7 @@ namespace Ls.Re2017.Contents
                 if (!Page.IsPostBack)
                 {
 
-                    TxtDa.Text = (new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1)).ToString("yyyy-MM-dd");
-                    TxtA.Text = (new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month))).ToString("yyyy-MM-dd");
+
                     //TextBox1.Text = (new DateTime(DateTime.Now.Year, DateTime.Now.Month, 30)).ToString();
                     //string date = DateTime.Now;
                     //dataprova.Value = (new DateTime(DateTime.Now.Year, DateTime.Now.Month, 30)).ToString();
@@ -110,27 +109,23 @@ namespace Ls.Re2017.Contents
                     //CboUsers.Items.Add(new ListItem("--Select--", "0"));
                     //Utility.SetDropByValue(CboUsers, "0");
 
-                    //inizializza classi CSS del paginatore
-                    HidePreviousClass = "disabled";
+                    ////inizializza classi CSS del paginatore
+                    //HidePreviousClass = "disabled";
 
                     //bindong a tabella
+                    BindEvtSelectedHead();
                     BindRepeater();
 
                     //aggiunge il tag script con il path del file jquery con la validazione della pagina nella masterpage
                     Literal LitPathFormScriptValidation = (Literal)Master.FindControl("LitPathFormScriptValidation");
+
                     //LitPathFormScriptValidation.Text = "<script src='../js/TrackManagement.js'></script>";
                     //LitRe2017ScriptInject.Text= "<script src='../js/TrackManagement.js'></script>";
                     // ViewState["LstEvtType"] = LstEvtType;
                 }
               
                 
-                ////*******************
-                ////chiamata put da togliere
-                //UpdateHouseEvtInputDto ObjUpdateHouseEvtInputDto = new UpdateHouseEvtInputDto(); //data = "{'id': 99,'houseId':6}";
-                //ObjUpdateHouseEvtInputDto.id = 99;
-                //ObjUpdateHouseEvtInputDto.houseId = 7;
-                //ObjTrackManagement2PageManager.UpdateHouseEvt(ObjUpdateHouseEvtInputDto);
-                ////*****************
+               
 
                
             }
@@ -149,15 +144,12 @@ namespace Ls.Re2017.Contents
 
         }
 
-        protected void BtnFilter_Click(object sender, EventArgs e)
+
+        protected void BtnBack_Click(object sender, EventArgs e)
         {
-            BindRepeater();
+            Response.Redirect("TrackManagement.aspx");
         }
 
-        protected void CboRowsInPages_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            BindRepeater();
-        }
 
         protected void Repeater1_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
@@ -200,6 +192,49 @@ namespace Ls.Re2017.Contents
             }
         }
 
+        protected void RptSelEvt_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                DropDownList CboEventi = e.Item.FindControl("CboEventi") as DropDownList;
+                PopolaCboEventi(CboEventi);
+                DropDownList CboCase = e.Item.FindControl("CboCase") as DropDownList;
+                PopolaCboCase(CboCase);
+
+                Ls.Prj.DTO.EventoDTO drv = (Ls.Prj.DTO.EventoDTO)e.Item.DataItem;
+
+                //CboCase.Attributes.Add("onchange", "UpdateHouse(this)");
+                //CboEventi.Attributes.Add("onchange", "UpdateEvtType(this)");
+                //DataRowView drv = e.Row.DataItem as DataRowView;
+                Utility.SetDropByValue(CboEventi, CboEventi.Attributes["MemId"]);
+                Utility.SetDropByValue(CboCase, CboCase.Attributes["MemId"]);
+
+                if (CboEventi.Attributes["MemId"] == "0")
+                {
+                    CboEventi.Attributes.Add("style", "font-weight:bold");
+                }
+
+                if (CboCase.Attributes["MemId"] == "0")
+                {
+                    CboCase.Attributes.Add("style", "font-weight:bold");
+                }
+
+                //colora di verde o rosso l'importo a seconda che sia un credito o debito
+                Label LblAmount = e.Item.FindControl("LblAmount") as Label;
+
+                if (LblAmount.Text.Contains("("))
+                {
+                    LblAmount.ForeColor = System.Drawing.Color.Red;
+                }
+                else
+                {
+                    LblAmount.ForeColor = System.Drawing.Color.Green;
+                }
+                //CboEventi.Enabled = false;
+                //CboCase.Enabled = false;
+            }
+        }
+
         #region Gestione lightbox
 
         protected void BtnCancelDeleting_Click(object sender, EventArgs e)
@@ -214,22 +249,7 @@ namespace Ls.Re2017.Contents
                 Int32 IdToDelete = Convert.ToInt32(HydIdToDelete.Value);
                 TrackManagement2PageManager ObjTrackManagement2PageManager = new TrackManagement2PageManager();
                 ObjTrackManagement2PageManager.DeleteEvt(IdToDelete);
-                //ImageEFRepository rep = new ImageEFRepository("");
-                //Ls.Prj.Entity.Image ImgToStoreInAudit = rep.SelectEntity(IdToDelete);
-             
-
-                ////cancella la riga 
-                //DeleteEntity(IdToDelete);
-
-                ////cancella l'immagine fisica
-                //string DestPdfFullPath = HttpContext.Current.Server.MapPath("~/Public/Photos/");
-                //string ImgName = ImgToStoreInAudit.ImageName;
-                //System.IO.File.Delete(DestPdfFullPath + ImgName);
-
-                //AuditPageManager ObjPageManager = new AuditPageManager();
-                //ObjPageManager.InsertAudit(LoginUsr, "Image deleted: " + ImgToStoreInAudit.ImageName);
-
-
+               
                 BindRepeater();
 
                 DivDelete.Attributes.Add("Class", "ParentDivDeleting Disattivato");
@@ -249,110 +269,73 @@ namespace Ls.Re2017.Contents
 
         #endregion
 
-        #region Gestione paginatore
-        protected void BtnPrevious_Click(object sender, EventArgs e)
-        {
-            if (PageNumber >= 1)
-            {
-                PageNumber = PageNumber - 1;
-                BindRepeater();
-                HideNextClass = "";
-                HidePreviousClass = "";
-
-            }
-            else
-            {
-
-                //disabilita o abilita i bottoni previous next del pager
-                HideNextClass = "";
-                HidePreviousClass = "disabled";
-
-            }
-
-
-        }
-        protected void BtnNext_Click(object sender, EventArgs e)
-        {
-            if (PageNumber < TotalNumPages - 2)
-            {
-                PageNumber = PageNumber + 1;
-                BindRepeater();
-                HideNextClass = "";
-                HidePreviousClass = "";
-
-            }
-            else
-            {
-                //disabilita o abilita i bottoni previous next del pager
-                HideNextClass = "disabled";
-                HidePreviousClass = "";
-
-            }
-
-        }
-        #endregion
 
 
         #region routine private alla pagina
 
-        //private void PopolaCboUsers(DropDownList drop, List<User> list)
-        //{
-        //    foreach (User Curr in list)
-        //    {
-        //        var listItem = new ListItem();
-        //        listItem.Value = Curr.IdUser.ToString();
-        //        listItem.Text = Curr.Name;
-        //        drop.Items.Add(listItem);
-        //    }
-        //}
+        private void BindEvtSelectedHead()
+        {
+
+            TrackManagement2PageManager ObjTrackManagement2PageManager = new TrackManagement2PageManager();
+            //arrivato qui-----------------------------
+            EventoDTO ObjEvtDto = ObjTrackManagement2PageManager.GetEvento(Convert.ToInt32(Request.QueryString["IdEvt"].ToString()));
+            //List<EventoDTO> LstEvtDto = TrackManagement2PageManager.GetEventi(Convert.ToDateTime(TxtDa.Text), Convert.ToDateTime(TxtA.Text));
+            List<EventoDTO> LstEvtDto= new List<EventoDTO>();
+            LstEvtDto.Add(ObjEvtDto);
+ 
+            RptSelEvt.DataSource = LstEvtDto;
+            RptSelEvt.DataBind();
+         
+
+            ////Finally, set the datasource of the repeater
+            //Repeater1.DataSource = pgitems;
+            //Repeater1.DataBind();
+
+        }
         private void BindRepeater()
         {
-            //if (ViewState["LstEvtDto"] == null)
+          
+            //TrackManagement2PageManager ObjTrackManagement2PageManager = new TrackManagement2PageManager();
+            //List<EventoDTO> LstEvtDto = ObjTrackManagement2PageManager.GetEventi(Convert.ToDateTime(TxtDa.Text), Convert.ToDateTime(TxtA.Text));
+           
+
+            ////Create the PagedDataSource that will be used in paging
+            //PagedDataSource pgitems = new PagedDataSource();
+          
+            //List<EventoDTO> LstEvtDtoOrdered = LstEvtDto.OrderByDescending(x => x.date).ToList();
+            //pgitems.DataSource = LstEvtDtoOrdered;
+           
+            //pgitems.AllowPaging = true;
+
+            ////Control page size from here 
+            //pgitems.PageSize = Convert.ToInt32(CboRowsInPages.SelectedValue);
+          
+            //pgitems.CurrentPageIndex = PageNumber;
+            ////Raccolgo il numero pagine
+            //TotalNumPages = pgitems.PageCount;
+            //if (pgitems.PageCount > 1)
             //{
-            //    ViewState["LstEvtDto"] = TrackManagement2PageManager.GetEventi(Convert.ToDateTime(TxtDa.Text), Convert.ToDateTime(TxtA.Text));
+            //    rptPaging.Visible = true;
+            //    ArrayList pages = new ArrayList();
+            //    for (int i = 0; i <= pgitems.PageCount - 1; i++)
+            //    {
+            //        pages.Add((i + 1).ToString());
+            //    }
+            //    rptPaging.DataSource = pages;
+            //    rptPaging.DataBind();
             //}
-            TrackManagement2PageManager ObjTrackManagement2PageManager = new TrackManagement2PageManager();
-            List<EventoDTO> LstEvtDto = ObjTrackManagement2PageManager.GetEventi(Convert.ToDateTime(TxtDa.Text), Convert.ToDateTime(TxtA.Text));
-            //List<EventoDTO> LstEvtDto = TrackManagement2PageManager.GetEventi(Convert.ToDateTime(TxtDa.Text), Convert.ToDateTime(TxtA.Text));
+            //else
+            //{
+            //    rptPaging.Visible = false;
+            //}
 
-            //Create the PagedDataSource that will be used in paging
-            PagedDataSource pgitems = new PagedDataSource();
-            //List<EventoDTO> LstEvtDto =(List<EventoDTO>)ViewState["LstEvtDto"];
-            //pgitems.DataSource = LstEvtDto.OrderByDescending(x => x.date).ToList();
-            List<EventoDTO> LstEvtDtoOrdered = LstEvtDto.OrderByDescending(x => x.date).ToList();
-            pgitems.DataSource = LstEvtDtoOrdered;
-            //pgitems.DataSource = LstEvtDto.ToList();
-            pgitems.AllowPaging = true;
-
-            //Control page size from here 
-            pgitems.PageSize = Convert.ToInt32(CboRowsInPages.SelectedValue);
-            //pgitems.PageSize = 5;
-            pgitems.CurrentPageIndex = PageNumber;
-            //Raccolgo il numero pagine
-            TotalNumPages = pgitems.PageCount;
-            if (pgitems.PageCount > 1)
-            {
-                rptPaging.Visible = true;
-                ArrayList pages = new ArrayList();
-                for (int i = 0; i <= pgitems.PageCount - 1; i++)
-                {
-                    pages.Add((i + 1).ToString());
-                }
-                rptPaging.DataSource = pages;
-                rptPaging.DataBind();
-            }
-            else
-            {
-                rptPaging.Visible = false;
-            }
-
-            //Finally, set the datasource of the repeater
-            Repeater1.DataSource = pgitems;
-            Repeater1.DataBind();
+            ////Finally, set the datasource of the repeater
+            //Repeater1.DataSource = pgitems;
+            //Repeater1.DataBind();
 
 
-            LitShowOneOf.Text = "Showing 1 to " + pgitems.PageSize + " of " + LstEvtDto.Count + " entries";
-            btnPage.Text = "Pag. " + (PageNumber + 1);
+            //LitShowOneOf.Text = "Showing 1 to " + pgitems.PageSize + " of " + LstEvtDto.Count + " entries";
+            //btnPage.Text = "Pag. " + (PageNumber + 1);
 
         }
 
@@ -376,9 +359,7 @@ namespace Ls.Re2017.Contents
 
         private void PopolaCboEventi(DropDownList drop)
         {
-            //List<EventTypeDTO> LstDto = (List<EventTypeDTO>)ViewState["LstEvtType"];
-            // TrackManagement2PageManager ObjTrackManagement2PageManager = new TrackManagement2PageManager();
-            //List<EventTypeDTO> LstEvtType = ObjTrackManagement2PageManager.GetEventsType();
+           
             if (LstEvtType != null)
             { 
                 foreach (EventTypeDTO Curr in LstEvtType)

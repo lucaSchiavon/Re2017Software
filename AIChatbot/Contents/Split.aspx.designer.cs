@@ -10,7 +10,7 @@
 namespace Ls.Re2017.Contents {
     
     
-    public partial class TrackManagement2 {
+    public partial class Split {
         
         /// <summary>
         /// Controllo LitRe2017ScriptInject.
@@ -85,103 +85,40 @@ namespace Ls.Re2017.Contents {
         protected global::System.Web.UI.WebControls.Button BtnClose;
         
         /// <summary>
-        /// Controllo TxtDa.
+        /// Controllo LnkBtnBack.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtDa;
+        protected global::System.Web.UI.WebControls.LinkButton LnkBtnBack;
         
         /// <summary>
-        /// Controllo TxtA.
+        /// Controllo CboSplitNumber.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtA;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl CboSplitNumber;
         
         /// <summary>
-        /// Controllo LnkBtnFilter.
+        /// Controllo LnkBtnSplit.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LnkBtnFilter;
+        protected global::System.Web.UI.WebControls.LinkButton LnkBtnSplit;
         
         /// <summary>
-        /// Controllo CboRowsInPages.
+        /// Controllo RptSelEvt.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList CboRowsInPages;
-        
-        /// <summary>
-        /// Controllo Repeater1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generato automaticamente.
-        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater Repeater1;
-        
-        /// <summary>
-        /// Controllo LitShowOneOf.
-        /// </summary>
-        /// <remarks>
-        /// Campo generato automaticamente.
-        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal LitShowOneOf;
-        
-        /// <summary>
-        /// Controllo BtnPrevious.
-        /// </summary>
-        /// <remarks>
-        /// Campo generato automaticamente.
-        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton BtnPrevious;
-        
-        /// <summary>
-        /// Controllo Li.
-        /// </summary>
-        /// <remarks>
-        /// Campo generato automaticamente.
-        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Li;
-        
-        /// <summary>
-        /// Controllo btnPage.
-        /// </summary>
-        /// <remarks>
-        /// Campo generato automaticamente.
-        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnPage;
-        
-        /// <summary>
-        /// Controllo BtnNext.
-        /// </summary>
-        /// <remarks>
-        /// Campo generato automaticamente.
-        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton BtnNext;
-        
-        /// <summary>
-        /// Controllo rptPaging.
-        /// </summary>
-        /// <remarks>
-        /// Campo generato automaticamente.
-        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptPaging;
+        protected global::System.Web.UI.WebControls.Repeater RptSelEvt;
         
         /// <summary>
         /// Controllo HydIdToDelete.
