@@ -179,7 +179,7 @@
                       
                       var  BtnChkOk = $(e).closest('tr').find('#BtnChkOk');
                       BtnChkOk.attr("style", "display:block");
-                      BtnChkOk.attr("title", "home association correctly executed");
+                      BtnChkOk.attr("title", "house association correctly executed");
 
                       var BtnChkErr = $(e).closest('tr').find('#BtnChkErr');
                       BtnChkErr.attr("style", "display:none");

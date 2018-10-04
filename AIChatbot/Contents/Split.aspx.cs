@@ -113,8 +113,8 @@ namespace Ls.Re2017.Contents
                     //HidePreviousClass = "disabled";
 
                     //bindong a tabella
-                    BindEvtSelectedHead();
-                    BindRepeater();
+                    BindBrotherEvts();
+                    //BindRepeater();
 
                     //aggiunge il tag script con il path del file jquery con la validazione della pagina nella masterpage
                     Literal LitPathFormScriptValidation = (Literal)Master.FindControl("LitPathFormScriptValidation");
@@ -196,8 +196,8 @@ namespace Ls.Re2017.Contents
             {
                 ObjTrackManagement2PageManager.NewEvt(ObjInsertEvtInput);
             }
-           
-            BindEvtSelectedHead();
+
+                BindBrotherEvts();
            
             }
             catch (Exception ex)
@@ -259,8 +259,8 @@ namespace Ls.Re2017.Contents
 
                 Ls.Prj.DTO.EventoDTO drv = (Ls.Prj.DTO.EventoDTO)e.Item.DataItem;
 
-                //CboCase.Attributes.Add("onchange", "UpdateHouse(this)");
-                //CboEventi.Attributes.Add("onchange", "UpdateEvtType(this)");
+                CboCase.Attributes.Add("onchange", "UpdateHouse(this)");
+                CboEventi.Attributes.Add("onchange", "UpdateEvtType(this)");
                 //DataRowView drv = e.Row.DataItem as DataRowView;
                 Utility.SetDropByValue(CboEventi, CboEventi.Attributes["MemId"]);
                 Utility.SetDropByValue(CboCase, CboCase.Attributes["MemId"]);
@@ -297,6 +297,11 @@ namespace Ls.Re2017.Contents
         {
             DivDelete.Attributes.Add("Class", "ParentDivDeleting Disattivato");
         }
+        protected void BtnUpdateAllBrothers_Click(object sender, EventArgs e)
+        {
+           
+        }
+        
 
         protected void BtnConfirmDeleting_Click(object sender, EventArgs e)
         {
@@ -305,8 +310,8 @@ namespace Ls.Re2017.Contents
                 Int32 IdToDelete = Convert.ToInt32(HydIdToDelete.Value);
                 TrackManagement2PageManager ObjTrackManagement2PageManager = new TrackManagement2PageManager();
                 ObjTrackManagement2PageManager.DeleteEvt(IdToDelete);
-               
-                BindRepeater();
+
+                BindBrotherEvts();
 
                 DivDelete.Attributes.Add("Class", "ParentDivDeleting Disattivato");
             }
@@ -329,7 +334,7 @@ namespace Ls.Re2017.Contents
 
         #region routine private alla pagina
 
-        private void BindEvtSelectedHead()
+        private void BindBrotherEvts()
         {
 
             TrackManagement2PageManager ObjTrackManagement2PageManager = new TrackManagement2PageManager();
