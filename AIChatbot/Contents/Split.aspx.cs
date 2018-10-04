@@ -278,10 +278,13 @@ namespace Ls.Re2017.Contents
 
             TrackManagement2PageManager ObjTrackManagement2PageManager = new TrackManagement2PageManager();
             //arrivato qui-----------------------------
-            EventoDTO ObjEvtDto = ObjTrackManagement2PageManager.GetEvento(Convert.ToInt32(Request.QueryString["IdEvt"].ToString()));
-            //List<EventoDTO> LstEvtDto = TrackManagement2PageManager.GetEventi(Convert.ToDateTime(TxtDa.Text), Convert.ToDateTime(TxtA.Text));
-            List<EventoDTO> LstEvtDto= new List<EventoDTO>();
-            LstEvtDto.Add(ObjEvtDto);
+            //startDate=2018-08-01&endDate=2018-08-31&
+            //EventoDTO ObjEvtDto = ObjTrackManagement2PageManager.GetEvento(Convert.ToInt32(Request.QueryString["bankReportEntryId"].ToString()));
+            //List<EventoDTO> LstEvtDto = new List<EventoDTO>();
+            //LstEvtDto.Add(ObjEvtDto);
+            List<EventoDTO> LstEvtDto = new List<EventoDTO>();
+            LstEvtDto = ObjTrackManagement2PageManager.GetEventi(Convert.ToDateTime("2018-08-01"), Convert.ToDateTime("2018-08-31"), Convert.ToInt32(Request.QueryString["bankReportEntryId"].ToString()));
+         
  
             RptSelEvt.DataSource = LstEvtDto;
             RptSelEvt.DataBind();

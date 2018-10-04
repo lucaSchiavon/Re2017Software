@@ -123,13 +123,23 @@ namespace Re2017.Classes
             return ObjEvento;
         }
 
-        public List<EventoDTO> GetEventi(DateTime Da, DateTime A)
+        public List<EventoDTO> GetEventi(DateTime Da, DateTime A, int BankReportEntryId=0)
         {
 
             List<Evento> LstEventi = new List<Evento>();
             string da = Da.ToString("yyyy-MM-dd");
             string a = A.ToString("yyyy-MM-dd");
-            LstEventi = GetAsyncEventi("events?startDate=" + da + "&endDate=" + a).Result;
+
+            if (BankReportEntryId == 0)
+            {
+                LstEventi = GetAsyncEventi("events?startDate=" + da + "&endDate=" + a).Result;
+            }
+            else
+            {
+                //ritorna solo i fratelli
+                LstEventi = GetAsyncEventi("events?startDate=" + da + "&endDate=" + a + "&bankReportEntry=" + BankReportEntryId).Result;
+            }
+           
             //LstEventi = GetAsyncEventi("events?startDate=2018-08-01&endDate=2018-08-31").Result;
 
             //mapping su DTO
