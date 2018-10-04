@@ -40,7 +40,7 @@
     
                 <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Split selected transaction</h1>
+                    <h1 class="page-header">Split events</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -49,49 +49,27 @@
    
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-12">
-                     
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            Data summary of transaction to split:
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-         
-                      
-     
-                           
-                            <div style="text-align:right">
-                                 <asp:linkbutton id="LnkBtnBack" runat="server" class="btn btn-primary" OnClick="BtnBack_Click"><i class='fa fa-long-arrow-left'></i> Back</asp:linkbutton>   
-                            </div>
-          
-                            
-                        </div>
-                        <!-- /.panel-body -->
-                         
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-12 -->
+   
+           
                        
                 <div class="col-lg-12">
                      
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            splitted row section:
+                            splitted events section:
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
            <div class="col-lg-2">
                           
-                                 <label>Select number of row:</label>
-                                 <input type="number" id="CboSplitNumber" runat="server"  class="form-control" step="any" value="1"></input>
+                                 <label>Select number of events:</label>
+                                 <input type="number" id="CboSplitNumber" runat="server"  class="form-control" min="1" max="20" step="any" value="1"></input>
                               
                                 </div>
-                <div class="col-lg-1" style="padding-top:25px">
+                <div class="col-lg-1" style="padding-top:25px;padding-bottom:20px">
                           
                                
-                                <asp:linkbutton id="LnkBtnSplit" runat="server" class="btn btn-primary" ><i class='fa fa-align-justify'></i> Create rows</asp:linkbutton>   
+                                <asp:linkbutton id="LnkBtnSplit" runat="server" class="btn btn-primary" OnClick="LnkBtnSplit_Click"><i class='fa fa-align-justify'></i> Create splitting</asp:linkbutton>   
                               
                                 </div>
                             <div class="col-lg-12">
@@ -124,6 +102,9 @@
                             </table>
                                 </FooterTemplate>
                              </asp:Repeater>
+                                  <div style="text-align:right">
+                                 <asp:linkbutton id="LnkBtnBack" runat="server" class="btn btn-primary" OnClick="BtnBack_Click"><i class='fa fa-long-arrow-left'></i> Back</asp:linkbutton>   
+                            </div>
                             </div>
         
 

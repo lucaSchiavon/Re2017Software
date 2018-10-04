@@ -85,15 +85,6 @@ namespace Ls.Re2017.Contents {
         protected global::System.Web.UI.WebControls.Button BtnClose;
         
         /// <summary>
-        /// Controllo LnkBtnBack.
-        /// </summary>
-        /// <remarks>
-        /// Campo generato automaticamente.
-        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LnkBtnBack;
-        
-        /// <summary>
         /// Controllo CboSplitNumber.
         /// </summary>
         /// <remarks>
@@ -119,6 +110,15 @@ namespace Ls.Re2017.Contents {
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater RptSelEvt;
+        
+        /// <summary>
+        /// Controllo LnkBtnBack.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LnkBtnBack;
         
         /// <summary>
         /// Controllo HydIdToDelete.

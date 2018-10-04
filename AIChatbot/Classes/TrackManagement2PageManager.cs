@@ -112,7 +112,7 @@ namespace Re2017.Classes
 
         }
 
-        async Task<Evento> GetAsyncEvento(string path)
+        public async Task<Evento> GetAsyncEvento(string path)
         {
             Evento ObjEvento = null;
             HttpResponseMessage response = await client.GetAsync(path, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
@@ -241,6 +241,33 @@ namespace Re2017.Classes
             }
             //string res = await response.Content.ReadAsStringAsync().Result;
             //return await JsonConvert.DeserializeObjectAsync<T>(response);
+        }
+
+        public void NewEvt(Evento ObjInsertEvtInput)
+        {
+
+            var myContent = JsonConvert.SerializeObject(ObjInsertEvtInput);
+            var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+            var byteContent = new ByteArrayContent(buffer);
+            byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            var result = client.PostAsync("events", byteContent).Result;
+            if (!result.IsSuccessStatusCode)
+            {
+                throw new Exception("An error occurred during creation of the event.");
+            }
+        }
+        public void NewEvtDto(InsertEvtInputDto ObjInsertEvtInputDto)
+        {
+
+            var myContent = JsonConvert.SerializeObject(ObjInsertEvtInputDto);
+            var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+            var byteContent = new ByteArrayContent(buffer);
+            byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            var result = client.PostAsync("events", byteContent).Result;
+            if (!result.IsSuccessStatusCode)
+            {
+                throw new Exception("An error occurred during creation of the event.");
+            }
         }
         #endregion
 

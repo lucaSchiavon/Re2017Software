@@ -150,6 +150,62 @@ namespace Ls.Re2017.Contents
             Response.Redirect("TrackManagement.aspx");
         }
 
+        protected void LnkBtnSplit_Click(object sender, EventArgs e)
+        {
+            TrackManagement2PageManager ObjTrackManagement2PageManager = new TrackManagement2PageManager();
+            //recupera l'evento da cui si arriva
+           // EventoDTO ObjEvtDto = ObjTrackManagement2PageManager.GetEvento(Convert.ToInt32(Request.QueryString["evtId"].ToString()));
+            Evento ObjEvento = null;
+            try
+            {
+                ObjEvento = ObjTrackManagement2PageManager.GetAsyncEvento("events/" + Request.QueryString["evtId"].ToString()).Result;
+
+            //crea clone
+            //InsertEvtInputDto ObjInsertEvtInputDto = new InsertEvtInputDto(); //data = "{'id': 99,'houseId':6}";
+            //ObjInsertEvtInputDto.amount = ObjEvento.amount;
+            //ObjInsertEvtInputDto.bankReportEntryId = ObjEvento.bankReportEntryId;
+            ////ObjInsertEvtInputDto.date = ObjEvento.date != null ? ObjEvento.date.Value.ToString("yyyy-MM-ddThh:mm:ss"):null;  //.ToString("yyyy-MM-dd");  //2018-10-04T07:11:09.833+0000
+            //ObjInsertEvtInputDto.date = ObjEvento.date;  //.ToString("yyyy-MM-dd");  //2018-10-04T07:11:09.833+0000
+            //ObjInsertEvtInputDto.description = ObjEvento.description;
+            //ObjInsertEvtInputDto.eventTypeId = ObjEvento.eventTypeId;
+            //ObjInsertEvtInputDto.filePath = ObjEvento.filePath;
+            //ObjInsertEvtInputDto.houseId = ObjEvento.houseId;
+            //ObjInsertEvtInputDto.id = 0;
+            //ObjInsertEvtInputDto.invoiceId = ObjEvento.invoiceId;
+            //ObjInsertEvtInputDto.reminderDate = ObjEvento.reminderDate;
+            //ObjInsertEvtInputDto.reminderMessage = ObjEvento.reminderMessage;
+
+
+            Evento ObjInsertEvtInput = new Evento(); //data = "{'id': 99,'houseId':6}";
+            ObjInsertEvtInput.amount = ObjEvento.amount;
+            ObjInsertEvtInput.bankReportEntryId = ObjEvento.bankReportEntryId;
+            //ObjInsertEvtInputDto.date = ObjEvento.date != null ? ObjEvento.date.Value.ToString("yyyy-MM-ddThh:mm:ss"):null;  //.ToString("yyyy-MM-dd");  //2018-10-04T07:11:09.833+0000
+            ObjInsertEvtInput.date = ObjEvento.date;  //.ToString("yyyy-MM-dd");  //2018-10-04T07:11:09.833+0000
+            ObjInsertEvtInput.description = ObjEvento.description;
+            ObjInsertEvtInput.eventTypeId = ObjEvento.eventTypeId;
+            ObjInsertEvtInput.filePath = ObjEvento.filePath;
+            ObjInsertEvtInput.houseId = ObjEvento.houseId;
+            ObjInsertEvtInput.id = 0;
+            ObjInsertEvtInput.invoiceId = ObjEvento.invoiceId;
+            ObjInsertEvtInput.reminderDate = ObjEvento.reminderDate;
+            ObjInsertEvtInput.reminderMessage = ObjEvento.reminderMessage;
+
+            //inserisce i nuovi eventi
+            int NumberEvtToCreate =Convert.ToInt32(CboSplitNumber.Value);
+            for (int i = 0; i < NumberEvtToCreate; i++)
+            {
+                ObjTrackManagement2PageManager.NewEvt(ObjInsertEvtInput);
+            }
+           
+            BindEvtSelectedHead();
+           
+            }
+            catch (Exception ex)
+            {
+                PrintError(ex);
+    }
+
+}
 
         protected void Repeater1_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {

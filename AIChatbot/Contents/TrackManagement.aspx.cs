@@ -113,8 +113,7 @@ namespace Ls.Re2017.Contents
                     //inizializza classi CSS del paginatore
                     HidePreviousClass = "disabled";
 
-                    //bindong a tabella
-                    BindRepeater();
+                   
 
                     //aggiunge il tag script con il path del file jquery con la validazione della pagina nella masterpage
                     Literal LitPathFormScriptValidation = (Literal)Master.FindControl("LitPathFormScriptValidation");
@@ -122,8 +121,9 @@ namespace Ls.Re2017.Contents
                     //LitRe2017ScriptInject.Text= "<script src='../js/TrackManagement.js'></script>";
                     // ViewState["LstEvtType"] = LstEvtType;
                 }
-              
-                
+
+                //bindong a tabella
+                BindRepeater();
                 ////*******************
                 ////chiamata put da togliere
                 //UpdateHouseEvtInputDto ObjUpdateHouseEvtInputDto = new UpdateHouseEvtInputDto(); //data = "{'id': 99,'houseId':6}";
@@ -132,7 +132,7 @@ namespace Ls.Re2017.Contents
                 //ObjTrackManagement2PageManager.UpdateHouseEvt(ObjUpdateHouseEvtInputDto);
                 ////*****************
 
-               
+
             }
             catch (Exception ex)
             {
