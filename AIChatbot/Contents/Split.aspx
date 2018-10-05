@@ -36,7 +36,20 @@
                         </div>--%>
                     </div>
       </div></div>
-    
+     <div id="DivInformation" runat="server" class="ParentDivDeleting Disattivato"><div class="InnerDivDeleting">
+       <div class="panel panel-green" style="width:100%;height:100%">
+                        <div class="panel-heading">
+                            Information
+                        </div>
+                        <div class="panel-body text-center" >
+                            <p><asp:Literal ID="LitMessaggioInformativo" runat="server" Text="xxx"></asp:Literal></p>
+                        </div>
+                       <div  class="text-center">
+                           <asp:Button ID="BtnCloseInformation"  Text="CLOSE" class="btn btn-primary" runat="server" OnClick="BtnCloseInformation_Click" />
+                       </div>
+                    
+                    </div>
+      </div></div>
     
                 <div class="row">
                 <div class="col-lg-12">
@@ -93,10 +106,10 @@
                                 <tbody>
                                 </HeaderTemplate>
                                 <ItemTemplate>
-                                   <tr class="gradeA odd" role="row"><td><%#Eval("id") %></td><td><%#Eval("date") %></td><td><%#Eval("bankReportEntryId") %></td><td><span style="color:green"><asp:TextBox ID="TxtAmount" Text='<%#Eval("amountNoFormat") %>' class="form-control" runat="server"></asp:TextBox><%--<asp:label ID="LblAmount" runat="server" Text='<%#Eval("amount") %>'></asp:label>--%></span></td><td><asp:TextBox ID="TxtDescription" Text='<%#Eval("description") %>' class="form-control" runat="server"></asp:TextBox></td><td><asp:DropDownList  ID="CboEventi" MemId='<%#Eval("eventTypeId") %>' MemIdEvt='<%#Eval("id") %>' runat="server" class="form-control"></asp:DropDownList></td><td><asp:DropDownList  ID="CboCase" MemId='<%#Eval("houseId") %>' MemIdEvt='<%#Eval("id") %>' runat="server" class="form-control"></asp:DropDownList></td><td><button type="button" id="BtnChkOk" style="display:none" class="btn btn-success btn-circle"><i class="fa fa-check"></i></button><button type="button" id="BtnChkErr" style="display:none" class="btn btn-danger btn-circle"><i class="fa fa-times"></i></button></td><td><a class='btn btn-danger' href='javascript:ShowDelForm(<%#Eval("id") %>);'><i class='fa fa-times'></i></a></td></tr>     
+                                   <tr class="gradeA odd" role="row"><td id="TdId" runat="server"><%#Eval("id") %></td><td><%#Eval("date") %></td><td><%#Eval("bankReportEntryId") %></td><td><span style="color:green"><asp:TextBox ID="TxtAmount" Text='<%#Eval("amountNoFormat") %>' class="form-control" runat="server"></asp:TextBox><%--<asp:label ID="LblAmount" runat="server" Text='<%#Eval("amount") %>'></asp:label>--%></span></td><td><asp:TextBox ID="TxtDescription" Text='<%#Eval("description") %>' class="form-control" runat="server"></asp:TextBox></td><td><asp:DropDownList  ID="CboEventi" MemId='<%#Eval("eventTypeId") %>' MemIdEvt='<%#Eval("id") %>' runat="server" class="form-control"></asp:DropDownList></td><td><asp:DropDownList  ID="CboCase" MemId='<%#Eval("houseId") %>' MemIdEvt='<%#Eval("id") %>' runat="server" class="form-control"></asp:DropDownList></td><td><button type="button" id="BtnChkOk" style="display:none" class="btn btn-success btn-circle"><i class="fa fa-check"></i></button><button type="button" id="BtnChkErr" style="display:none" class="btn btn-danger btn-circle"><i class="fa fa-times"></i></button></td><td><a class='btn btn-danger' href='javascript:ShowDelForm(<%#Eval("id") %>);'><i class='fa fa-times'></i></a></td></tr>     
                                 </ItemTemplate>
                                 <AlternatingItemTemplate>
-                                     <tr class="gradeA even" role="row"><td><%#Eval("id") %></td><td><%#Eval("date") %></td><td><%#Eval("bankReportEntryId") %></td><td><asp:TextBox ID="TxtAmount" Text='<%#Eval("amountNoFormat") %>' class="form-control" runat="server"></asp:TextBox><%--<asp:label ID="LblAmount" runat="server" Text='<%#Eval("amount") %>'></asp:label>--%></td><td><asp:TextBox ID="TxtDescription" Text='<%#Eval("description") %>' class="form-control" runat="server"></asp:TextBox></td><td><asp:DropDownList  ID="CboEventi" MemId='<%#Eval("eventTypeId") %>' MemIdEvt='<%#Eval("id") %>' runat="server" class="form-control"></asp:DropDownList></td><td><asp:DropDownList  ID="CboCase" MemId='<%#Eval("houseId") %>' MemIdEvt='<%#Eval("id") %>' runat="server" class="form-control"></asp:DropDownList></td><td><button type="button" id="BtnChkOk" style="display:none" class="btn btn-success btn-circle"><i class="fa fa-check"></i></button><button type="button" id="BtnChkErr" style="display:none" class="btn btn-danger btn-circle"><i class="fa fa-times"></i></button></td><td><a class='btn btn-danger' href='javascript:ShowDelForm(<%#Eval("id") %>);'><i class='fa fa-times'></i></a></td></tr>
+                                     <tr class="gradeA even" role="row"><td id="TdId" runat="server"><%#Eval("id") %></td><td><%#Eval("date") %></td><td><%#Eval("bankReportEntryId") %></td><td><asp:TextBox ID="TxtAmount" Text='<%#Eval("amountNoFormat") %>' class="form-control" runat="server"></asp:TextBox><%--<asp:label ID="LblAmount" runat="server" Text='<%#Eval("amount") %>'></asp:label>--%></td><td><asp:TextBox ID="TxtDescription" Text='<%#Eval("description") %>' class="form-control" runat="server"></asp:TextBox></td><td><asp:DropDownList  ID="CboEventi" MemId='<%#Eval("eventTypeId") %>' MemIdEvt='<%#Eval("id") %>' runat="server" class="form-control"></asp:DropDownList></td><td><asp:DropDownList  ID="CboCase" MemId='<%#Eval("houseId") %>' MemIdEvt='<%#Eval("id") %>' runat="server" class="form-control"></asp:DropDownList></td><td><button type="button" id="BtnChkOk" style="display:none" class="btn btn-success btn-circle"><i class="fa fa-check"></i></button><button type="button" id="BtnChkErr" style="display:none" class="btn btn-danger btn-circle"><i class="fa fa-times"></i></button></td><td><a class='btn btn-danger' href='javascript:ShowDelForm(<%#Eval("id") %>);'><i class='fa fa-times'></i></a></td></tr>
                                 </AlternatingItemTemplate>
                                 <FooterTemplate>
                                    </tbody>
@@ -104,7 +117,7 @@
                                 </FooterTemplate>
                              </asp:Repeater>
                                   <div style="text-align:right">
-                                 <asp:linkbutton id="LnkBtnBack" runat="server" class="btn btn-primary" OnClick="BtnBack_Click"><i class='fa fa-long-arrow-left'></i> Back</asp:linkbutton>&nbsp&nbsp<asp:linkbutton id="LnkUpdateAllBrothers" runat="server" class="btn btn-primary" OnClick="BtnUpdateAllBrothers_Click"><i class='fa fa-long-arrow-left'></i> Update</asp:linkbutton>      
+                                 <asp:linkbutton id="LnkBtnBack" runat="server" class="btn btn-primary" OnClick="BtnBack_Click"><i class='fa fa-long-arrow-left'></i> Back</asp:linkbutton>&nbsp&nbsp<asp:linkbutton id="LnkUpdateAllBrothers" runat="server" class="btn btn-primary" OnClick="BtnUpdateAllBrothers_Click">Update</asp:linkbutton>      
                             </div>
                             </div>
         

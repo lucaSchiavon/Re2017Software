@@ -81,7 +81,8 @@ $(function() {
         data: [{
             y: '2006',
             a: 100,
-            b: 90
+            b: 90,
+            c: 30
         }, {
             y: '2007',
             a: 75,
@@ -108,8 +109,8 @@ $(function() {
             b: 90
         }],
         xkey: 'y',
-        ykeys: ['a', 'b'],
-        labels: ['Series A', 'Series B'],
+        ykeys: ['a', 'b','c'],
+        labels: ['Series A', 'Series B','Serie C'],
         hideHover: 'auto',
         resize: true
     });

@@ -18,7 +18,7 @@
                             <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>--%>
                         <li>
-                            <a href="#"><i class="fa fa-tags fa-fw"></i> Manage bank transactions<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-bank fa-fw"></i> Bank transactions<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="TrackManagement.aspx">Import/manage transaction</a>
@@ -58,7 +58,34 @@
                             <a href="Audit.aspx"><i class="fa fa-edit fa-fw"></i> Audit</a>
                         </li>
                       --%>
-                         <%-- <li>
+                         <li>
+                            <a href="#"><i class="fa fa-home fa-fw"></i> Houses<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="Houses.aspx">Select</a>
+                                </li>
+                                <li>
+                                    <a href="HouseDetail.aspx">New</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-list-alt fa-fw"></i> Reports<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="Report1.aspx">Report 1</a>
+                                </li>
+                                <li>
+                                    <a href="Report2.aspx">Report 2</a>
+                                </li>
+                                 <li>
+                                    <a href="Report3.aspx">Report 3</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                          <li>
                             <a href="#"><i class="fa fa-user fa-fw"></i> Users<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
@@ -69,7 +96,7 @@
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
-                        </li>--%>
+                        </li>
                        <%-- <li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">

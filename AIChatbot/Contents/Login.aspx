@@ -32,17 +32,18 @@
     <![endif]-->
 
 </head>
-<body>
+<body style="background-image:url('../Public/Images/estate2.jpg');background-repeat: no-repeat;background-position: center;background-size: cover;">
     <form id="form1" runat="server">
          <div class="container">
         <div class="row">
-            <div class="col-md-4 col-md-offset-4">
+            <div class="col-md-4 col-md-offset-4" >
                 <div class="login-panel panel panel-default">
-                    <div class="panel-heading">
+                   <%-- <div class="panel-heading">
                         <h3 class="panel-title">Please Sign In</h3>
-                    </div>
-                    <div class="panel-body">
-                       
+                    </div>--%>
+                    <div class="panel-body" >
+                        <h2 style="font-weight:bold;text-align:center">LOGIN</h2>
+                            <br /><br />
                             <fieldset>
                                 <div class="form-group" id="Fg_TxtUsername">
                                     <asp:TextBox ID="TxtUsername"  runat="server" class="form-control" placeholder="Username" autofocus></asp:TextBox>
@@ -67,7 +68,7 @@
                                         </label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                 <asp:Button ID="BtnLogin" runat="server" Text="Login" class="btn btn-lg btn-success btn-block" OnClick="BtnLogin_Click"/>
+                                 <asp:Button ID="BtnLogin" runat="server" Text="LOGIN" class="btn btn-lg btn-primary btn-block" OnClick="BtnLogin_Click"/>
                                <%-- <a href="index.html" class="btn btn-lg btn-success btn-block">Login</a>--%>
                             </fieldset>
                        

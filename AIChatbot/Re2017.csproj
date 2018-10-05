@@ -116,6 +116,7 @@
     <Content Include="lightbox.htm" />
     <Content Include="masterpages\ChatBotGskAdm.Master" />
     <None Include="packages.config" />
+    <Content Include="Public\Images\estate.jpg" />
     <Content Include="TestcallMultipartFormdata.aspx" />
     <Content Include="TestDragImage.aspx" />
     <Content Include="TestFancy.aspx" />

@@ -257,19 +257,32 @@ namespace Re2017.Classes
                 throw new Exception("An error occurred during creation of the event.");
             }
         }
-        public void NewEvtDto(InsertEvtInputDto ObjInsertEvtInputDto)
+
+        public void UpdateBrotherEvt(UpdateBrotherEvtDto ObjUpdateBrotherEvtDto)
         {
 
-            var myContent = JsonConvert.SerializeObject(ObjInsertEvtInputDto);
+            var myContent = JsonConvert.SerializeObject(ObjUpdateBrotherEvtDto);
             var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
             var byteContent = new ByteArrayContent(buffer);
             byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            var result = client.PostAsync("events", byteContent).Result;
-            if (!result.IsSuccessStatusCode)
-            {
-                throw new Exception("An error occurred during creation of the event.");
-            }
+            var result = client.PutAsync("events/" + ObjUpdateBrotherEvtDto.id, byteContent).Result;
         }
+        #region codice nascosto
+        //public void NewEvtDto(InsertEvtInputDto ObjInsertEvtInputDto)
+        //{
+
+        //    var myContent = JsonConvert.SerializeObject(ObjInsertEvtInputDto);
+        //    var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+        //    var byteContent = new ByteArrayContent(buffer);
+        //    byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+        //    var result = client.PostAsync("events", byteContent).Result;
+        //    if (!result.IsSuccessStatusCode)
+        //    {
+        //        throw new Exception("An error occurred during creation of the event.");
+        //    }
+        //}
+        #endregion
+
         #endregion
 
 

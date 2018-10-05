@@ -143,7 +143,11 @@ namespace Ls.Re2017.Contents
             DivError.Attributes.Add("Class", "ParentDivDeleting Disattivato");
 
         }
+        protected void BtnCloseInformation_Click(object sender, EventArgs e)
+        {
+            DivInformation.Attributes.Add("Class", "ParentDivDeleting Disattivato");
 
+        }
 
         protected void BtnBack_Click(object sender, EventArgs e)
         {
@@ -154,28 +158,13 @@ namespace Ls.Re2017.Contents
         {
             TrackManagement2PageManager ObjTrackManagement2PageManager = new TrackManagement2PageManager();
             //recupera l'evento da cui si arriva
-           // EventoDTO ObjEvtDto = ObjTrackManagement2PageManager.GetEvento(Convert.ToInt32(Request.QueryString["evtId"].ToString()));
+           
             Evento ObjEvento = null;
             try
             {
                 ObjEvento = ObjTrackManagement2PageManager.GetAsyncEvento("events/" + Request.QueryString["evtId"].ToString()).Result;
 
-            //crea clone
-            //InsertEvtInputDto ObjInsertEvtInputDto = new InsertEvtInputDto(); //data = "{'id': 99,'houseId':6}";
-            //ObjInsertEvtInputDto.amount = ObjEvento.amount;
-            //ObjInsertEvtInputDto.bankReportEntryId = ObjEvento.bankReportEntryId;
-            ////ObjInsertEvtInputDto.date = ObjEvento.date != null ? ObjEvento.date.Value.ToString("yyyy-MM-ddThh:mm:ss"):null;  //.ToString("yyyy-MM-dd");  //2018-10-04T07:11:09.833+0000
-            //ObjInsertEvtInputDto.date = ObjEvento.date;  //.ToString("yyyy-MM-dd");  //2018-10-04T07:11:09.833+0000
-            //ObjInsertEvtInputDto.description = ObjEvento.description;
-            //ObjInsertEvtInputDto.eventTypeId = ObjEvento.eventTypeId;
-            //ObjInsertEvtInputDto.filePath = ObjEvento.filePath;
-            //ObjInsertEvtInputDto.houseId = ObjEvento.houseId;
-            //ObjInsertEvtInputDto.id = 0;
-            //ObjInsertEvtInputDto.invoiceId = ObjEvento.invoiceId;
-            //ObjInsertEvtInputDto.reminderDate = ObjEvento.reminderDate;
-            //ObjInsertEvtInputDto.reminderMessage = ObjEvento.reminderMessage;
-
-
+          
             Evento ObjInsertEvtInput = new Evento(); //data = "{'id': 99,'houseId':6}";
             ObjInsertEvtInput.amount = ObjEvento.amount;
             ObjInsertEvtInput.bankReportEntryId = ObjEvento.bankReportEntryId;
@@ -299,7 +288,38 @@ namespace Ls.Re2017.Contents
         }
         protected void BtnUpdateAllBrothers_Click(object sender, EventArgs e)
         {
-           
+            TrackManagement2PageManager ObjTrackManagement2PageManager = new TrackManagement2PageManager();
+
+            try
+            {
+                //si scorre il repeater ed aggiorna i dati
+                foreach (RepeaterItem item in RptSelEvt.Items)
+                {
+                    if (item.ItemType == ListItemType.Item || item.ItemType == ListItemType.AlternatingItem)
+                    {
+                        var TxtAmount = (TextBox)item.FindControl("TxtAmount");
+                        var TxtDescription = (TextBox)item.FindControl("TxtDescription");
+                        DropDownList CboCase = (DropDownList)item.FindControl("CboCase");
+                        int idEvt =Convert.ToInt32( CboCase.Attributes["MemIdEvt"]);
+                        //MemIdEvt
+                        //fa il put del dato
+                        UpdateBrotherEvtDto ObjUpdateBrotherEvtDto = new UpdateBrotherEvtDto();
+                        ObjUpdateBrotherEvtDto.id = idEvt;
+                        ObjUpdateBrotherEvtDto.amount =Convert.ToDouble(TxtAmount.Text);
+                        ObjUpdateBrotherEvtDto.description = TxtDescription.Text;
+                        ObjTrackManagement2PageManager.UpdateBrotherEvt(ObjUpdateBrotherEvtDto);
+
+
+                    }
+                }
+                //messaggio di conferma salvataggio
+                LitMessaggioInformativo.Text = "Events update successfully completed.";
+                DivInformation.Attributes.Add("Class", "ParentDivDeleting Attivo");
+            }
+            catch (Exception ex)
+            {
+                PrintError(ex);
+            }
         }
         
 
@@ -344,7 +364,7 @@ namespace Ls.Re2017.Contents
             //List<EventoDTO> LstEvtDto = new List<EventoDTO>();
             //LstEvtDto.Add(ObjEvtDto);
             List<EventoDTO> LstEvtDto = new List<EventoDTO>();
-            LstEvtDto = ObjTrackManagement2PageManager.GetEventi(Convert.ToDateTime("2018-08-01"), Convert.ToDateTime("2018-08-31"), Convert.ToInt32(Request.QueryString["bankReportEntryId"].ToString()));
+            LstEvtDto = ObjTrackManagement2PageManager.GetEventi(Convert.ToDateTime("1000-01-01"), Convert.ToDateTime("3000-01-01"), Convert.ToInt32(Request.QueryString["bankReportEntryId"].ToString()));
          
  
             RptSelEvt.DataSource = LstEvtDto;

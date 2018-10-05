@@ -97,9 +97,19 @@ namespace Ls.Re2017.Contents
                 LstHouse = ObjTrackManagement2PageManager.GetHouse();
                 if (!Page.IsPostBack)
                 {
-
-                    TxtDa.Text = (new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1)).ToString("yyyy-MM-dd");
-                    TxtA.Text = (new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month))).ToString("yyyy-MM-dd");
+                    if (Request.Cookies["TxtDa"] == null)
+                    {
+                        TxtDa.Text = (new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1)).ToString("yyyy-MM-dd");
+                        TxtA.Text = (new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month))).ToString("yyyy-MM-dd");
+                      
+                    }
+                    else
+                    {
+                        TxtDa.Text = Request.Cookies["TxtDa"].Value;
+                        TxtA.Text = Request.Cookies["TxtA"].Value;
+                    }
+                   
+                  
                     //TextBox1.Text = (new DateTime(DateTime.Now.Year, DateTime.Now.Month, 30)).ToString();
                     //string date = DateTime.Now;
                     //dataprova.Value = (new DateTime(DateTime.Now.Year, DateTime.Now.Month, 30)).ToString();
@@ -151,6 +161,8 @@ namespace Ls.Re2017.Contents
 
         protected void BtnFilter_Click(object sender, EventArgs e)
         {
+            Response.Cookies["TxtDa"].Value = TxtDa.Text;
+            Response.Cookies["TxtA"].Value = TxtA.Text;
             BindRepeater();
         }
 
