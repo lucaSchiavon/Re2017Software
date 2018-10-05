@@ -147,6 +147,7 @@ namespace Re2017.Classes
             var config = new MapperConfiguration(cfg => {
                 cfg.CreateMap<Evento, EventoDTO>()
                 .ForMember(dest => dest.amount, opt => opt.MapFrom(src => string.Format(new System.Globalization.CultureInfo("en-US"), "{0:c}", src.amount)))
+                 .ForMember(dest => dest.amountNoFormat, opt => opt.MapFrom(src => src.amount))
                 .ForMember(dest => dest.date, opt => opt.MapFrom(src => string.Format("{0:MM/dd/yyyy}", src.date)));
             });
            

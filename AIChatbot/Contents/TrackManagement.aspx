@@ -133,12 +133,12 @@
                                     <thead>
                                     <tr>
                                         <th  style="width: 20px">Id</th>
-                                        <th style="width: 150px">Date</th>
+                                        <th style="width: 100px">Date</th>
                                         <th>Bank</th>
                                          <th>Amount</th>
                                         <th>Description</th>
-                                         <th>Event</th>
-                                         <th>House</th>
+                                         <th style="width: 200px">Event</th>
+                                         <th style="width: 200px">House</th>
                                          <th style="width: 30px">upd</th>
                                          <th style="width: 30px"></th>
                                          <th style="width: 30px"></th>

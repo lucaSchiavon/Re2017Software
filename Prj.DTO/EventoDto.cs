@@ -19,6 +19,7 @@ namespace Ls.Prj.DTO
         public string description { get; set; }
        // public double? amount { get; set; }
         public string amount { get; set; }
+        public double? amountNoFormat { get; set; }
         public int invoiceId { get; set; }
         public DateTime? reminderDate { get; set; }
         public string reminderMessage { get; set; }

@@ -390,7 +390,7 @@ namespace Ls.Re2017.Contents
               
                 }
             }
-            drop.Items.Add(new ListItem("--Select event type--", "0"));
+            //drop.Items.Add(new ListItem("--Select event type--", "0"));
             Utility.SetDropByValue(drop, "0");
         }
 

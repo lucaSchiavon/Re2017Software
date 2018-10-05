@@ -233,18 +233,18 @@ namespace Ls.Re2017.Contents
                 {
                     CboCase.Attributes.Add("style", "font-weight:bold");
                 }
-
+                
                 //colora di verde o rosso l'importo a seconda che sia un credito o debito
-                Label LblAmount = e.Item.FindControl("LblAmount") as Label;
+                //Label LblAmount = e.Item.FindControl("LblAmount") as Label;
 
-                if (LblAmount.Text.Contains("("))
-                {
-                    LblAmount.ForeColor = System.Drawing.Color.Red;
-                }
-                else
-                {
-                    LblAmount.ForeColor = System.Drawing.Color.Green;
-                }
+                //if (LblAmount.Text.Contains("("))
+                //{
+                //    LblAmount.ForeColor = System.Drawing.Color.Red;
+                //}
+                //else
+                //{
+                //    LblAmount.ForeColor = System.Drawing.Color.Green;
+                //}
             }
         }
 
@@ -275,17 +275,17 @@ namespace Ls.Re2017.Contents
                     CboCase.Attributes.Add("style", "font-weight:bold");
                 }
 
-                //colora di verde o rosso l'importo a seconda che sia un credito o debito
-                Label LblAmount = e.Item.FindControl("LblAmount") as Label;
+                ////colora di verde o rosso l'importo a seconda che sia un credito o debito
+                //Label LblAmount = e.Item.FindControl("LblAmount") as Label;
 
-                if (LblAmount.Text.Contains("("))
-                {
-                    LblAmount.ForeColor = System.Drawing.Color.Red;
-                }
-                else
-                {
-                    LblAmount.ForeColor = System.Drawing.Color.Green;
-                }
+                //if (LblAmount.Text.Contains("("))
+                //{
+                //    LblAmount.ForeColor = System.Drawing.Color.Red;
+                //}
+                //else
+                //{
+                //    LblAmount.ForeColor = System.Drawing.Color.Green;
+                //}
                 //CboEventi.Enabled = false;
                 //CboCase.Enabled = false;
             }
@@ -435,7 +435,7 @@ namespace Ls.Re2017.Contents
               
                 }
             }
-            drop.Items.Add(new ListItem("--Select event type--", "0"));
+            //drop.Items.Add(new ListItem("--Select event type--", "0"));
             Utility.SetDropByValue(drop, "0");
         }
 

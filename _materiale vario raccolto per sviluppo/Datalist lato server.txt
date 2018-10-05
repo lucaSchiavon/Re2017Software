@@ -1,0 +1,2 @@
+https://www.encodedna.com/2014/08/bind-dynamic-data-to-html5-datalist-using-aspdotnet-datatable.htm
+https://stackoverflow.com/questions/30151633/jquery-event-for-html5-datalist-when-item-is-selected-or-typed-input-match-with
