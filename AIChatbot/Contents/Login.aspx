@@ -32,7 +32,7 @@
     <![endif]-->
 
 </head>
-<body style="background-image:url('../Public/Images/estate2.jpg');background-repeat: no-repeat;background-position: center;background-size: cover;">
+<body style="background-image:url('../Public/Images/realestate.jpg');background-repeat: no-repeat;background-position: center;background-size: cover;">
     <form id="form1" runat="server">
          <div class="container">
         <div class="row">
@@ -42,6 +42,7 @@
                         <h3 class="panel-title">Please Sign In</h3>
                     </div>--%>
                     <div class="panel-body" >
+                          <h3 style="font-weight:bold;text-align:center;color:#808080">REAL ESTATE MANAGEMENT</h3>
                         <h2 style="font-weight:bold;text-align:center">LOGIN</h2>
                             <br /><br />
                             <fieldset>

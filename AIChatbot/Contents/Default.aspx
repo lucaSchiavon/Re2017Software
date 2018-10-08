@@ -62,7 +62,8 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            Qui eventualmente andranno delle statistiche generali di re2017 (profitti, fondo cassa, andamento negli anni ecc...)
+                           <h3> Qui eventualmente andranno delle statistiche generali di re2017 (profitti, fondo cassa, andamento negli anni ecc...)</h3>
+                             <div id="morris-area-chart"></div>
          <%--                    <div class="row">
                 <div class="col-lg-12 text-right">
                    <a class="btn btn-success" href="UserDetail.aspx"><i class="fa fa-pencil"></i> Insert</a>
@@ -94,6 +95,42 @@
                     <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-12 -->
+            </div>
+                <div class="row">
+              
+                <!-- /.col-lg-6 -->
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Bar Chart Example
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div id="morris-bar-chart"></div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-6 -->
+                
+                <!-- /.col-lg-6 -->
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Donut Chart Example
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div id="morris-donut-chart"></div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-6 -->
+               
+                <!-- /.col-lg-6 -->
             </div>
            <input id="HydIdToDelete" runat="server" type="hidden"/>
       <script>
