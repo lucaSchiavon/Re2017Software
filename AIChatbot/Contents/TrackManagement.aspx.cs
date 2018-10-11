@@ -270,6 +270,12 @@ namespace Ls.Re2017.Contents
                 BindRepeater();
                 HideNextClass = "";
                 HidePreviousClass = "";
+                //aggiunto 11_10_2018
+                if (PageNumber == 0)
+                {
+                    HideNextClass = "";
+                    HidePreviousClass = "disabled";
+                }
 
             }
             else
@@ -285,13 +291,35 @@ namespace Ls.Re2017.Contents
         }
         protected void BtnNext_Click(object sender, EventArgs e)
         {
-            if (PageNumber < TotalNumPages - 2)
+            //if (PageNumber < TotalNumPages - 2)
+            //{
+            //    PageNumber = PageNumber + 1;
+            //    BindRepeater();
+            //    HideNextClass = "";
+            //    HidePreviousClass = "";
+
+            //}
+            //else
+            //{
+            //    //disabilita o abilita i bottoni previous next del pager
+            //    HideNextClass = "disabled";
+            //    HidePreviousClass = "";
+
+            //}
+
+            if (PageNumber < (TotalNumPages-1))
             {
                 PageNumber = PageNumber + 1;
                 BindRepeater();
                 HideNextClass = "";
                 HidePreviousClass = "";
 
+                //aggiunto il 11_10_2018
+                if (PageNumber == (TotalNumPages - 1))
+                {
+                    HideNextClass = "disabled";
+                    HidePreviousClass = "";
+                }
             }
             else
             {
