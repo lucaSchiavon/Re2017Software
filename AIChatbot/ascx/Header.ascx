@@ -11,7 +11,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="Default.aspx">Re2017 management</a><asp:Label class="navbar-brand" id="LblUsername" runat="server"></asp:Label>
+                <a class="navbar-brand" href="Default.aspx"><img  src="../Public/Images/LogoREM.png"/ style="width:80px;"></a><asp:Label class="navbar-brand" id="LblUsername" runat="server"></asp:Label>
             </div>
             <!-- /.navbar-header -->
 
