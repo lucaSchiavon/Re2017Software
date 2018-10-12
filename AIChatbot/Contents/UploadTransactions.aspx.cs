@@ -4,14 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using AIChatbot.Base;
+using Re2017.Base;
 using Ls.Prj.DTO;
 using Ls.Prj.Utility;
 using Re2017.Classes;
 
 namespace Re2017.Contents
 {
-    public partial class UploadTransactions : AICBBasePage
+    public partial class UploadTransactions : Re2017BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

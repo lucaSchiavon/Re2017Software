@@ -9,13 +9,12 @@ using AIChatbot.Classes;
 using Ls.Prj.Entity;
 using System.Text;
 using Ls.Prj.DTO;
-using Ls.Prj.EFRepository;
 using System.Data.Entity;
-using AIChatbot.Base;
+using Re2017.Base;
 
 namespace AQuest.ChatBotGsk.PigeonCms.pgn_content.Contents
 {
-    public partial class Users : AICBBasePage
+    public partial class Users : Re2017BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -44,43 +43,43 @@ namespace AQuest.ChatBotGsk.PigeonCms.pgn_content.Contents
 
         protected void BtnConfirmDeleting_Click(object sender, EventArgs e)
         {
-            try
-            {
-                Int32 IdToDelete = Convert.ToInt32(HydIdToDelete.Value);
+            //try
+            //{
+            //    Int32 IdToDelete = Convert.ToInt32(HydIdToDelete.Value);
 
-                UserDetailPageManager ObjUserDetailPageManager = new UserDetailPageManager();
-                //AuditPageManager ObjAuditPageManager = new AuditPageManager();
-                User Usr = ObjUserDetailPageManager.GetSelectedUser(IdToDelete);
-                //se vi sono audit legati all'utenza l'utenza non verrà eliminata
-                AuditEFRepository aud = new AuditEFRepository("");
-               List<Ls.Prj.Entity.Audit> LstAud= aud.SelectAudits(IdToDelete);
+            //    UserDetailPageManager ObjUserDetailPageManager = new UserDetailPageManager();
+              
+            //    User Usr = ObjUserDetailPageManager.GetSelectedUser(IdToDelete);
+            //    //se vi sono audit legati all'utenza l'utenza non verrà eliminata
+            //    AuditEFRepository aud = new AuditEFRepository("");
+            //   List<Ls.Prj.Entity.Audit> LstAud= aud.SelectAudits(IdToDelete);
 
-                //User UserToStoreInAudit = aud
-                if (LstAud.Count == 0)
-                {
-                    UserEFRepository rep = new UserEFRepository("");
-                    User UserToStoreInAudit = rep.SelectEntity(IdToDelete);
+                
+            //    if (LstAud.Count == 0)
+            //    {
+            //        UserEFRepository rep = new UserEFRepository("");
+            //        User UserToStoreInAudit = rep.SelectEntity(IdToDelete);
 
-                    DeleteEntity(IdToDelete);
+            //        DeleteEntity(IdToDelete);
 
-                    AuditPageManager ObjPageManager = new AuditPageManager();
-                    ObjPageManager.InsertAudit(LoginUsr, "User deleted: " + UserToStoreInAudit.Name);
+            //        AuditPageManager ObjPageManager = new AuditPageManager();
+            //        ObjPageManager.InsertAudit(LoginUsr, "User deleted: " + UserToStoreInAudit.Name);
 
-                    LoadList();
+            //        LoadList();
 
-                    DivDelete.Attributes.Add("Class", "ParentDivDeleting Disattivato");
-                }
-                else
-                {
-                    Exception ex = new Exception("This user have some historical audit data associated and can't be deleted");
-                    PrintError(ex);
-                }
+            //        DivDelete.Attributes.Add("Class", "ParentDivDeleting Disattivato");
+            //    }
+            //    else
+            //    {
+            //        Exception ex = new Exception("This user have some historical audit data associated and can't be deleted");
+            //        PrintError(ex);
+            //    }
   
-            }
-            catch (Exception ex)
-            {
-                PrintError(ex);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    PrintError(ex);
+            //}
 
         }
 
@@ -102,12 +101,12 @@ namespace AQuest.ChatBotGsk.PigeonCms.pgn_content.Contents
         public void DeleteEntity(Int32 IdEntity)
         {
          
-            using (UserEFRepository UserRep = new UserEFRepository(""))
-            {
-                var entity = new User { IdUser = IdEntity };
-                UserRep.Context.Entry(entity).State = EntityState.Deleted;
-                UserRep.Context.SaveChanges();
-            }
+            //using (UserEFRepository UserRep = new UserEFRepository(""))
+            //{
+            //    var entity = new User { IdUser = IdEntity };
+            //    UserRep.Context.Entry(entity).State = EntityState.Deleted;
+            //    UserRep.Context.SaveChanges();
+            //}
 
 
 
@@ -129,9 +128,9 @@ namespace AQuest.ChatBotGsk.PigeonCms.pgn_content.Contents
         }
         private void LoadList()
         {
-            UserPageManager ObjUserPageManager = new UserPageManager();
-           
-            List<UserDTO> LstUsrDto  = ObjUserPageManager.GetUsers(); 
+            //UserPageManager ObjUserPageManager = new UserPageManager();
+
+            List<UserDTO> LstUsrDto = new List<UserDTO>(); // ObjUserPageManager.GetUsers(); 
             StringBuilder Sb = new StringBuilder();
 
             foreach (UserDTO CurrUsrDto in LstUsrDto)

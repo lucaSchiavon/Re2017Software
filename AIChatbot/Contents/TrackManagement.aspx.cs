@@ -15,10 +15,11 @@ using Ls.Prj.Utility;
 using Re2017;
 using Re2017.Classes;
 using System.Globalization;
+using Re2017.Base;
 
 namespace Ls.Re2017.Contents
 {
-    public partial class TrackManagement : System.Web.UI.Page
+    public partial class TrackManagement : Re2017BasePage
     {
         #region public propery of page
         public int PageNumber
@@ -108,20 +109,20 @@ namespace Ls.Re2017.Contents
                         TxtDa.Text = Request.Cookies["TxtDa"].Value;
                         TxtA.Text = Request.Cookies["TxtA"].Value;
                     }
-                   
-                  
-                    //TextBox1.Text = (new DateTime(DateTime.Now.Year, DateTime.Now.Month, 30)).ToString();
-                    //string date = DateTime.Now;
-                    //dataprova.Value = (new DateTime(DateTime.Now.Year, DateTime.Now.Month, 30)).ToString();
-                    //AuditPageManager ObjAuditPageManager = new AuditPageManager();
+                 
 
-                    //popola le combo
-                    //PopolaCboUsers(CboUsers, ObjAuditPageManager.GetUsers());
-                    //CboUsers.Items.Add(new ListItem("--Select--", "0"));
-                    //Utility.SetDropByValue(CboUsers, "0");
+                      //TextBox1.Text = (new DateTime(DateTime.Now.Year, DateTime.Now.Month, 30)).ToString();
+                      //string date = DateTime.Now;
+                      //dataprova.Value = (new DateTime(DateTime.Now.Year, DateTime.Now.Month, 30)).ToString();
+                      //AuditPageManager ObjAuditPageManager = new AuditPageManager();
 
-                    //inizializza classi CSS del paginatore
-                    HidePreviousClass = "disabled";
+                      //popola le combo
+                      //PopolaCboUsers(CboUsers, ObjAuditPageManager.GetUsers());
+                      //CboUsers.Items.Add(new ListItem("--Select--", "0"));
+                      //Utility.SetDropByValue(CboUsers, "0");
+
+                      //inizializza classi CSS del paginatore
+                      HidePreviousClass = "disabled";
 
                    
 

@@ -15,10 +15,11 @@ using Ls.Prj.Utility;
 using Re2017;
 using Re2017.Classes;
 using System.Globalization;
+using Re2017.Base;
 
 namespace Ls.Re2017.Contents
 {
-    public partial class Split: System.Web.UI.Page
+    public partial class Split: Re2017BasePage
     {
         #region public propery of page
         public int PageNumber

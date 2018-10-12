@@ -58,6 +58,15 @@ namespace AQuest.ChatBotGsk.PigeonCms.pgn_content.masterpages {
         protected global::System.Web.UI.WebControls.Literal LitDropZoneJs;
         
         /// <summary>
+        /// Controllo ChartJsInjector.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ChartJsInjector;
+        
+        /// <summary>
         /// Controllo LitPathFormScriptValidation.
         /// </summary>
         /// <remarks>

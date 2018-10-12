@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="LateralMenu.ascx.cs" Inherits="AQuest.ChatBotGsk.PigeonCms.pgn_content.ascx.LateralMenu" %>
 
-  <div class="navbar-default sidebar" role="navigation">
+  <div class="navbar-default sidebar" style="margin-top:74px" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                       <%--  <li class="sidebar-search">

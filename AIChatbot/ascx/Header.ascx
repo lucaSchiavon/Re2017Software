@@ -3,7 +3,7 @@
         <%@ Register src="LateralMenu.ascx" tagname="LateralMenu" tagprefix="uc1" %>
 
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0;">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -11,7 +11,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="Default.aspx"><img  src="../Public/Images/LogoREM.png"/ style="width:80px;"></a><asp:Label class="navbar-brand" id="LblUsername" runat="server"></asp:Label>
+                <div style="float:left;padding-left:10px"><a  href="Default.aspx"><img  src="../Public/Images/LogoREM.png"/ style="width:80px;float:left"></a></div><div style="padding-left:267px"><asp:Label class="navbar-brand"  id="LblUsername" runat="server"></asp:Label></div>
             </div>
             <!-- /.navbar-header -->
 

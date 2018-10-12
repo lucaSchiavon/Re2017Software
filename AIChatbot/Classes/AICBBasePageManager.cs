@@ -12,14 +12,14 @@ namespace AIChatbot.Classes
     public class AICBasePageManager
     {
 
-        public User GetLoginUsr()
+        public Utente GetLoginUsr()
         {
             //UserEFRepository ObjUserEFRepository = new UserEFRepository("");
             //Int32 idUser = Convert.ToInt32(HttpContext.Current.Request.Cookies["IdUser"].Value);
             //List<User> Usr = ObjUserEFRepository.Context.Users.Where(s => s.IdUser == idUser).ToList();
             //return Usr.FirstOrDefault();
 
-            return new User { Name="Mario rossi" };
+            return new Utente { firstName="Mario rossi" };
         }
 
        

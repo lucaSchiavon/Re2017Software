@@ -53,6 +53,8 @@
     <Compile Include="ApiDTO\LuisEntityAlarmDTO.cs" />
     <Compile Include="ApiDTO\LuisEntityDocumentDTO.cs" />
     <Compile Include="ApiDTO\ContainerDTO.cs" />
+    <Compile Include="ErroreDto.cs" />
+    <Compile Include="LoginCredentialsDto.cs" />
     <Compile Include="InsertEvtInputDto.cs" />
     <Compile Include="UpdateBrotherEvtDto.cs" />
     <Compile Include="UpdateHouseEvtInputDto.cs" />

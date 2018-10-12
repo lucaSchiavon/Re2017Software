@@ -8,6 +8,8 @@ using System.Web.UI.WebControls;
 using AIChatbot.Classes;
 using Ls.Prj.DTO;
 using Ls.Prj.Entity;
+using Newtonsoft.Json;
+using Re2017.Classes;
 
 namespace AQuest.ChatBotGsk.PigeonCms.pgn_content.Contents
 {
@@ -15,8 +17,8 @@ namespace AQuest.ChatBotGsk.PigeonCms.pgn_content.Contents
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            TxtUsername.Text = "re2017";
-            TxtPassword.Text = "re2017";
+            //TxtUsername.Text = "re2017";
+            //TxtPassword.Text = "re2017";
         }
 
         protected void BtnLogin_Click(object sender, EventArgs e)
@@ -24,18 +26,40 @@ namespace AQuest.ChatBotGsk.PigeonCms.pgn_content.Contents
 
 
             LblLoginError.Visible = false;
+            LoginPageManager ObjLoginPageManager = new LoginPageManager();
+            LoginCredentialsDto ObjLoginCredentialsDto = new LoginCredentialsDto();
+            ObjLoginCredentialsDto.email = TxtUsername.Text;
+            ObjLoginCredentialsDto.password = TxtPassword.Text;
+          var result=  ObjLoginPageManager.LoginUser(ObjLoginCredentialsDto);
 
-            LoginPageManager ObjLoginManager = new LoginPageManager();
-            bool IsValidUser = ObjLoginManager.ValidateUser(TxtUsername.Text, TxtPassword.Text);
-            if (IsValidUser)
+
+            string RisultatoBoby = result.Content.ReadAsStringAsync().Result;
+         
+            if (result.IsSuccessStatusCode)
             {
+                Utente ObjUtente = JsonConvert.DeserializeObject<Utente>(RisultatoBoby);
+                Response.Cookies["IdUser"].Value = ObjUtente.id.ToString();
+
                 FormsAuthentication.RedirectFromLoginPage
-                                   (TxtUsername.Text, false);
+                                  (ObjUtente.email, false);
             }
             else
             {
+                ErroreDTO ObjErroreDTO = JsonConvert.DeserializeObject<ErroreDTO>(RisultatoBoby);
+                LblLoginError.Text = ObjErroreDTO.errorMessage;
                 LblLoginError.Visible = true;
             }
+            //bool IsValidUser = ObjLoginManager.ValidateUser(TxtUsername.Text, TxtPassword.Text);
+            //bool IsValidUser = true;
+            //if (IsValidUser)
+            //{
+            //    FormsAuthentication.RedirectFromLoginPage
+            //                       (TxtUsername.Text, false);
+            //}
+            //else
+            //{
+            //    LblLoginError.Visible = true;
+            //}
 
 
         }

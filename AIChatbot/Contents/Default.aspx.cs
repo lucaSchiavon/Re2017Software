@@ -10,22 +10,23 @@ using Ls.Prj.Entity;
 using System.Text;
 using Ls.Prj.DTO;
 using System.Data.Entity;
-using AIChatbot.Base;
+using Re2017.Base;
 
 namespace AQuest.ChatBotGsk.PigeonCms.pgn_content.Contents
 {
-    public partial class Default : AICBBasePage //System.Web.UI.Page
+    public partial class Default : Re2017BasePage //System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
                 ////registra in fondo alla pagina lo script js per le funzionalità jquery della tabella
+                AppendJsForChart();
                 //AppendJqeryScriptForTable();
 
                 ////carica tabella
                 //LoadList();
-                
+
             }
             catch (Exception ex)
             {
@@ -98,6 +99,12 @@ namespace AQuest.ChatBotGsk.PigeonCms.pgn_content.Contents
 
 
 
+        }
+        private void AppendJsForChart()
+        {
+            
+            Literal LitChartJsInjector = (Literal)Master.FindControl("ChartJsInjector");
+            LitChartJsInjector.Text= "<script src='../vendor/raphael/raphael.min.js'></script><script src='../vendor/morrisjs/morris.min.js'></script><script src='../data/morris-data.js'></script>";
         }
         private void AppendJqeryScriptForTable()
         {
