@@ -12,9 +12,10 @@ namespace AQuest.ChatBotGsk.PigeonCms.pgn_content.ascx
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (LoginUsr !=null)
             {
-                LblUsername.Text ="Hy " + LoginUsr.firstName + "!";
+                LblUsername.Text ="Hy " + LoginUsr.name + "!";
             }
         }
     }

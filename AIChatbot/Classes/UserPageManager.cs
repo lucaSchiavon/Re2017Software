@@ -18,9 +18,6 @@ namespace Re2017.Classes
      public  class UserPageManager
     {
 
-      
-
-
          HttpClient client = new HttpClient();
 
        public UserPageManager()
@@ -32,7 +29,7 @@ namespace Re2017.Classes
         }
 
         #region Users
-        public Utente GetUtente(int IdUsr)
+        public UserDTO GetUtente(int IdUsr)
         {
 
             Utente ObjUtente = null;
@@ -41,18 +38,19 @@ namespace Re2017.Classes
 
 
             //mapping su DTO
-            //Utente ObjUtente = new Utente();
-            //var config = new MapperConfiguration(cfg =>
-            //{
-            //    cfg.CreateMap<Evento, EventoDTO>()
-            //    .ForMember(dest => dest.amount, opt => opt.MapFrom(src => string.Format(new System.Globalization.CultureInfo("en-US"), "{0:c}", src.amount)))
-            //    .ForMember(dest => dest.date, opt => opt.MapFrom(src => string.Format("{0:MM/dd/yyyy}", src.date)));
-            //});
+            UserDTO UserDTO = new UserDTO();
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Utente, UserDTO>()
+                .ForMember(dest => dest.name, opt => opt.MapFrom(src => src.lastName + " " + src.firstName))
+                .ForMember(dest => dest.enabled, opt => opt.MapFrom(src => (((bool)src.active) ? "YES" : "NO")))
+                .ForMember(dest => dest.role, opt => opt.MapFrom(src => PrintRoles(src.roles)));
+            });
 
-            //IMapper mapper = config.CreateMapper();
-            //ObjEventoDto = mapper.Map<Evento, EventoDTO>(ObjEvento);
+            IMapper mapper = config.CreateMapper();
+            UserDTO = mapper.Map<Utente, UserDTO>(ObjUtente);
 
-            return ObjUtente;
+            return UserDTO;
 
         }
 
@@ -67,40 +65,41 @@ namespace Re2017.Classes
             return ObjUtente;
         }
 
-        public List<Utente> GetUtenti()
+        public List<UserDTO> GetUtenti()
         {
 
             List<Utente> LstUtenti = new List<Utente>();
-
-
-
             LstUtenti = GetAsyncUtenti("users").Result;
-            
-              
-          
-           
-            
 
-            ////mapping su DTO
-            //List<EventoDTO> LstEventoDto = new List<EventoDTO>();
-            //var config = new MapperConfiguration(cfg => {
-            //    cfg.CreateMap<Evento, EventoDTO>()
-            //    .ForMember(dest => dest.amount, opt => opt.MapFrom(src => string.Format(new System.Globalization.CultureInfo("en-US"), "{0:c}", src.amount)))
-            //     .ForMember(dest => dest.amountNoFormat, opt => opt.MapFrom(src => src.amount))
-            //    .ForMember(dest => dest.date, opt => opt.MapFrom(src => string.Format("{0:MM/dd/yyyy}", src.date)));
-            //});
-           
-        
-
-            //IMapper mapper = config.CreateMapper();
-            //LstEventoDto = mapper.Map<List<Evento>, List<EventoDTO>>(LstEventi);
-
-            //return LstEventoDto;
-            return LstUtenti;
-
-         
+            //mapping su DTO
+            List<UserDTO> LstUserDTO = new List<UserDTO>();
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Utente, UserDTO>()
+                .ForMember(dest => dest.name, opt => opt.MapFrom(src => src.lastName + " " + src.firstName))
+                .ForMember(dest => dest.enabled, opt => opt.MapFrom(src => (((bool)src.active) ? "YES" : "NO")))
+                .ForMember(dest => dest.role, opt => opt.MapFrom(src => PrintRoles(src.roles)));
+            });
 
 
+
+            IMapper mapper = config.CreateMapper();
+            LstUserDTO = mapper.Map<List<Utente>, List<UserDTO>>(LstUtenti);
+
+            return LstUserDTO;
+
+
+        }
+
+        private string PrintRoles(string[] Roles)
+        {
+            string Rtn = "";
+            foreach (string Role in Roles)
+            {
+                Rtn += Role + " ";
+            }
+
+            return Rtn;
         }
 
         async Task<List<Utente>> GetAsyncUtenti(string path)

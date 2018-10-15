@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using Ls.Prj.DTO;
 
 namespace Re2017.Base
 {
@@ -14,7 +15,7 @@ namespace Re2017.Base
     {
 
         #region public propery of page
-        public Utente LoginUsr
+        public UserDTO LoginUsr
         {
             get {  return GetLoginUser(); }
           
@@ -25,11 +26,11 @@ namespace Re2017.Base
 
 
         #region routine private alla pagina
-        private Utente GetLoginUser()
+        private UserDTO GetLoginUser()
         {
             UserPageManager ObjUserPageManager = new UserPageManager();
             string IdUsr = HttpContext.Current.Request.Cookies["IdUser"].Value;
-            Utente LogUsr = ObjUserPageManager.GetUtente(Convert.ToInt32(IdUsr));
+            UserDTO LogUsr = ObjUserPageManager.GetUtente(Convert.ToInt32(IdUsr));
             return LogUsr;
         }
 

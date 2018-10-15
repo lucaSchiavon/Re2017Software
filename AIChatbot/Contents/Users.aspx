@@ -73,7 +73,7 @@
                                     <thead>
                                     <tr>
                                         <th>Name</th>
-                                        <th>UserId</th>
+                                        <th>Email/Userid</th>
                                         <th>Role</th>
                                         <th style="width: 70px">Enabled</th>
                                         <th data-sortable="false" style="width: 15%"></th>

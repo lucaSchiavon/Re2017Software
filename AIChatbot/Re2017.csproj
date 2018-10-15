@@ -106,6 +106,7 @@
     <Content Include="Contents\TrackUpload.aspx" />
     <Content Include="Contents\TrackManagement.aspx" />
     <Content Include="Contents\UploadTransactions.aspx" />
+    <Content Include="Contents\UserDetail.aspx" />
     <Content Include="Contents\Users.aspx" />
     <Content Include="css\AiChatbot.css" />
     <Content Include="index.html" />
@@ -336,6 +337,8 @@
     </Compile>
     <Compile Include="Classes\AICBBasePageManager.cs" />
     <Compile Include="Classes\LoginPageManager.cs" />
+    <Compile Include="Classes\UserDetailPageManager.cs" />
+    <None Include="Classes\UserDetailPageManager.cs.old" />
     <Compile Include="Classes\UserPageManager.cs" />
     <Compile Include="Classes\UploadTransactionsPageManager.cs" />
     <Compile Include="Classes\TrackManagement2PageManager.cs" />
@@ -409,6 +412,13 @@
     </Compile>
     <Compile Include="Contents\UploadTransactions.aspx.designer.cs">
       <DependentUpon>UploadTransactions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Contents\UserDetail.aspx.cs">
+      <DependentUpon>UserDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contents\UserDetail.aspx.designer.cs">
+      <DependentUpon>UserDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Contents\Users.aspx.cs">
       <DependentUpon>Users.aspx</DependentUpon>

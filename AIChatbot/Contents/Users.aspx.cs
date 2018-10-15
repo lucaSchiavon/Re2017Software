@@ -11,6 +11,7 @@ using System.Text;
 using Ls.Prj.DTO;
 using System.Data.Entity;
 using Re2017.Base;
+using Re2017.Classes;
 
 namespace AQuest.ChatBotGsk.PigeonCms.pgn_content.Contents
 {
@@ -128,25 +129,26 @@ namespace AQuest.ChatBotGsk.PigeonCms.pgn_content.Contents
         }
         private void LoadList()
         {
-            //UserPageManager ObjUserPageManager = new UserPageManager();
+            UserPageManager ObjUserPageManager = new UserPageManager();
 
-            List<UserDTO> LstUsrDto = new List<UserDTO>(); // ObjUserPageManager.GetUsers(); 
+            List<UserDTO> LstUsr = new List<UserDTO>();
+            LstUsr = ObjUserPageManager.GetUtenti();
             StringBuilder Sb = new StringBuilder();
 
-            foreach (UserDTO CurrUsrDto in LstUsrDto)
+            foreach (UserDTO CurrUsr in LstUsr)
             {
                 //Sb.Append("<tr class='odd gradeA'><td>" + CurrUsrDto.Name + "</td><td>" + CurrUsrDto.UserId + "</td><td>" + CurrUsrDto.Role + "</td><td class='center'>" + CurrUsrDto.Enabled + "</td><td class='center'><a class='btn btn-primary' href='UserDetail.aspx?Id=" + CurrUsrDto.IdUser + "'><i class='fa fa-edit'></i> Update</a> <a class='btn btn-danger' href='javascript:ShowDelForm(" + CurrUsrDto.IdUser + ");'><i class='fa fa-times'></i> Delete</a></td></tr>");
 
                 Sb.Append("<tr class='odd gradeA'>");
 
-                Sb.Append("<td>" + CurrUsrDto.Name + "</td>");
-                Sb.Append("<td>" + CurrUsrDto.UserId + "</td>");
-                Sb.Append("<td>" + CurrUsrDto.Role + "</td>");
-                Sb.Append("<td class='center'>" + CurrUsrDto.Enabled + "</td>");
+                Sb.Append("<td>" + CurrUsr.name + "</td>");
+                Sb.Append("<td>" + CurrUsr.email + "</td>");
+                Sb.Append("<td>" + CurrUsr.role + "</td>");
+                Sb.Append("<td class='center'>" + CurrUsr.enabled  + "</td>");
 
                 Sb.Append("<td class='center'>");
-                Sb.Append("<a class='btn btn-primary' href='UserDetail.aspx?Id=" + CurrUsrDto.IdUser + "'><i class='fa fa-edit'></i> Update</a> ");
-                Sb.Append("<a class='btn btn-danger' href='javascript:ShowDelForm(" + CurrUsrDto.IdUser + ");'><i class='fa fa-times'></i> Delete</a>");
+                Sb.Append("<a class='btn btn-primary' href='UserDetail.aspx?Id=" + CurrUsr.id + "'><i class='fa fa-edit'></i> Update</a> ");
+                //Sb.Append("<a class='btn btn-danger' href='javascript:ShowDelForm(" + CurrUsr.id + ");'><i class='fa fa-times'></i> Delete</a>");
                 Sb.Append("</td>");
 
                 Sb.Append("</tr>");

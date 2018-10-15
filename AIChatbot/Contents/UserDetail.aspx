@@ -39,8 +39,14 @@
                                  
                                         <div class="form-group" id="Fg_TxtNomeUtente">
                                             <label>Name</label>
-                                            <asp:TextBox ID="TxtNomeUtente" runat="server" class="form-control"></asp:TextBox>
-                                            <%--<p class="help-block"></p>--%>
+                                            <asp:TextBox ID="TxtNomeUtente" runat="server" class="form-control"></asp:TextBox>  
+                                        </div>
+                                       </div>
+                                <div class="col-lg-6">
+                                 
+                                        <div class="form-group" id="Fg_TxtCognomeUtente">
+                                            <label>Surname</label>
+                                            <asp:TextBox ID="TxtCognomeUtente" runat="server" class="form-control"></asp:TextBox>
                                         </div>
                                        </div>
                                     <div class="col-lg-6">
@@ -68,7 +74,7 @@
                                          </div>
                                       <div class="col-lg-6">
                                          <div class="form-group" id="Fg_TxtUsername">
-                                            <label for="inputError">Username</label>
+                                            <label for="inputError">Email/Username</label>
                                               <asp:TextBox ID="TxtUsername" runat="server" class="form-control"></asp:TextBox>
                                            <%-- <input class="form-control">--%>
                                           <%--  <p class="help-block">Example block-level help text here.</p>--%>

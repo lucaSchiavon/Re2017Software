@@ -9,13 +9,13 @@ using AIChatbot.Classes;
 using Ls.Prj.Entity;
 using Ls.Prj.Utility;
 using System.Text;
-using Ls.Prj.EFRepository;
-using AIChatbot.Base;
+using Re2017.Base;
+using Re2017.Classes;
 
 namespace AQuest.ChatBotGsk.PigeonCms.pgn_content.Contents
 {
    
-    public partial class UserDetail : AICBBasePage
+    public partial class UserDetail : Re2017BasePage
     {
       
         protected void Page_Load(object sender, EventArgs e)
@@ -25,20 +25,20 @@ namespace AQuest.ChatBotGsk.PigeonCms.pgn_content.Contents
 
             if (!Page.IsPostBack)
             {
-                UserDetailPageManager ObjUserDetailPageManager = new UserDetailPageManager();
-                PopolaCboRoles(CboRoles, ObjUserDetailPageManager.GetRoles());
-                CboRoles.Items.Add(new ListItem("--Select--", "0"));
+                    UserDetailPageManager ObjUserDetailPageManager = new UserDetailPageManager();
+                    PopolaCboRoles(CboRoles, ObjUserDetailPageManager.GetRoles());
+                    CboRoles.Items.Add(new ListItem("--Select--", "0"));
 
-                //aggiunge il tag script con il path del file jquery con la validazione della pagina nella masterpage
-               Literal LitPathFormScriptValidation = (Literal)Master.FindControl("LitPathFormScriptValidation");
+                    //aggiunge il tag script con il path del file jquery con la validazione della pagina nella masterpage
+                    Literal LitPathFormScriptValidation = (Literal)Master.FindControl("LitPathFormScriptValidation");
                 LitPathFormScriptValidation.Text = "<script src='../js/UserDetail.js'></script>";
 
 
                 if (Request.QueryString["Id"] != null)
                 {
                     //siamo in modifica
-                    User Usr = ObjUserDetailPageManager.GetSelectedUser(Convert.ToInt32(Request.QueryString["Id"]));
-                    LitUser.Text = "User " + Usr.Name;
+                    Utente Usr = ObjUserDetailPageManager.GetUtente(Convert.ToInt32(Request.QueryString["Id"]));
+                    LitUser.Text = "User " + Usr.lastName + " " + Usr.firstName;
                     ValorizzaForm(Usr);
                 }
                 else
@@ -61,14 +61,14 @@ namespace AQuest.ChatBotGsk.PigeonCms.pgn_content.Contents
         {
             try
             {
-                AuditPageManager ObjPageManager = new AuditPageManager();
+            
                 //qui va validazione... meglio lato client
                 if (Request.QueryString["Id"] != null)
                 {
                     //modifica
-                  User Result=  UpdateUser(Convert.ToInt32(Request.QueryString["Id"]));
+                  Utente Result=  UpdateUser(Convert.ToInt32(Request.QueryString["Id"]));
 
-                    ObjPageManager.InsertAudit(LoginUsr, "User updated: " + Result.Name );
+                   
                     Response.Redirect("Users.aspx");
                 }
                 else
@@ -76,18 +76,18 @@ namespace AQuest.ChatBotGsk.PigeonCms.pgn_content.Contents
                     //inserimento
                     //qui controlla che l'abinata userid e pwd non esista già
                     UserDetailPageManager ObjUserDetailPageManager = new UserDetailPageManager();
-                    if (!ObjUserDetailPageManager.IsUserAlreadyInDb(TxtUsername.Text, TxtPassword.Text))
-                    {
-                        User Result = InsertUser();
+                    //if (!ObjUserDetailPageManager.IsUserAlreadyInDb(TxtUsername.Text, TxtPassword.Text))
+                    //{
+                        Utente Result = InsertUser();
 
-                        ObjPageManager.InsertAudit(LoginUsr, "User inserted: " + Result.Name);
+                     
                         Response.Redirect("Users.aspx");
-                    }
-                    else
-                    {
-                        Exception ex = new Exception("Another user with the same userid and password exist in database.");
-                        PrintError(ex);
-                    }
+                    //}
+                    //else
+                    //{
+                    //    Exception ex = new Exception("Another user with the same userid and password exist in database.");
+                    //    PrintError(ex);
+                    //}
 
                  
                 }
@@ -122,13 +122,13 @@ namespace AQuest.ChatBotGsk.PigeonCms.pgn_content.Contents
 
 
 
-        private void PopolaCboRoles(DropDownList drop,List<Role> list)
+        private void PopolaCboRoles(DropDownList drop,List<string> list)
         {
-            foreach (Role CurrRole in list)
+            foreach (string CurrRole in list)
             {
                 var listItem = new ListItem();
-                listItem.Value = CurrRole.IdRole.ToString();
-                listItem.Text = CurrRole.RoleName;
+                listItem.Value = CurrRole.ToString();
+                listItem.Text = CurrRole.ToString();
                 drop.Items.Add(listItem);
             }
         }
@@ -137,63 +137,65 @@ namespace AQuest.ChatBotGsk.PigeonCms.pgn_content.Contents
         private void ResettaForm()
         {
             TxtNomeUtente.Text = "";
+            TxtCognomeUtente.Text = "";
             TxtUsername.Text = "";
-
             Utility.SetDropByValue(CboRoles, "0");
             Utility.SetDropByValue(CboEnable, "1");
             TxtPassword.Text = "";
             //TxtConfirmPassword.Text = "";
         }
-        private void ValorizzaForm(User Usr)
+        private void ValorizzaForm(Utente Usr)
         {
-            TxtNomeUtente.Text = Usr.Name;
-            TxtUsername.Text = Usr.UserId;
-            Utility.SetDropByValue(CboRoles, Usr.IdRole.ToString());
-            Utility.SetDropByValue(CboEnable, Usr.Enabled.ToString());
-            string PwdDecripted = Ls.Prj.Utility.SG.Algoritm.Cipher.Decrypt(Usr.Pwd, Utility.GetPrivSimKey("CriptographyKey"));
-            TxtPassword.Text = PwdDecripted;
-            // TxtConfirmPassword.Text = Usr.Pwd;
-            //TxtUsername.Text = "";
+            TxtNomeUtente.Text = Usr.firstName;
+            TxtCognomeUtente.Text = Usr.lastName;
+            TxtUsername.Text = Usr.email;
+
+            //qui i ruoli potrebbero essere più di uno... si vedrà...
+            Utility.SetDropByValue(CboRoles, Usr.roles[0].ToString());
+            Utility.SetDropByValue(CboEnable, Usr.active.ToString());
+            //string PwdDecripted = Ls.Prj.Utility.SG.Algoritm.Cipher.Decrypt(Usr.Pwd, Utility.GetPrivSimKey("CriptographyKey"));
+            TxtPassword.Text = Usr.password;
+
         }
-        public User UpdateUser(int Id)
+        public Utente UpdateUser(int Id)
         {
-            User result = null;
-            using (UserEFRepository UserRep = new UserEFRepository(""))
-            {
-               
-                result = UserRep.Context.Users.SingleOrDefault(x => x.IdUser == Id);
+            Utente result = null;
+
+            UserDetailPageManager ObjUserDetailPageManager = new UserDetailPageManager();
+
+            result = ObjUserDetailPageManager.GetUtente(Id);
+
                 if (result != null)
                 {
-                    result.Name = TxtNomeUtente.Text;
-                    result.IdRole =Convert.ToInt32(CboRoles.SelectedValue);
-                    result.UserId = TxtUsername.Text;
-                    string PwdEncripted = Ls.Prj.Utility.SG.Algoritm.Cipher.Encrypt(TxtPassword.Text, Utility.GetPrivSimKey("CriptographyKey"));
-                    result.Pwd = PwdEncripted;
-                    result.Enabled = Convert.ToBoolean(CboEnable.SelectedValue);
-                    UserRep.Context.SaveChanges();
+                    result.firstName = TxtNomeUtente.Text;
+                    result.lastName = TxtCognomeUtente.Text;
+                result.roles = new string[] { CboRoles.SelectedValue.ToString() };
+                result.email = TxtUsername.Text;
+                   // string PwdEncripted = Ls.Prj.Utility.SG.Algoritm.Cipher.Encrypt(TxtPassword.Text, Utility.GetPrivSimKey("CriptographyKey"));
+                    result.password = TxtPassword.Text;
+                    result.active = Convert.ToBoolean(CboEnable.SelectedValue);
+                  
                 }
-            }
 
+            ObjUserDetailPageManager.UpdateUtente(result);
             return result;
 
         }
-        public User InsertUser()
+        public Utente InsertUser()
         {
-            User NewUsr = new User();
-            NewUsr.Name = TxtNomeUtente.Text;
-            NewUsr.IdRole = Convert.ToInt32(CboRoles.SelectedValue);
-            NewUsr.UserId = TxtUsername.Text;
-            string PwdEncripted = Ls.Prj.Utility.SG.Algoritm.Cipher.Encrypt(TxtPassword.Text, Utility.GetPrivSimKey("CriptographyKey"));
-            NewUsr.Pwd = PwdEncripted;
-            NewUsr.Enabled = Convert.ToBoolean(CboEnable.SelectedValue);
-           
-            
-            using (UserEFRepository UserRep = new UserEFRepository(""))
-            {
-                UserRep.Context.Users.Add(NewUsr);
-                UserRep.Context.SaveChanges();
-            }
+            UserDetailPageManager ObjUserDetailPageManager = new UserDetailPageManager();
+            Utente NewUsr = new Utente();
+            NewUsr.firstName = TxtNomeUtente.Text;
+            NewUsr.lastName = TxtCognomeUtente.Text;
+            NewUsr.roles =new string[] { CboRoles.SelectedValue } ;
+            NewUsr.email = TxtUsername.Text;
+           // string PwdEncripted = Ls.Prj.Utility.SG.Algoritm.Cipher.Encrypt(TxtPassword.Text, Utility.GetPrivSimKey("CriptographyKey"));
+            NewUsr.password = TxtPassword.Text;
+            NewUsr.active = Convert.ToBoolean(CboEnable.SelectedValue);
 
+            //inserisce nuovo utente
+            //................
+            ObjUserDetailPageManager.NewUtente(NewUsr);
             return NewUsr;
 
         }
