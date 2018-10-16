@@ -72,11 +72,11 @@
                               
                                     <thead>
                                     <tr>
-                                        <th>Name</th>
+                                        <th style="width:300px">Name</th>
                                         <th>Email/Userid</th>
                                         <th>Role</th>
-                                        <th style="width: 70px">Enabled</th>
-                                        <th data-sortable="false" style="width: 15%"></th>
+                                        <th style="width:50px">Enabled</th>
+                                        <th data-sortable="false" style="width:50px"></th>
                                     </tr>
                                 </thead>
                                 <tbody>

@@ -141,7 +141,7 @@ namespace AQuest.ChatBotGsk.PigeonCms.pgn_content.Contents
 
                 Sb.Append("<tr class='odd gradeA'>");
 
-                Sb.Append("<td>" + CurrUsr.name + "</td>");
+                Sb.Append("<td style='width:100px'>" + CurrUsr.name + "</td>");
                 Sb.Append("<td>" + CurrUsr.email + "</td>");
                 Sb.Append("<td>" + CurrUsr.role + "</td>");
                 Sb.Append("<td class='center'>" + CurrUsr.enabled  + "</td>");
