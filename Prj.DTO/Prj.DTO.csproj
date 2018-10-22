@@ -54,6 +54,7 @@
     <Compile Include="ApiDTO\LuisEntityDocumentDTO.cs" />
     <Compile Include="ApiDTO\ContainerDTO.cs" />
     <Compile Include="ErroreDto.cs" />
+    <Compile Include="EventoDetailDto.cs" />
     <Compile Include="TemplateDto.cs" />
     <Compile Include="LandlordDto.cs" />
     <Compile Include="LoginCredentialsDto.cs" />
@@ -72,6 +73,11 @@
     <Compile Include="UserDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Prj.Entity\Prj.Entity.csproj">
+      <Project>{F457AE98-75BF-4F94-8EAA-A8DB6B032DB6}</Project>
+      <Name>Prj.Entity</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

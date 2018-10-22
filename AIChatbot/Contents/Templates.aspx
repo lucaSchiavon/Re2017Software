@@ -85,7 +85,7 @@
                                    <tr class="gradeA odd" role="row">
                                        <td><%#Eval("description") %></td>
                                        <td></td> 
-                                       <td class='center'><a class='btn btn-primary' href='ModelDetail.aspx?Id=<%#Eval("Id") %>'><i class='fa fa-edit'></i> Update</a></td>
+                                       <td class='center'><a class='btn btn-primary' href='TemplateDetail.aspx?Id=<%#Eval("Id") %>'><i class='fa fa-edit'></i> Update</a></td>
 
                                    </tr>     
                                 </ItemTemplate>
@@ -93,7 +93,7 @@
                                      <tr class="gradeA even" role="row">
                                          <td><%#Eval("description") %></td>
                                          <td></td>
-                                         <td class='center'><a class='btn btn-primary' href='ModelDetail.aspx?Id=<%#Eval("Id") %>'><i class='fa fa-edit'></i> Update</a></td>
+                                         <td class='center'><a class='btn btn-primary' href='TemplateDetail.aspx?Id=<%#Eval("Id") %>'><i class='fa fa-edit'></i> Update</a></td>
                                      </tr>
                                 </AlternatingItemTemplate>
                                 <FooterTemplate>

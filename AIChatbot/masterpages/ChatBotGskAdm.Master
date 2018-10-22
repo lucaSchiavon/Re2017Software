@@ -76,7 +76,8 @@
         <script type="text/javascript" src="../vendor/source/jquery.fancybox.pack.js?v=2.1.7"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
-
+ 
+            <script src="../js/Inizializzazione.js"></script>
 
     <script type="text/javascript" src="/vendor/plugin/cookies/jquery.cookie.js"></script>
      <script type="text/javascript">
@@ -155,8 +156,9 @@
     <asp:Literal ID="LitPathFormScriptValidation" runat="server"></asp:Literal>
                 <script type="text/javascript">
         var UpdateHouse = function (e) {
-          
-                   
+           
+            var URL = CONFIG.get('API_URL');
+
             var IdEvt = e.getAttribute("MemIdEvt");
             var IdHouse = e.options[e.selectedIndex].value
             if (e.preventDefault)
@@ -171,7 +173,7 @@
             $.ajax({
                 type: 'PUT', // Use POST with X-HTTP-Method-Override or a straight PUT if appropriate.
                 dataType: 'json', // Set datatype - affects Accept header
-                url: "http://2.235.241.7:8080/events/" + IdEvt, // A valid URL
+                url: URL + "/events/" + IdEvt, // A valid URL
                 headers: {"Content-Type": "application/json"}, // X-HTTP-Method-Override set to PUT.
                 data: datiInput, // Some data e.g. Valid JSON as a string
                     success: function (response) {
@@ -224,7 +226,7 @@
         };
         var UpdateEvtType = function (e) {
            
-          
+           var URL = CONFIG.get('API_URL');
             var IdEvt = e.getAttribute("MemIdEvt");
             var IdEvtType = e.options[e.selectedIndex].value
             if (e.preventDefault)
@@ -239,7 +241,7 @@
             $.ajax({
                 type: 'PUT', // Use POST with X-HTTP-Method-Override or a straight PUT if appropriate.
                 dataType: 'json', // Set datatype - affects Accept header
-                url: "http://2.235.241.7:8080/events/" + IdEvt, // A valid URL
+                url: URL + "/events/" + IdEvt, // A valid URL
                     headers: { "Content-Type": "application/json" }, // X-HTTP-Method-Override set to PUT.
                 data: datiInput, // Some data e.g. Valid JSON as a string
                     success: function (response) {
@@ -291,7 +293,7 @@
         };
         var UpdateLandlord = function (e) {
           
-                   
+            var URL = CONFIG.get('API_URL');  
             var IdEvt = e.getAttribute("MemIdEvt");
             var IdLandlord = e.options[e.selectedIndex].value
             if (e.preventDefault)
@@ -306,7 +308,7 @@
             $.ajax({
                 type: 'PUT', // Use POST with X-HTTP-Method-Override or a straight PUT if appropriate.
                 dataType: 'json', // Set datatype - affects Accept header
-                url: "http://2.235.241.7:8080/events/" + IdEvt, // A valid URL
+                url: URL + "/events/" + IdEvt, // A valid URL
                 headers: {"Content-Type": "application/json"}, // X-HTTP-Method-Override set to PUT.
                 data: datiInput, // Some data e.g. Valid JSON as a string
                     success: function (response) {
@@ -338,7 +340,7 @@
                     };
 
         var UpdateDesc2 = function (e) {
-            debugger;
+            var URL = CONFIG.get('API_URL');
             var IdEvt = e.getAttribute("MemIdEvt");
             //var IdHouse = e.options[e.selectedIndex].value
             var  TxtDescrizione2 = $(e).closest('tr').find('.Desc2');
@@ -353,11 +355,11 @@
                  e.returnValue = false;
             }
        
-                    var datiInput = '{"id": ' + IdEvt + ',"description2":' + Descrizione + '}'
+                    var datiInput = '{"id": ' + IdEvt + ',"description2":"' + Descrizione + '"}'
             $.ajax({
                 type: 'PUT', // Use POST with X-HTTP-Method-Override or a straight PUT if appropriate.
                 dataType: 'json', // Set datatype - affects Accept header
-                url: "http://2.235.241.7:8080/events/" + IdEvt, // A valid URL
+                url: URL + "/events/" + IdEvt, // A valid URL
                 headers: {"Content-Type": "application/json"}, // X-HTTP-Method-Override set to PUT.
                 data: datiInput, // Some data e.g. Valid JSON as a string
                     success: function (response) {

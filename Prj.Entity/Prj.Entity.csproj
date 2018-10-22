@@ -43,6 +43,7 @@
     <Compile Include="Base\ILsEntity.cs" />
     <Compile Include="Base\LsEntity.cs" />
     <Compile Include="Chapter.cs" />
+    <Compile Include="EventoDetail.cs" />
     <Compile Include="Utente.cs" />
     <Compile Include="Evento.cs" />
     <Compile Include="Document.cs" />

@@ -101,6 +101,7 @@
   <ItemGroup>
     <Content Include="Contents\Ajax.aspx" />
     <Content Include="Contents\Error.aspx" />
+    <Content Include="Contents\TemplateDetail.aspx" />
     <Content Include="Contents\Templates.aspx" />
     <Content Include="Contents\PageNotFound.aspx" />
     <Content Include="Contents\Split.aspx" />
@@ -111,6 +112,7 @@
     <Content Include="Contents\Users.aspx" />
     <Content Include="css\AiChatbot.css" />
     <Content Include="index.html" />
+    <Content Include="js\Inizializzazione.js" />
     <Content Include="js\TrackManagement.js" />
     <Content Include="js\Login.js" />
     <Content Include="less\mixins.less" />
@@ -338,6 +340,7 @@
     </Compile>
     <Compile Include="Classes\AICBBasePageManager.cs" />
     <Compile Include="Classes\LoginPageManager.cs" />
+    <Compile Include="Classes\TemplateDetailPageManager.cs" />
     <Compile Include="Classes\UserDetailPageManager.cs" />
     <None Include="Classes\UserDetailPageManager.cs.old" />
     <Compile Include="Classes\UserPageManager.cs" />
@@ -357,6 +360,13 @@
     </Compile>
     <Compile Include="Contents\Error.aspx.designer.cs">
       <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Contents\TemplateDetail.aspx.cs">
+      <DependentUpon>TemplateDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contents\TemplateDetail.aspx.designer.cs">
+      <DependentUpon>TemplateDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Contents\Templates.aspx.cs">
       <DependentUpon>Templates.aspx</DependentUpon>

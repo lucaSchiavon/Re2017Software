@@ -13,8 +13,9 @@ email: lully.schiavon@gmail.com
 user:lucadeploy.slack.co
 pwd:slacklully
 
-[14:06, 14/9/2018] Riccardo Nieto: "Bank of America"
-[14:06, 14/9/2018] Riccardo Nieto: o "Checking1"
+
+Arrivato a sviluppo crea template eventi (fermato sull'oggettone).
+trasformare tutte le api ajax affinchè puntino su template le loro modfiche
 
 
 

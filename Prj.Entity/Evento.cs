@@ -16,6 +16,7 @@ namespace Ls.Prj.Entity
         public int houseId { get; set; }
         public DateTime? date { get; set; }
         public string description { get; set; }
+        public string description2 { get; set; }
         public double? amount { get; set; }
         public int invoiceId { get; set; }
         public DateTime? reminderDate { get; set; }
