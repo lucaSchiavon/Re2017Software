@@ -349,8 +349,71 @@ namespace Re2017.Classes
             byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             var result = client.PutAsync("events/" + ObjUpdateHouseEvtInputDto.id, byteContent).Result;
         }
-       
+
         #endregion
 
+
+        #region Landlord
+        public List<LandlordDTO> GetLandlords()
+        {
+
+            //client.BaseAddress = new Uri(Utility.ReadSetting("Re2017ApiUrl"));
+            //client.DefaultRequestHeaders.Accept.Clear();
+            //client.DefaultRequestHeaders.Accept.Add(
+            //    new MediaTypeWithQualityHeaderValue("application/json"));
+            List<LandlordDTO> Lst = new List<LandlordDTO>();
+
+            Lst = GetAsyncLandlords("landlords/names").Result;
+
+            return Lst;
+        }
+        async Task<List<LandlordDTO>> GetAsyncLandlords(string path)
+        {
+            List<LandlordDTO> Lst = null;
+
+
+            HttpResponseMessage response = await client.GetAsync(path, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
+            if (response.IsSuccessStatusCode)
+            {
+                Lst = await response.Content.ReadAsAsync<List<LandlordDTO>>();
+            }
+            return Lst;
+        }
+
+        public void UpdateLandlordEvt(UpdateLandlordEvtInputDto ObjUpdateLandlordEvtInputDto)
+        {
+
+            var myContent = JsonConvert.SerializeObject(ObjUpdateLandlordEvtInputDto);
+            var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+            var byteContent = new ByteArrayContent(buffer);
+            byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            var result = client.PutAsync("events/" + ObjUpdateLandlordEvtInputDto.id, byteContent).Result;
+        }
+
+        #endregion
+
+
+        #region Model
+        public List<TemplateDTO> GetTemplate()
+        {
+            List<TemplateDTO> LstModel = new List<TemplateDTO>();
+            LstModel = GetAsyncModel("events/templates").Result;
+            return LstModel;
+        }
+        async Task<List<TemplateDTO>> GetAsyncModel(string path)
+        {
+            List<TemplateDTO> Lst = null;
+
+
+            HttpResponseMessage response = await client.GetAsync(path, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
+            if (response.IsSuccessStatusCode)
+            {
+                Lst = await response.Content.ReadAsAsync<List<TemplateDTO>>();
+            }
+            return Lst;
+        }
+
+       
+        #endregion
     }
 }

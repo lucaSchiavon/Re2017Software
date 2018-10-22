@@ -130,6 +130,24 @@ namespace Ls.Re2017.Contents {
         protected global::System.Web.UI.WebControls.LinkButton LnkBtnSplit;
         
         /// <summary>
+        /// Controllo CboTemplates.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList CboTemplates;
+        
+        /// <summary>
+        /// Controllo LnkBtnApplyTemplate.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LnkBtnApplyTemplate;
+        
+        /// <summary>
         /// Controllo RptSelEvt.
         /// </summary>
         /// <remarks>

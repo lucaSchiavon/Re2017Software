@@ -166,7 +166,7 @@
         else {
                     e.returnValue = false;
             }
-          //var datiInput="{'id': " +IdEvt + ",'houseId':" + IdHouse + "}"
+       
                     var datiInput = '{"id": ' + IdEvt + ',"houseId":' + IdHouse + '}'
             $.ajax({
                 type: 'PUT', // Use POST with X-HTTP-Method-Override or a straight PUT if appropriate.
@@ -176,9 +176,6 @@
                 data: datiInput, // Some data e.g. Valid JSON as a string
                     success: function (response) {
                        
-                    //var BtnChkOk = $(e).closest('#BtnChkOk');
-                    //BtnChkOk.attr("style", "display:block");
-                      
                       var  BtnChkOk = $(e).closest('tr').find('#BtnChkOk');
                       BtnChkOk.attr("style", "display:block");
                       BtnChkOk.attr("title", "house association correctly executed");
@@ -292,7 +289,126 @@
             });
        
         };
+        var UpdateLandlord = function (e) {
+          
+                   
+            var IdEvt = e.getAttribute("MemIdEvt");
+            var IdLandlord = e.options[e.selectedIndex].value
+            if (e.preventDefault)
+            {
+                    e.preventDefault();
+            }
+        else {
+                    e.returnValue = false;
+            }
+         
+                    var datiInput = '{"id": ' + IdEvt + ',"landlordId":' + IdLandlord + '}'
+            $.ajax({
+                type: 'PUT', // Use POST with X-HTTP-Method-Override or a straight PUT if appropriate.
+                dataType: 'json', // Set datatype - affects Accept header
+                url: "http://2.235.241.7:8080/events/" + IdEvt, // A valid URL
+                headers: {"Content-Type": "application/json"}, // X-HTTP-Method-Override set to PUT.
+                data: datiInput, // Some data e.g. Valid JSON as a string
+                    success: function (response) {
+                   
+                      var  BtnChkOk = $(e).closest('tr').find('#BtnChkOk');
+                      BtnChkOk.attr("style", "display:block");
+                      BtnChkOk.attr("title", "landlord association correctly executed");
 
+                      var BtnChkErr = $(e).closest('tr').find('#BtnChkErr');
+                      BtnChkErr.attr("style", "display:none");
+
+                      $(e).attr('style', 'font-weight:normal');
+
+
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    var BtnChkOk = $(e).closest('tr').find('#BtnChkOk');
+                    BtnChkOk.attr("style", "display:none");
+
+                    var BtnChkErr = $(e).closest('tr').find('#BtnChkErr');
+                    BtnChkErr.attr("style", "display:block");
+                    BtnChkErr.attr("title", "association with landlord Error: " + xhr.responseText);
+
+                    $(e).attr('style', 'font-weight:normal');
+                   
+                }
+            });
+       
+                    };
+
+        var UpdateDesc2 = function (e) {
+            debugger;
+            var IdEvt = e.getAttribute("MemIdEvt");
+            //var IdHouse = e.options[e.selectedIndex].value
+            var  TxtDescrizione2 = $(e).closest('tr').find('.Desc2');
+            var Descrizione = TxtDescrizione2.val();
+
+            if (e.preventDefault)
+            {
+                    e.preventDefault();
+            }
+            else
+            {
+                 e.returnValue = false;
+            }
+       
+                    var datiInput = '{"id": ' + IdEvt + ',"description2":' + Descrizione + '}'
+            $.ajax({
+                type: 'PUT', // Use POST with X-HTTP-Method-Override or a straight PUT if appropriate.
+                dataType: 'json', // Set datatype - affects Accept header
+                url: "http://2.235.241.7:8080/events/" + IdEvt, // A valid URL
+                headers: {"Content-Type": "application/json"}, // X-HTTP-Method-Override set to PUT.
+                data: datiInput, // Some data e.g. Valid JSON as a string
+                    success: function (response) {
+                       
+                      var  BtnChkOk = $(e).closest('tr').find('#BtnChkOk');
+                      BtnChkOk.attr("style", "display:block");
+                      BtnChkOk.attr("title", "description 2 correctly updated");
+
+                      var BtnChkErr = $(e).closest('tr').find('#BtnChkErr');
+                      BtnChkErr.attr("style", "display:none");
+
+                      //$(e).attr('style', 'font-weight:normal');
+                    //    var tr = $(e).parent();
+                    //    var BtnChkOk = tr
+                    //BtnChkOk.attr("style", "display:block");
+                    //alert("OK");
+                //var dati = {};
+                //if (response.d) {
+                //    dati = response.d;
+
+                //    if (dati.errore === 1) {
+                    
+                //        $("#SpnError").html('Errore di autenticazione');
+
+                //    }
+                //    else {
+                //        if (dati.destUrl && dati.destUrl.length && dati.destUrl.length > 0) {
+                //            // navigate to thanks url
+                //            location.href = dati.destUrl;
+                //        }
+                //    }
+                //}
+
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    debugger;
+                    var BtnChkOk = $(e).closest('tr').find('#BtnChkOk');
+                    BtnChkOk.attr("style", "display:none");
+
+                    var BtnChkErr = $(e).closest('tr').find('#BtnChkErr');
+                    BtnChkErr.attr("style", "display:block");
+                    BtnChkErr.attr("title", "description 2 updating Error: " + xhr.responseText);
+
+                    //$(e).attr('style', 'font-weight:normal');
+                    //alert(xhr.status);
+                    //alert(thrownError);
+                     //alert("errore");
+                }
+            });
+       
+        };
     </script>
            <!-- Page-Level Demo Scripts - Tables - Use for reference xxx-->
 <!--xxx -->

@@ -101,6 +101,7 @@
   <ItemGroup>
     <Content Include="Contents\Ajax.aspx" />
     <Content Include="Contents\Error.aspx" />
+    <Content Include="Contents\Templates.aspx" />
     <Content Include="Contents\PageNotFound.aspx" />
     <Content Include="Contents\Split.aspx" />
     <Content Include="Contents\TrackUpload.aspx" />
@@ -356,6 +357,13 @@
     </Compile>
     <Compile Include="Contents\Error.aspx.designer.cs">
       <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Contents\Templates.aspx.cs">
+      <DependentUpon>Templates.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contents\Templates.aspx.designer.cs">
+      <DependentUpon>Templates.aspx</DependentUpon>
     </Compile>
     <Compile Include="Contents\PageNotFound.aspx.cs">
       <DependentUpon>PageNotFound.aspx</DependentUpon>

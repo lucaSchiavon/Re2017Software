@@ -87,7 +87,8 @@ namespace Ls.Re2017.Contents
 
        private  List<EventTypeDTO> LstEvtType;
         private List<HouseDTO> LstHouse;
-        
+        private List<LandlordDTO> LstLandlord;
+
         protected void Page_Load(object sender, EventArgs e)
         {
            
@@ -96,6 +97,8 @@ namespace Ls.Re2017.Contents
                 TrackManagement2PageManager ObjTrackManagement2PageManager = new TrackManagement2PageManager();
                 LstEvtType = ObjTrackManagement2PageManager.GetEventsType();
                 LstHouse = ObjTrackManagement2PageManager.GetHouse();
+                LstLandlord = ObjTrackManagement2PageManager.GetLandlords();
+
                 if (!Page.IsPostBack)
                 {
                     if (Request.Cookies["TxtDa"] == null)
@@ -180,14 +183,22 @@ namespace Ls.Re2017.Contents
                 PopolaCboEventi(CboEventi);
                 DropDownList CboCase = e.Item.FindControl("CboCase") as DropDownList;
                 PopolaCboCase(CboCase);
+                DropDownList CboLandlord = e.Item.FindControl("CboLandlord") as DropDownList;
+                PopolaCboLandlord(CboLandlord);
 
+                //TextBox TxtDescription2 = e.Item.FindControl("TxtDescription2") as TextBox;
+                HyperLink HypLnkUpdDesc2 = e.Item.FindControl("HypLnkUpdDesc2") as HyperLink;
+                //HypLnkUpdDesc2.NavigateUrl = "javascript:UpdateDesc2(this)";
+                HypLnkUpdDesc2.Attributes.Add("onclick", "UpdateDesc2(this)");
                 Ls.Prj.DTO.EventoDTO drv = (Ls.Prj.DTO.EventoDTO)e.Item.DataItem;
 
                 CboCase.Attributes.Add("onchange", "UpdateHouse(this)");
                 CboEventi.Attributes.Add("onchange", "UpdateEvtType(this)");
+                CboLandlord.Attributes.Add("onchange", "UpdateLandlord(this)");
                 //DataRowView drv = e.Row.DataItem as DataRowView;
                 Utility.SetDropByValue(CboEventi, CboEventi.Attributes["MemId"]);
                 Utility.SetDropByValue(CboCase, CboCase.Attributes["MemId"]);
+                Utility.SetDropByValue(CboLandlord, CboLandlord.Attributes["MemId"]);
 
                 if (CboEventi.Attributes["MemId"] == "0")
                 {
@@ -197,6 +208,11 @@ namespace Ls.Re2017.Contents
                 if (CboCase.Attributes["MemId"] == "0")
                 {
                     CboCase.Attributes.Add("style", "font-weight:bold");
+                }
+
+                if (CboLandlord.Attributes["MemId"] == "0")
+                {
+                    CboLandlord.Attributes.Add("style", "font-weight:bold");
                 }
 
                 //colora di verde o rosso l'importo a seconda che sia un credito o debito
@@ -450,6 +466,24 @@ namespace Ls.Re2017.Contents
                 }
             }
             drop.Items.Add(new ListItem("--Select house--", "0"));
+            Utility.SetDropByValue(drop, "0");
+        }
+
+        private void PopolaCboLandlord(DropDownList drop)
+        {
+            if (LstLandlord != null)
+            {
+
+                foreach (LandlordDTO Curr in LstLandlord)
+                {
+                    var listItem = new ListItem();
+                    listItem.Value = Curr.id.ToString();
+                    listItem.Text = Curr.name;
+                    drop.Items.Add(listItem);
+
+                }
+            }
+            drop.Items.Add(new ListItem("--Select landlord--", "0"));
             Utility.SetDropByValue(drop, "0");
         }
         #endregion

@@ -54,9 +54,12 @@
     <Compile Include="ApiDTO\LuisEntityDocumentDTO.cs" />
     <Compile Include="ApiDTO\ContainerDTO.cs" />
     <Compile Include="ErroreDto.cs" />
+    <Compile Include="TemplateDto.cs" />
+    <Compile Include="LandlordDto.cs" />
     <Compile Include="LoginCredentialsDto.cs" />
     <Compile Include="InsertEvtInputDto.cs" />
     <Compile Include="UpdateBrotherEvtDto.cs" />
+    <Compile Include="UpdateLandlordEvtInputDto.cs" />
     <Compile Include="UpdateHouseEvtInputDto.cs" />
     <Compile Include="HouseDto.cs" />
     <Compile Include="EventTypeDto.cs" />

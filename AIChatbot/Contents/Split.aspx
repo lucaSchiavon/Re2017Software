@@ -79,10 +79,21 @@
                                  <input type="number" id="CboSplitNumber" runat="server"  class="form-control" min="1" max="20" step="any" value="1"></input>
                               
                                 </div>
-                <div class="col-lg-1" style="padding-top:25px;padding-bottom:20px">
+                <div class="col-lg-2" style="padding-top:25px;padding-bottom:20px">
                           
                                
                                 <asp:linkbutton id="LnkBtnSplit" runat="server" class="btn btn-primary" OnClick="LnkBtnSplit_Click"><i class='fa fa-align-justify'></i> Create splitting</asp:linkbutton>   
+                              
+                                </div>
+                              <div class="col-lg-2">
+                                            <label>Select template to apply</label>
+                                             <asp:DropDownList ID="CboTemplates" runat="server" class="form-control">                                                           
+                                             </asp:DropDownList>                                       
+                                        </div>
+                               <div class="col-lg-2" style="padding-top:25px;padding-bottom:20px">
+                          
+                               
+                                <asp:linkbutton id="LnkBtnApplyTemplate" runat="server" class="btn btn-primary" OnClick="LnkBtnApplyTemplate_Click"><i class='fa fa-align-justify'></i> Apply model</asp:linkbutton>   
                               
                                 </div>
                             <div class="col-lg-12">

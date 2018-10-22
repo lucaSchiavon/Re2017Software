@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masterpages/ChatBotGskAdm.Master" MaintainScrollPositionOnPostback="true" AutoEventWireup="true" CodeBehind="Tags.aspx.cs" Inherits="AQuest.ChatBotGsk.PigeonCms.pgn_content.Contents.Tags" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masterpages/ChatBotGskAdm.Master" MaintainScrollPositionOnPostback="true" AutoEventWireup="true" CodeBehind="Templates.aspx.cs" Inherits="Ls.Re2017.Contents.Templates" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
 </asp:Content>
@@ -37,7 +37,7 @@
     
                 <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Tags</h1>
+                    <h1 class="page-header">Templates</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -50,14 +50,14 @@
                      
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            List of Tags...
+                            List of Templates...
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                             <div class="row">
+           <%--                  <div class="row">
                 <div class="col-lg-12 text-right">
                  <a class="various btn btn-success" data-fancybox-type="iframe" href="/Contents/ImportTags.aspx"><i class="fa fa-pencil"></i> Import tags</a>&nbsp&nbsp<a class="btn btn-success" href="TagDetail.aspx"><i class="fa fa-pencil"></i> Insert</a>
-                 </div></div>
+                 </div></div>--%>
                  <div class="row"><div class="col-sm-6"><div class="dataTables_length" id="dataTables-example_length"><label>Show <asp:DropDownList ID="CboRowsInPages" runat="server" AutoPostBack="true" class="form-control input-sm" OnSelectedIndexChanged="CboRowsInPages_SelectedIndexChanged">
                  <asp:ListItem Text="50" Value="50"></asp:ListItem>
                 <asp:ListItem Enabled="true" Text="100" Value="100"></asp:ListItem>
@@ -74,9 +74,7 @@
                                      <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Machine</th>
-                                        <th>Description</th>
+                                        <th>Description</th>       
                                         <th style="width: 30px">Enabled</th>
                                         <th data-sortable="false" style="width:200px"></th>
                                     </tr>
@@ -85,21 +83,17 @@
                                 </HeaderTemplate>
                                 <ItemTemplate>
                                    <tr class="gradeA odd" role="row">
-                                       <td><%#Eval("TagName") %></td>
-                                       <td><%#Eval("Machine") %></td>
-                                       <td><%#Eval("Description") %></td>
-                                       <td><%#Eval("Enabled") %></td>
-                                       <td class='center'><a class='btn btn-primary' href='TagDetail.aspx?Id=<%#Eval("IdTag") %>'><i class='fa fa-edit'></i> Update</a>&nbsp&nbsp&nbsp<a class='btn btn-danger' href='javascript:ShowDelForm(<%#Eval("IdTag") %>);'><i class='fa fa-times'></i> Delete</a></td>
+                                       <td><%#Eval("description") %></td>
+                                       <td></td> 
+                                       <td class='center'><a class='btn btn-primary' href='ModelDetail.aspx?Id=<%#Eval("Id") %>'><i class='fa fa-edit'></i> Update</a></td>
 
                                    </tr>     
                                 </ItemTemplate>
                                 <AlternatingItemTemplate>
                                      <tr class="gradeA even" role="row">
-                                         <td><%#Eval("TagName") %></td>
-                                         <td><%#Eval("Machine") %></td>
-                                         <td><%#Eval("Description") %></td>
-                                         <td><%#Eval("Enabled") %></td>
-                                         <td class='center'><a class='btn btn-primary' href='TagDetail.aspx?Id=<%#Eval("IdTag") %>'><i class='fa fa-edit'></i> Update</a>&nbsp&nbsp&nbsp<a class='btn btn-danger' href='javascript:ShowDelForm(<%#Eval("IdTag") %>);'><i class='fa fa-times'></i> Delete</a></td>
+                                         <td><%#Eval("description") %></td>
+                                         <td></td>
+                                         <td class='center'><a class='btn btn-primary' href='ModelDetail.aspx?Id=<%#Eval("Id") %>'><i class='fa fa-edit'></i> Update</a></td>
                                      </tr>
                                 </AlternatingItemTemplate>
                                 <FooterTemplate>
@@ -140,13 +134,7 @@
                            
                                  </div>
 
-
-                            <!-- /.table-responsive -->
-                           <%-- <div class="well">
-                                <h4>DataTables Usage Information</h4>
-                                <p>DataTables is a very flexible, advanced tables plugin for jQuery. In SB Admin, we are using a specialized version of DataTables built for Bootstrap 3. We have also customized the table headings to use Font Awesome icons in place of images. For complete documentation on DataTables, visit their website at <a target="_blank" href="https://datatables.net/">https://datatables.net/</a>.</p>
-                                <a class="btn btn-default btn-lg btn-block" target="_blank" href="https://datatables.net/">View DataTables Documentation</a>
-                            </div>--%>
+                         
                         </div>
                         <!-- /.panel-body -->
                     </div>

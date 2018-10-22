@@ -23,9 +23,9 @@
                                 <li>
                                     <a href="TrackManagement.aspx">Import/manage transaction</a>
                                 </li>
-                               <%-- <li>
-                                    <a href="TrackManagement.aspx">New</a>
-                                </li>--%>
+                                <li>
+                                    <a href="Templates.aspx">Manage templates</a>
+                                </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>

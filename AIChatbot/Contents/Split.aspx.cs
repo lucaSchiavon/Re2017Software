@@ -96,9 +96,11 @@ namespace Ls.Re2017.Contents
                 TrackManagement2PageManager ObjTrackManagement2PageManager = new TrackManagement2PageManager();
                 LstEvtType = ObjTrackManagement2PageManager.GetEventsType();
                 LstHouse = ObjTrackManagement2PageManager.GetHouse();
+               
+
                 if (!Page.IsPostBack)
                 {
-
+                    PopolaCboTemplate(CboTemplates);
 
                     //TextBox1.Text = (new DateTime(DateTime.Now.Year, DateTime.Now.Month, 30)).ToString();
                     //string date = DateTime.Now;
@@ -155,7 +157,12 @@ namespace Ls.Re2017.Contents
             Response.Redirect("TrackManagement.aspx");
         }
 
-        protected void LnkBtnSplit_Click(object sender, EventArgs e)
+        protected void LnkBtnApplyTemplate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+            protected void LnkBtnSplit_Click(object sender, EventArgs e)
         {
             TrackManagement2PageManager ObjTrackManagement2PageManager = new TrackManagement2PageManager();
             //recupera l'evento da cui si arriva
@@ -477,6 +484,28 @@ namespace Ls.Re2017.Contents
             drop.Items.Add(new ListItem("--Select house--", "0"));
             Utility.SetDropByValue(drop, "0");
         }
+
+        private void PopolaCboTemplate(DropDownList drop)
+        {
+            TrackManagement2PageManager ObjTrackManagement2PageManager = new TrackManagement2PageManager();
+            List<TemplateDTO> LstTemplate;
+            LstTemplate = ObjTrackManagement2PageManager.GetTemplate();
+            if (LstTemplate != null)
+            {
+
+                foreach (TemplateDTO Curr in LstTemplate)
+                {
+                    var listItem = new ListItem();
+                    listItem.Value = Curr.id.ToString();
+                    listItem.Text = Curr.description;
+                    drop.Items.Add(listItem);
+
+                }
+            }
+            drop.Items.Add(new ListItem("--Select template--", "0"));
+            Utility.SetDropByValue(drop, "0");
+        }
+
         #endregion
 
 

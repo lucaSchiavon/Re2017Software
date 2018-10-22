@@ -7,10 +7,10 @@
 // </generato automaticamente>
 //------------------------------------------------------------------------------
 
-namespace AQuest.ChatBotGsk.PigeonCms.pgn_content.Contents {
+namespace Ls.Re2017.Contents {
     
     
-    public partial class Tags {
+    public partial class Templates {
         
         /// <summary>
         /// Controllo DivDelete.

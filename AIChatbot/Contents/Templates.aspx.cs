@@ -5,18 +5,17 @@ using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using AIChatbot.Classes;
+using Re2017.Classes;
 using Ls.Prj.Entity;
 using System.Text;
 using Ls.Prj.DTO;
-using Ls.Prj.EFRepository;
 using System.Data.Entity;
 using System.Collections;
-using AIChatbot.Base;
+using Re2017.Base;
 
-namespace AQuest.ChatBotGsk.PigeonCms.pgn_content.Contents
+namespace Ls.Re2017.Contents
 {
-    public partial class Tags : AICBBasePage
+    public partial class Templates : Re2017BasePage
     {
 
         #region public propery of page
@@ -82,6 +81,7 @@ namespace AQuest.ChatBotGsk.PigeonCms.pgn_content.Contents
             set { ViewState["HideNextClass"] = value; }
         }
         #endregion
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -172,27 +172,27 @@ namespace AQuest.ChatBotGsk.PigeonCms.pgn_content.Contents
 
         protected void BtnConfirmDeleting_Click(object sender, EventArgs e)
         {
-            try
-            {
-                Int32 IdToDelete = Convert.ToInt32(HydIdToDelete.Value);
+            //try
+            //{
+            //    Int32 IdToDelete = Convert.ToInt32(HydIdToDelete.Value);
 
-                TagEFRepository rep = new TagEFRepository("");
-                Tag TagToStoreInAudit = rep.SelectEntity(IdToDelete);
+            //    TagEFRepository rep = new TagEFRepository("");
+            //    Tag TagToStoreInAudit = rep.SelectEntity(IdToDelete);
 
-                DeleteEntity(IdToDelete);
+            //    DeleteEntity(IdToDelete);
 
-                AuditPageManager ObjPageManager = new AuditPageManager();
-                ObjPageManager.InsertAudit(LoginUsr, "Tag deleted: " + TagToStoreInAudit.TagName + ", Machine: " + TagToStoreInAudit.Machine);
+            //    AuditPageManager ObjPageManager = new AuditPageManager();
+            //    ObjPageManager.InsertAudit(LoginUsr, "Tag deleted: " + TagToStoreInAudit.TagName + ", Machine: " + TagToStoreInAudit.Machine);
 
 
-                BindRepeater();
+            //    BindRepeater();
 
-                DivDelete.Attributes.Add("Class", "ParentDivDeleting Disattivato");
-            }
-            catch (Exception ex)
-            {
-                PrintError(ex);
-            }
+            //    DivDelete.Attributes.Add("Class", "ParentDivDeleting Disattivato");
+            //}
+            //catch (Exception ex)
+            //{
+            //    PrintError(ex);
+            //}
 
         }
 
@@ -216,12 +216,12 @@ namespace AQuest.ChatBotGsk.PigeonCms.pgn_content.Contents
         public void DeleteEntity(Int32 IdEntity)
         {
          
-            using (TagEFRepository TagRep = new TagEFRepository(""))
-            {
-                var entity = new Tag { IdTag = IdEntity };
-                TagRep.Context.Entry(entity).State = EntityState.Deleted;
-                TagRep.Context.SaveChanges();
-            }
+            //using (TagEFRepository TagRep = new TagEFRepository(""))
+            //{
+            //    var entity = new Tag { IdTag = IdEntity };
+            //    TagRep.Context.Entry(entity).State = EntityState.Deleted;
+            //    TagRep.Context.SaveChanges();
+            //}
 
           
 
@@ -232,7 +232,7 @@ namespace AQuest.ChatBotGsk.PigeonCms.pgn_content.Contents
 
         private void BindRepeater()
         {
-            List<TagDTO> LstDto = LoadList();
+            List<TemplateDTO> LstDto = LoadList();
             //Create the PagedDataSource that will be used in paging
             PagedDataSource pgitems = new PagedDataSource();
             pgitems.DataSource = LstDto;
@@ -269,13 +269,13 @@ namespace AQuest.ChatBotGsk.PigeonCms.pgn_content.Contents
             btnPage.Text = "Pag. " + (PageNumber + 1);
 
         }
-        private List<TagDTO> LoadList()
+        private List<TemplateDTO> LoadList()
         {
-            TagPageManager ObjTagPageManager = new TagPageManager();
-           
-            List<TagDTO> LstTagDto  = ObjTagPageManager.GetTags();
+            TrackManagement2PageManager ObjTrackManagement2PageManager = new TrackManagement2PageManager();
+            List<TemplateDTO> LstTemplate;
+            LstTemplate = ObjTrackManagement2PageManager.GetTemplate();
 
-            return LstTagDto;
+            return LstTemplate;
         }
 
         #endregion
