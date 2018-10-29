@@ -29,41 +29,176 @@ namespace Re2017.Classes
                 new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        #region TemplateEvento
-        public EventoDetailDTO GetTemplateEvento(int IdEvt)
+        #region Template
+
+        public TemplateDTO GetTemplate(int Id)
         {
 
-            EventoDetail ObjEvento = null;
+            Template ObjTemplate = null;
 
-            ObjEvento = GetAsyncTemplateEvento("events/templates/" + IdEvt.ToString()).Result;
+            ObjTemplate = GetAsyncTemplate("events/templates/" + Id.ToString()).Result;
 
 
             //mapping su DTO
-            EventoDetailDTO ObjEventoDto = new EventoDetailDTO();
+            TemplateDTO ObjTemplateDto = new TemplateDTO();
             var config = new MapperConfiguration(cfg => {
-                cfg.CreateMap<EventoDetail, EventoDetailDTO>();
+                cfg.CreateMap<Template, TemplateDTO>();
                 //.ForMember(dest => dest.amount, opt => opt.MapFrom(src => string.Format(new System.Globalization.CultureInfo("en-US"), "{0:c}", src.amount)))
                 //.ForMember(dest => dest.date, opt => opt.MapFrom(src => string.Format("{0:MM/dd/yyyy}", src.date)));
             });
 
             IMapper mapper = config.CreateMapper();
-            ObjEventoDto = mapper.Map<EventoDetail, EventoDetailDTO>(ObjEvento);
+            ObjTemplateDto = mapper.Map<Template, TemplateDTO>(ObjTemplate);
 
-            return ObjEventoDto;
+            return ObjTemplateDto;
 
         }
 
-        public async Task<EventoDetail> GetAsyncTemplateEvento(string path)
+        public async Task<Template> GetAsyncTemplate(string path)
         {
-            EventoDetail ObjEvento = null;
+            Template Obj = null;
             HttpResponseMessage response = await client.GetAsync(path, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
             if (response.IsSuccessStatusCode)
             {
-                ObjEvento = await response.Content.ReadAsAsync<EventoDetail>();
+                Obj = await response.Content.ReadAsAsync<Template>();
             }
-            return ObjEvento;
+            return Obj;
+        }
+
+        public void UpdateTemplate(UpdateTemplateDTO ObjUpdateTemplateDTO)
+        {
+
+            var myContent = JsonConvert.SerializeObject(ObjUpdateTemplateDTO);
+            var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+            var byteContent = new ByteArrayContent(buffer);
+            byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            var result = client.PutAsync("events/templates/" + ObjUpdateTemplateDTO.id, byteContent).Result;
+        }
+
+        //public void NewTemplate(Template ObjTemplate)
+        //{
+
+        //    var myContent = JsonConvert.SerializeObject(ObjTemplate);
+        //    var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+        //    var byteContent = new ByteArrayContent(buffer);
+        //    byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+        //   var result = client.PostAsync("events/templates", byteContent).Result;
+        //   // var response = client.PostAsync("events/templates", byteContent).Result;
+        //   //string result= await response.Result.Content.ReadAsStringAsync()
+        //    if (!result.IsSuccessStatusCode)
+        //    {
+        //        throw new Exception("An error occurred during creation of the event template.");
+        //    }
+        //    else
+        //    {
+
+        //        var result2 = JsonConvert.DeserializeObject<Template>(result.Content.ToString());
+                
+        //    }
+        //}
+
+     
+        public Template NewTemplate(Template ObjTemplate)
+        {
+
+            string str = GetAsyncNewTemplate("events/templates", ObjTemplate).Result;
+            Template ObjTemplate2= JsonConvert.DeserializeObject<Template>(str);
+            return ObjTemplate2;
+
+        }
+
+        public async Task<string> GetAsyncNewTemplate(string path, Template ObjTemplate)
+        {
+           
+            var myContent = JsonConvert.SerializeObject(ObjTemplate);
+            var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+            var byteContent = new ByteArrayContent(buffer);
+            byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");         
+            var response =  client.PostAsync("events/templates", byteContent);
+            return await response.Result.Content.ReadAsStringAsync();
+         
         }
         #endregion
+
+        #region TemplateEvento
+
+
+        public List<EventoDTO> GetTemplateEvents(int Id)
+        {
+
+            List<Evento> LstEvento = null;
+
+            LstEvento = GetAsyncTemplateEvents("events/templates/" + Id.ToString() + "/events" ).Result;
+
+
+            //mapping su DTO
+            List<EventoDTO> LstEventoDTO = new List<EventoDTO>();
+            var config = new MapperConfiguration(cfg => {
+                cfg.CreateMap<Evento, EventoDTO>()
+              .ForMember(dest => dest.amount, opt => opt.MapFrom(src => string.Format(new System.Globalization.CultureInfo("en-US"), "{0:c}", src.amount)))
+                 .ForMember(dest => dest.amountNoFormat, opt => opt.MapFrom(src => src.amount))
+                .ForMember(dest => dest.date, opt => opt.MapFrom(src => string.Format("{0:MM/dd/yyyy}", src.date)));
+            });
+
+            IMapper mapper = config.CreateMapper();
+            LstEventoDTO = mapper.Map<List<Evento>, List<EventoDTO>>(LstEvento);
+
+            return LstEventoDTO;
+
+        }
+
+        public async Task<List<Evento>> GetAsyncTemplateEvents(string path)
+        {
+            List<Evento> Lst = null;
+            HttpResponseMessage response = await client.GetAsync(path, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
+            if (response.IsSuccessStatusCode)
+            {
+                Lst = await response.Content.ReadAsAsync<List<Evento>>();
+            }
+            return Lst;
+        }
+
+
+        public void NewTemplateEvt(Evento ObjInsertEvtInput,int IdTemplates)
+        {
+
+            var myContent = JsonConvert.SerializeObject(ObjInsertEvtInput);
+            var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+            var byteContent = new ByteArrayContent(buffer);
+            byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            var result = client.PostAsync("events/templates/" + IdTemplates + "/events", byteContent).Result;
+            if (!result.IsSuccessStatusCode)
+            {
+                throw new Exception("An error occurred during creation of the event.");
+            }
+        }
+
+        public void DeleteTemplateEvt(int IdEvt, int IdTemplates)
+        {
+
+           
+            HttpResponseMessage response = client.DeleteAsync("events/templates/" + IdTemplates + "/events/" + IdEvt).Result;
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("An error occurred during deletion or the record can't be deleted due to the constraint's existence");
+            }
+        
+        }
+
+        public void UpdateAllTemplateEvt(UpdateBrotherEvtDto ObjUpdateBrotherEvtDto, int IdTemplate)
+        {
+
+            var myContent = JsonConvert.SerializeObject(ObjUpdateBrotherEvtDto);
+            var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+            var byteContent = new ByteArrayContent(buffer);
+            byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            var result = client.PutAsync("events/templates/" + IdTemplate + "/events/" + ObjUpdateBrotherEvtDto.id, byteContent).Result;
+        }
+
+
+        #endregion
+
+       
 
         #region Eventi
         public EventoDTO GetEvento(int IdEvt)

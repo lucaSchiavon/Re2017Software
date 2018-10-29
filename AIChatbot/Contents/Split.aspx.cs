@@ -159,7 +159,49 @@ namespace Ls.Re2017.Contents
 
         protected void LnkBtnApplyTemplate_Click(object sender, EventArgs e)
         {
+            //per ogni template del tipo selezionato recupera gli eventi template e li inserisce sull'evento corrente
+           
+                TemplateDetailPageManager ObjTemplateDetailPageManager = new TemplateDetailPageManager();
+                TrackManagement2PageManager ObjTrackManagement2PageManager = new TrackManagement2PageManager();
+                ////recupera il template
+                //TemplateDTO ObjTemplateDTO;
+                //ObjTemplateDTO = ObjTemplateDetailPageManager.GetTemplate(Convert.ToInt32(CboTemplates.SelectedValue));
+                try
+                {
+                if (CboTemplates.SelectedValue != "0")
+                {
+                    //Recupera gli eventi del template
+                    List<EventoDTO> LstEvtDto = ObjTemplateDetailPageManager.GetTemplateEvents(Convert.ToInt32(CboTemplates.SelectedValue));
+                foreach (EventoDTO CurrEvt in LstEvtDto)
+                {
+                    Evento ObjInsertEvtInput = new Evento(); //data = "{'id': 99,'houseId':6}";
+                    ObjInsertEvtInput.amount = CurrEvt.amountNoFormat;
+                    ObjInsertEvtInput.bankReportEntryId =Convert.ToInt32(Request.QueryString["bankReportEntryId"]);
+                  
+                    ObjInsertEvtInput.date = DateTime.Now;  
+                    ObjInsertEvtInput.description = CurrEvt.description;
+                    ObjInsertEvtInput.eventTypeId = CurrEvt.eventTypeId;
+                    ObjInsertEvtInput.filePath = CurrEvt.filePath;
+                    ObjInsertEvtInput.houseId = CurrEvt.houseId;
+                    ObjInsertEvtInput.id = 0;
+                    ObjInsertEvtInput.invoiceId = CurrEvt.invoiceId;
+                    ObjInsertEvtInput.reminderDate = CurrEvt.reminderDate;
+                    ObjInsertEvtInput.reminderMessage = CurrEvt.reminderMessage;
 
+                   
+                        ObjTrackManagement2PageManager.NewEvt(ObjInsertEvtInput);
+                  
+
+                   
+                }
+                BindBrotherEvts();
+                }
+            }
+                catch (Exception ex)
+                {
+                    PrintError(ex);
+                }
+            
         }
 
             protected void LnkBtnSplit_Click(object sender, EventArgs e)

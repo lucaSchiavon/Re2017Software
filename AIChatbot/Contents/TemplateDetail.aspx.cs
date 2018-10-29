@@ -87,7 +87,8 @@ namespace Ls.Re2017.Contents
 
        private  List<EventTypeDTO> LstEvtType;
         private List<HouseDTO> LstHouse;
-        
+        public string MemIdTemp = "0";
+
         protected void Page_Load(object sender, EventArgs e)
         {
            
@@ -100,17 +101,23 @@ namespace Ls.Re2017.Contents
 
                 if (!Page.IsPostBack)
                 {
-                    if (Request.QueryString["evtId"]==null)
+                    if (Request.QueryString["Id"]==null)
                     {
+                      
                         LitTitle.Text = "Create new template";
                     }
                     else
                     {
                         LitTitle.Text = "Update template";
-                    }
+                        MemIdTemp = Request.QueryString["Id"].ToString();
+                        ViewState["MemIdTemp"]= Request.QueryString["Id"].ToString();
+                        PnlSplitting.Visible = true;
 
+
+                    }
                     BindEvts();
-                 
+
+
                     //aggiunge il tag script con il path del file jquery con la validazione della pagina nella masterpage
                     Literal LitPathFormScriptValidation = (Literal)Master.FindControl("LitPathFormScriptValidation");
 
@@ -157,33 +164,32 @@ namespace Ls.Re2017.Contents
         protected void LnkBtnSplit_Click(object sender, EventArgs e)
         {
             TemplateDetailPageManager ObjTemplateDetailPageManager = new TemplateDetailPageManager();
-            //recupera l'evento da cui si arriva
+           
 
-            Evento ObjEvento = null;
+            Evento ObjEvento = new Evento();
             try
             {
-                ObjEvento = ObjTemplateDetailPageManager.GetAsyncEvento("events/templates/" + Request.QueryString["evtId"].ToString()).Result;
+               // ObjEvento = ObjTemplateDetailPageManager.GetAsyncEvento("events/templates/" + Request.QueryString["evtId"].ToString()).Result;
 
           
             Evento ObjInsertEvtInput = new Evento(); //data = "{'id': 99,'houseId':6}";
-            ObjInsertEvtInput.amount = ObjEvento.amount;
-            ObjInsertEvtInput.bankReportEntryId = ObjEvento.bankReportEntryId;
-            //ObjInsertEvtInputDto.date = ObjEvento.date != null ? ObjEvento.date.Value.ToString("yyyy-MM-ddThh:mm:ss"):null;  //.ToString("yyyy-MM-dd");  //2018-10-04T07:11:09.833+0000
-            ObjInsertEvtInput.date = ObjEvento.date;  //.ToString("yyyy-MM-dd");  //2018-10-04T07:11:09.833+0000
-            ObjInsertEvtInput.description = ObjEvento.description;
-            ObjInsertEvtInput.eventTypeId = ObjEvento.eventTypeId;
-            ObjInsertEvtInput.filePath = ObjEvento.filePath;
-            ObjInsertEvtInput.houseId = ObjEvento.houseId;
-            ObjInsertEvtInput.id = 0;
-            ObjInsertEvtInput.invoiceId = ObjEvento.invoiceId;
-            ObjInsertEvtInput.reminderDate = ObjEvento.reminderDate;
-            ObjInsertEvtInput.reminderMessage = ObjEvento.reminderMessage;
+            //ObjInsertEvtInput.amount = ObjEvento.amount;
+            //ObjInsertEvtInput.bankReportEntryId = ObjEvento.bankReportEntryId;
+            //ObjInsertEvtInput.date = ObjEvento.date;  //.ToString("yyyy-MM-dd");  //2018-10-04T07:11:09.833+0000
+            //ObjInsertEvtInput.description = ObjEvento.description;
+            //ObjInsertEvtInput.eventTypeId = ObjEvento.eventTypeId;
+            //ObjInsertEvtInput.filePath = ObjEvento.filePath;
+            //ObjInsertEvtInput.houseId = ObjEvento.houseId;
+            //ObjInsertEvtInput.id = 0;
+            //ObjInsertEvtInput.invoiceId = ObjEvento.invoiceId;
+            //ObjInsertEvtInput.reminderDate = ObjEvento.reminderDate;
+            //ObjInsertEvtInput.reminderMessage = ObjEvento.reminderMessage;
 
             //inserisce i nuovi eventi
             int NumberEvtToCreate =Convert.ToInt32(CboSplitNumber.Value);
             for (int i = 0; i < NumberEvtToCreate; i++)
             {
-                    ObjTemplateDetailPageManager.NewEvt(ObjInsertEvtInput);
+                    ObjTemplateDetailPageManager.NewTemplateEvt(ObjInsertEvtInput,Convert.ToInt32(ViewState["MemIdTemp"]));
             }
 
                 BindEvts();
@@ -195,6 +201,37 @@ namespace Ls.Re2017.Contents
     }
 
 }
+
+        protected void LnkBtnCreateTemplate_Click(object sender, EventArgs e)
+        {
+            TemplateDetailPageManager ObjTemplateDetailPageManager = new TemplateDetailPageManager();
+
+
+            //Evento ObjEvento = new Evento();
+            try
+            {
+                if (TxtTemplatesName.Text != "")
+                {
+                    Template ObjTemplate = new Template();
+                    ObjTemplate.description = TxtTemplatesName.Text;
+                    ObjTemplate.eventTypeId = 0;
+                   // ObjTemplateDetailPageManager.NewTemplate(ObjTemplate);
+                  Template ObjNewTemplate=  ObjTemplateDetailPageManager.NewTemplate(ObjTemplate);
+                    ViewState["MemIdTemp"]  = ObjNewTemplate.id;
+                    BtnChkOk.Attributes.Add("style", "display:inline");
+                    PnlSplitting.Visible = true;
+                }
+               
+                //BindEvts();
+
+            }
+            catch (Exception ex)
+            {
+                BtnChkOk.Attributes.Add("style", "display:none");
+                PrintError(ex);
+            }
+
+        }
 
         protected void Repeater1_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
@@ -236,10 +273,10 @@ namespace Ls.Re2017.Contents
                 DropDownList CboCase = e.Item.FindControl("CboCase") as DropDownList;
                 PopolaCboCase(CboCase);
 
-                Evento drv = (Evento)e.Item.DataItem;
+                //Evento drv = (Evento)e.Item.DataItem;
 
-                CboCase.Attributes.Add("onchange", "UpdateHouse(this)");
-                CboEventi.Attributes.Add("onchange", "UpdateEvtType(this)");
+                CboCase.Attributes.Add("onchange", "TmpUpdateHouse(this)");
+                CboEventi.Attributes.Add("onchange", "TmpUpdateEvtType(this)");
                 //DataRowView drv = e.Row.DataItem as DataRowView;
                 Utility.SetDropByValue(CboEventi, CboEventi.Attributes["MemId"]);
                 Utility.SetDropByValue(CboCase, CboCase.Attributes["MemId"]);
@@ -266,10 +303,17 @@ namespace Ls.Re2017.Contents
         }
         protected void BtnUpdateAllBrothers_Click(object sender, EventArgs e)
         {
-            TrackManagement2PageManager ObjTrackManagement2PageManager = new TrackManagement2PageManager();
-
+            
+            TemplateDetailPageManager ObjTemplateDetailPageManager = new TemplateDetailPageManager();
+          
             try
             {
+                //aggiorna la description del template
+                UpdateTemplateDTO ObjUpdateTemplateDTO = new UpdateTemplateDTO();
+                ObjUpdateTemplateDTO.id =Convert.ToInt32(ViewState["MemIdTemp"]);
+                ObjUpdateTemplateDTO.description = TxtTemplatesName.Text;
+                ObjTemplateDetailPageManager.UpdateTemplate(ObjUpdateTemplateDTO);
+                BtnChkOk.Attributes.Add("style", "display:inline");
                 //si scorre il repeater ed aggiorna i dati
                 foreach (RepeaterItem item in RptSelEvt.Items)
                 {
@@ -285,7 +329,8 @@ namespace Ls.Re2017.Contents
                         ObjUpdateBrotherEvtDto.id = idEvt;
                         ObjUpdateBrotherEvtDto.amount =Convert.ToDouble(TxtAmount.Text);
                         ObjUpdateBrotherEvtDto.description = TxtDescription.Text;
-                        ObjTrackManagement2PageManager.UpdateBrotherEvt(ObjUpdateBrotherEvtDto);
+                        ObjTemplateDetailPageManager.UpdateAllTemplateEvt(ObjUpdateBrotherEvtDto, Convert.ToInt32(ViewState["MemIdTemp"]));
+                    
 
 
                     }
@@ -306,9 +351,10 @@ namespace Ls.Re2017.Contents
             try
             {
                 Int32 IdToDelete = Convert.ToInt32(HydIdToDelete.Value);
-                TrackManagement2PageManager ObjTrackManagement2PageManager = new TrackManagement2PageManager();
-                ObjTrackManagement2PageManager.DeleteEvt(IdToDelete);
-
+                //TrackManagement2PageManager ObjTrackManagement2PageManager = new TrackManagement2PageManager();
+                //ObjTrackManagement2PageManager.DeleteEvt(IdToDelete);
+                TemplateDetailPageManager ObjTemplateDetailPageManager = new TemplateDetailPageManager();
+                ObjTemplateDetailPageManager.DeleteTemplateEvt(IdToDelete,Convert.ToInt32(MemIdTemp));
                 BindEvts();
 
                 DivDelete.Attributes.Add("Class", "ParentDivDeleting Disattivato");
@@ -329,20 +375,22 @@ namespace Ls.Re2017.Contents
 
         private void BindEvts()
         {
-
+            if (ViewState["MemIdTemp"] != null)
+            { 
             TemplateDetailPageManager ObjTemplateDetailPageManager = new TemplateDetailPageManager();
-           
-            EventoDetailDTO ObjEvtDto = new EventoDetailDTO();
-            ObjEvtDto = ObjTemplateDetailPageManager.GetTemplateEvento(Convert.ToInt32(Request.QueryString["Id"].ToString()));
+            //recupera il template
+            TemplateDTO ObjTemplateDTO; 
+            ObjTemplateDTO = ObjTemplateDetailPageManager.GetTemplate(Convert.ToInt32(ViewState["MemIdTemp"].ToString()));
 
-            TxtTemplatesName.Text = ObjEvtDto.description;
-
-            List<Evento> Lst = ObjEvtDto.modelEvents.ToList();
-            RptSelEvt.DataSource = Lst;
+            TxtTemplatesName.Text = ObjTemplateDTO.description;
+            //Recupera gli eventi del template
+            List<EventoDTO> LstEvtDto = ObjTemplateDetailPageManager.GetTemplateEvents(ObjTemplateDTO.id);
+            //List<Evento> Lst = ObjEvtDto.modelEvents.ToList();
+            RptSelEvt.DataSource = LstEvtDto;
             RptSelEvt.DataBind();
-         
+            }
 
-          
+
 
         }
         private void BindRepeater()

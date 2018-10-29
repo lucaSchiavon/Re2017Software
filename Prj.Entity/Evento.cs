@@ -14,6 +14,7 @@ namespace Ls.Prj.Entity
         public int bankReportEntryId { get; set; }
         public object bankReportEntry { get; set; }
         public int houseId { get; set; }
+        public int landlordId { get; set; }
         public DateTime? date { get; set; }
         public string description { get; set; }
         public string description2 { get; set; }

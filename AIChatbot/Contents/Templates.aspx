@@ -58,6 +58,11 @@
                 <div class="col-lg-12 text-right">
                  <a class="various btn btn-success" data-fancybox-type="iframe" href="/Contents/ImportTags.aspx"><i class="fa fa-pencil"></i> Import tags</a>&nbsp&nbsp<a class="btn btn-success" href="TagDetail.aspx"><i class="fa fa-pencil"></i> Insert</a>
                  </div></div>--%>
+                              <div class="row">
+                <div class="col-lg-12 text-right">
+                   <a class="btn btn-success" href="TemplateDetail.aspx"><i class="fa fa-pencil"></i> Insert</a>
+                 </div></div>
+                           
                  <div class="row"><div class="col-sm-6"><div class="dataTables_length" id="dataTables-example_length"><label>Show <asp:DropDownList ID="CboRowsInPages" runat="server" AutoPostBack="true" class="form-control input-sm" OnSelectedIndexChanged="CboRowsInPages_SelectedIndexChanged">
                  <asp:ListItem Text="50" Value="50"></asp:ListItem>
                 <asp:ListItem Enabled="true" Text="100" Value="100"></asp:ListItem>

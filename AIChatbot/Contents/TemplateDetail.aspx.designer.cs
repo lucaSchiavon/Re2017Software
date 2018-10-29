@@ -121,6 +121,42 @@ namespace Ls.Re2017.Contents {
         protected global::System.Web.UI.WebControls.Literal LitTitle;
         
         /// <summary>
+        /// Controllo TxtTemplatesName.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TxtTemplatesName;
+        
+        /// <summary>
+        /// Controllo BtnChkOk.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton BtnChkOk;
+        
+        /// <summary>
+        /// Controllo LnkBtnCreateTemplate.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LnkBtnCreateTemplate;
+        
+        /// <summary>
+        /// Controllo PnlSplitting.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel PnlSplitting;
+        
+        /// <summary>
         /// Controllo CboSplitNumber.
         /// </summary>
         /// <remarks>
@@ -137,15 +173,6 @@ namespace Ls.Re2017.Contents {
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton LnkBtnSplit;
-        
-        /// <summary>
-        /// Controllo TxtTemplatesName.
-        /// </summary>
-        /// <remarks>
-        /// Campo generato automaticamente.
-        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtTemplatesName;
         
         /// <summary>
         /// Controllo RptSelEvt.

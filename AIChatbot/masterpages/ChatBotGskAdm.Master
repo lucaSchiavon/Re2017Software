@@ -410,7 +410,124 @@
                 }
             });
        
-        };
+                    };
+
+
+    var TmpUpdateHouse = function (e) {
+
+        var URL = CONFIG.get('API_URL');
+
+        var IdEvt = e.getAttribute("MemIdEvt");
+        var IdTemp = e.getAttribute("MemIdTemp");
+        var IdHouse = e.options[e.selectedIndex].value
+        if (e.preventDefault) {
+            e.preventDefault();
+        }
+        else {
+            e.returnValue = false;
+        }
+
+        var datiInput = '{"id": ' + IdEvt + ',"houseId":' + IdHouse + '}'
+        $.ajax({
+            type: 'PUT', // Use POST with X-HTTP-Method-Override or a straight PUT if appropriate.
+            dataType: 'json', // Set datatype - affects Accept header
+                    url: URL + "/events/templates/" + IdTemp + "/events/" + IdEvt, // A valid URL
+            headers: { "Content-Type": "application/json" }, // X-HTTP-Method-Override set to PUT.
+            data: datiInput, // Some data e.g. Valid JSON as a string
+            success: function (response) {
+
+                var BtnChkOk = $(e).closest('tr').find('#BtnChkOk');
+                BtnChkOk.attr("style", "display:block");
+                BtnChkOk.attr("title", "house association correctly executed");
+
+                var BtnChkErr = $(e).closest('tr').find('#BtnChkErr');
+                BtnChkErr.attr("style", "display:none");
+
+                $(e).attr('style', 'font-weight:normal');
+              
+
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                var BtnChkOk = $(e).closest('tr').find('#BtnChkOk');
+                BtnChkOk.attr("style", "display:none");
+
+                var BtnChkErr = $(e).closest('tr').find('#BtnChkErr');
+                BtnChkErr.attr("style", "display:block");
+                BtnChkErr.attr("title", "association with the event Error: " + xhr.responseText);
+
+                $(e).attr('style', 'font-weight:normal');
+              
+            }
+        });
+
+    };
+    var TmpUpdateEvtType = function (e) {
+
+        var URL = CONFIG.get('API_URL');
+        var IdEvt = e.getAttribute("MemIdEvt");
+        var IdTemp = e.getAttribute("MemIdTemp");
+        var IdEvtType = e.options[e.selectedIndex].value
+        if (e.preventDefault) {
+            e.preventDefault();
+        }
+        else {
+            e.returnValue = false;
+        }
+        //var datiInput="{'id': " +IdEvt + ",'eventTypeId':" + IdEvtType + "}"
+        var datiInput = '{"id": ' + IdEvt + ',"eventTypeId":' + IdEvtType + '}'
+        $.ajax({
+            type: 'PUT', // Use POST with X-HTTP-Method-Override or a straight PUT if appropriate.
+            dataType: 'json', // Set datatype - affects Accept header
+                    url: URL + "/events/templates/" + IdTemp + "/events/" + IdEvt, // A valid URL
+            headers: { "Content-Type": "application/json" }, // X-HTTP-Method-Override set to PUT.
+            data: datiInput, // Some data e.g. Valid JSON as a string
+            success: function (response) {
+
+                var BtnChkOk = $(e).closest('tr').find('#BtnChkOk');
+                BtnChkOk.attr("style", "display:block");
+                BtnChkOk.attr("title", "association with the event type correctly executed");
+
+                var BtnChkErr = $(e).closest('tr').find('#BtnChkErr');
+                BtnChkErr.attr("style", "display:none");
+
+                $(e).attr('style', 'font-weight:normal');
+                //var BtnChkOk = $(e).closest('#BtnChkOk');
+                //BtnChkOk.attr("style", "display:block");
+                //alert("OK");
+                //var dati = {};
+                //if (response.d) {
+                //    dati = response.d;
+
+                //    if (dati.errore === 1) {
+
+                //        $("#SpnError").html('Errore di autenticazione');
+
+                //    }
+                //    else {
+                //        if (dati.destUrl && dati.destUrl.length && dati.destUrl.length > 0) {
+                //            // navigate to thanks url
+                //            location.href = dati.destUrl;
+                //        }
+                //    }
+                //}
+
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                var BtnChkOk = $(e).closest('tr').find('#BtnChkOk');
+                BtnChkOk.attr("style", "display:none");
+
+                var BtnChkErr = $(e).closest('tr').find('#BtnChkErr');
+                BtnChkErr.attr("style", "display:block");
+                BtnChkErr.attr("title", "association with the event Error: " + xhr.responseText);
+
+                $(e).attr('style', 'font-weight:normal');
+                //alert(xhr.status);
+                //alert(thrownError);
+                //alert("errore");
+            }
+        });
+
+    };
     </script>
            <!-- Page-Level Demo Scripts - Tables - Use for reference xxx-->
 <!--xxx -->
