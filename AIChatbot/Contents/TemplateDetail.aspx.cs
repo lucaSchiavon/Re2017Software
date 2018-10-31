@@ -112,7 +112,7 @@ namespace Ls.Re2017.Contents
                         MemIdTemp = Request.QueryString["Id"].ToString();
                         ViewState["MemIdTemp"]= Request.QueryString["Id"].ToString();
                         PnlSplitting.Visible = true;
-
+                        PnlBtnCreateTemplate.Visible = false;
 
                     }
                     BindEvts();

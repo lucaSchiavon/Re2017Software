@@ -139,6 +139,15 @@ namespace Ls.Re2017.Contents {
         protected global::System.Web.UI.HtmlControls.HtmlButton BtnChkOk;
         
         /// <summary>
+        /// Controllo PnlBtnCreateTemplate.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel PnlBtnCreateTemplate;
+        
+        /// <summary>
         /// Controllo LnkBtnCreateTemplate.
         /// </summary>
         /// <remarks>

@@ -127,10 +127,7 @@ namespace Ls.Re2017.Contents
                     // ViewState["LstEvtType"] = LstEvtType;
                 }
               
-                
-               
-
-               
+ 
             }
             catch (Exception ex)
             {
@@ -170,6 +167,7 @@ namespace Ls.Re2017.Contents
                 {
                 if (CboTemplates.SelectedValue != "0")
                 {
+                   Evento ObjEvento = ObjTrackManagement2PageManager.GetAsyncEvento("events/" + Request.QueryString["evtId"].ToString()).Result;
                     //Recupera gli eventi del template
                     List<EventoDTO> LstEvtDto = ObjTemplateDetailPageManager.GetTemplateEvents(Convert.ToInt32(CboTemplates.SelectedValue));
                 foreach (EventoDTO CurrEvt in LstEvtDto)
@@ -178,7 +176,7 @@ namespace Ls.Re2017.Contents
                     ObjInsertEvtInput.amount = CurrEvt.amountNoFormat;
                     ObjInsertEvtInput.bankReportEntryId =Convert.ToInt32(Request.QueryString["bankReportEntryId"]);
                   
-                    ObjInsertEvtInput.date = DateTime.Now;  
+                    ObjInsertEvtInput.date = ObjEvento.date;  
                     ObjInsertEvtInput.description = CurrEvt.description;
                     ObjInsertEvtInput.eventTypeId = CurrEvt.eventTypeId;
                     ObjInsertEvtInput.filePath = CurrEvt.filePath;
