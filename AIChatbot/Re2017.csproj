@@ -183,6 +183,7 @@
     <Content Include="vendor\tagsInput\bootstrap-tagsinput-angular.min.js.map" />
     <Content Include="vendor\tagsInput\bootstrap-tagsinput.less" />
     <Content Include="vendor\tagsInput\bootstrap-tagsinput.min.js.map" />
+    <None Include="Properties\PublishProfiles\Re2017App - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

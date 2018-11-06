@@ -19,4 +19,11 @@ trasformare tutte le api ajax affinchè puntino su template le loro modfiche
 
 
 
+Hosting:
+costo hosting azure:
+https://azure.microsoft.com/it-it/pricing/details/app-service/windows/
+https://azure.microsoft.com/it-it/free/free-account-faq/
+
+
+
 
