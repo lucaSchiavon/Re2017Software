@@ -85,11 +85,16 @@
         <div>
            
         </div>
+         
          <script src="../vendor/DropzoneJs_scripts/jquery.min.js"></script>
+        <script src="../js/Inizializzazione.js"></script>
             <script type="text/javascript">
                 var MemorizeCallUrl = function (e) {
                     var SelBankIndex = e.options[e.selectedIndex].value;
-                    var urlToCall = 'http://2.235.241.7:8080/bank-report-entries/' + SelBankIndex + '/upload';
+                    var URL = CONFIG.get('API_URL');
+                    debugger;
+                    var urlToCall = URL + '/bank-report-entries/' + SelBankIndex + '/upload';
+                    //var urlToCall = 'http://2.235.241.7:8080/bank-report-entries/' + SelBankIndex + '/upload';
                   
                     if (e.preventDefault) {
                         e.preventDefault();
