@@ -157,7 +157,7 @@ namespace Ls.Re2017.Contents
         protected void LnkBtnApplyTemplate_Click(object sender, EventArgs e)
         {
             //per ogni template del tipo selezionato recupera gli eventi template e li inserisce sull'evento corrente
-           //--
+           //---
                 TemplateDetailPageManager ObjTemplateDetailPageManager = new TemplateDetailPageManager();
                 TrackManagement2PageManager ObjTrackManagement2PageManager = new TrackManagement2PageManager();
                 ////recupera il template

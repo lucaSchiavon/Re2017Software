@@ -124,6 +124,7 @@
     <Content Include="Public\Images\estate.jpg" />
     <Content Include="Public\Images\LogoREM.jpg" />
     <Content Include="Public\Images\LogoREM.png" />
+    <Content Include="Public\Images\realestate.jpg" />
     <Content Include="TestcallMultipartFormdata.aspx" />
     <Content Include="TestDragImage.aspx" />
     <Content Include="TestFancy.aspx" />
