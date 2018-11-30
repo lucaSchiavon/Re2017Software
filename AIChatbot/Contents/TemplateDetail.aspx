@@ -89,6 +89,15 @@
                                 </asp:Panel>
                            
                             <asp:Panel ID="PnlSplitting" Visible="false" runat="server">
+ <div class="col-lg-2">
+                          
+                                 <label>Enabled</label>
+                                <asp:DropDownList ID="CboEnable" runat="server" class="form-control">                                                 
+                                                 <asp:ListItem Enabled="true" Text="YES" Value="True"></asp:ListItem>
+                                                 <asp:ListItem Text="NO" Value="False"></asp:ListItem>
+                                             </asp:DropDownList>
+                              
+                                </div>
            <div class="col-lg-2">
                           
                                  <label>Select number of events:</label>

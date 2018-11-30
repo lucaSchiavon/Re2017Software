@@ -111,6 +111,7 @@ namespace Ls.Re2017.Contents
                         LitTitle.Text = "Update template";
                         MemIdTemp = Request.QueryString["Id"].ToString();
                         ViewState["MemIdTemp"]= Request.QueryString["Id"].ToString();
+                        
                         PnlSplitting.Visible = true;
                         PnlBtnCreateTemplate.Visible = false;
 
@@ -215,6 +216,7 @@ namespace Ls.Re2017.Contents
                     Template ObjTemplate = new Template();
                     ObjTemplate.description = TxtTemplatesName.Text;
                     ObjTemplate.eventTypeId = 0;
+                    ObjTemplate.disabled = false;
                    // ObjTemplateDetailPageManager.NewTemplate(ObjTemplate);
                   Template ObjNewTemplate=  ObjTemplateDetailPageManager.NewTemplate(ObjTemplate);
                     ViewState["MemIdTemp"]  = ObjNewTemplate.id;
@@ -312,6 +314,8 @@ namespace Ls.Re2017.Contents
                 UpdateTemplateDTO ObjUpdateTemplateDTO = new UpdateTemplateDTO();
                 ObjUpdateTemplateDTO.id =Convert.ToInt32(ViewState["MemIdTemp"]);
                 ObjUpdateTemplateDTO.description = TxtTemplatesName.Text;
+
+                ObjUpdateTemplateDTO.disabled =!(Convert.ToBoolean(CboEnable.SelectedValue));
                 ObjTemplateDetailPageManager.UpdateTemplate(ObjUpdateTemplateDTO);
                 BtnChkOk.Attributes.Add("style", "display:inline");
                 //si scorre il repeater ed aggiorna i dati
@@ -381,7 +385,7 @@ namespace Ls.Re2017.Contents
             //recupera il template
             TemplateDTO ObjTemplateDTO; 
             ObjTemplateDTO = ObjTemplateDetailPageManager.GetTemplate(Convert.ToInt32(ViewState["MemIdTemp"].ToString()));
-
+            Utility.SetDropByValue(CboEnable, ObjTemplateDTO.enabled.ToString());
             TxtTemplatesName.Text = ObjTemplateDTO.description;
             //Recupera gli eventi del template
             List<EventoDTO> LstEvtDto = ObjTemplateDetailPageManager.GetTemplateEvents(ObjTemplateDTO.id);
@@ -443,12 +447,12 @@ namespace Ls.Re2017.Contents
         private void PopolaCboTemplate(DropDownList drop)
         {
             TrackManagement2PageManager ObjTrackManagement2PageManager = new TrackManagement2PageManager();
-            List<TemplateDTO> LstTemplate;
+            List<Template> LstTemplate;
             LstTemplate = ObjTrackManagement2PageManager.GetTemplate();
             if (LstTemplate != null)
             {
 
-                foreach (TemplateDTO Curr in LstTemplate)
+                foreach (Template Curr in LstTemplate)
                 {
                     var listItem = new ListItem();
                     listItem.Value = Curr.id.ToString();

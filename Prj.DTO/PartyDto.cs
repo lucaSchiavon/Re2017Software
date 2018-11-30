@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 namespace Ls.Prj.DTO
 {
     //[Serializable]
-    public class UpdateTemplateDTO
+    public class PartyDTO
     {
+
         public int id { get; set; }
-        public string description { get; set; }
-        public bool disabled { get; set; }
+        public string name { get; set; }
+      
+
     }
 }

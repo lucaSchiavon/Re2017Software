@@ -12,6 +12,7 @@ using Ls.Prj.DTO;
 using System.Data.Entity;
 using System.Collections;
 using Re2017.Base;
+using AutoMapper;
 
 namespace Ls.Re2017.Contents
 {
@@ -272,10 +273,22 @@ namespace Ls.Re2017.Contents
         private List<TemplateDTO> LoadList()
         {
             TrackManagement2PageManager ObjTrackManagement2PageManager = new TrackManagement2PageManager();
-            List<TemplateDTO> LstTemplate;
+            //List<TemplateDTO> LstTemplate;
+            List<Template> LstTemplate= new List<Template>();
             LstTemplate = ObjTrackManagement2PageManager.GetTemplate();
 
-            return LstTemplate;
+
+            List<TemplateDTO> LstTemplateDto = new List<TemplateDTO>();
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Template, TemplateDTO>()
+                .ForMember(dest => dest.enabled, opt => opt.MapFrom(src => (((bool)src.disabled) ? "NO" : "YES")));
+            });
+
+            IMapper mapper = config.CreateMapper();
+            LstTemplateDto = mapper.Map<List<Template>, List<TemplateDTO>>(LstTemplate);
+
+            return LstTemplateDto;
         }
 
         #endregion

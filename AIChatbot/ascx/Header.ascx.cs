@@ -15,7 +15,7 @@ namespace AQuest.ChatBotGsk.PigeonCms.pgn_content.ascx
 
             if (LoginUsr !=null)
             {
-                LblUsername.Text ="Hy " + LoginUsr.name + "!";
+                LblUsername.Text ="Hi " + LoginUsr.name + "!";
             }
         }
     }

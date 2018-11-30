@@ -15,6 +15,7 @@ namespace Ls.Prj.DTO
         public object bankReportEntry { get; set; }
         public int houseId { get; set; }
         public int landlordId { get; set; }
+        public int partyId { get; set; }
         //public DateTime? date { get; set; }
         public string date { get; set; }
         public string description { get; set; }

@@ -88,6 +88,7 @@ namespace Ls.Re2017.Contents
        private  List<EventTypeDTO> LstEvtType;
         private List<HouseDTO> LstHouse;
         private List<LandlordDTO> LstLandlord;
+        private List<PartyDTO> LstParty;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -98,6 +99,7 @@ namespace Ls.Re2017.Contents
                 LstEvtType = ObjTrackManagement2PageManager.GetEventsType();
                 LstHouse = ObjTrackManagement2PageManager.GetHouse();
                 LstLandlord = ObjTrackManagement2PageManager.GetLandlords();
+                LstParty = ObjTrackManagement2PageManager.GetParties();
 
                 if (!Page.IsPostBack)
                 {
@@ -185,6 +187,8 @@ namespace Ls.Re2017.Contents
                 PopolaCboCase(CboCase);
                 DropDownList CboLandlord = e.Item.FindControl("CboLandlord") as DropDownList;
                 PopolaCboLandlord(CboLandlord);
+                DropDownList CboParty = e.Item.FindControl("CboParty") as DropDownList;
+                PopolaCboParty(CboParty);
 
                 //TextBox TxtDescription2 = e.Item.FindControl("TxtDescription2") as TextBox;
                 HyperLink HypLnkUpdDesc2 = e.Item.FindControl("HypLnkUpdDesc2") as HyperLink;
@@ -195,24 +199,35 @@ namespace Ls.Re2017.Contents
                 CboCase.Attributes.Add("onchange", "UpdateHouse(this)");
                 CboEventi.Attributes.Add("onchange", "UpdateEvtType(this)");
                 CboLandlord.Attributes.Add("onchange", "UpdateLandlord(this)");
+                CboParty.Attributes.Add("onchange", "UpdateParty(this)");
                 //DataRowView drv = e.Row.DataItem as DataRowView;
                 Utility.SetDropByValue(CboEventi, CboEventi.Attributes["MemId"]);
                 Utility.SetDropByValue(CboCase, CboCase.Attributes["MemId"]);
                 Utility.SetDropByValue(CboLandlord, CboLandlord.Attributes["MemId"]);
+                Utility.SetDropByValue(CboParty, CboParty.Attributes["MemId"]);
 
                 if (CboEventi.Attributes["MemId"] == "0")
                 {
-                    CboEventi.Attributes.Add("style", "font-weight:bold");
+                    CboEventi.Attributes.Add("style", "font-weight:bold;background-color:yellow");
+                    //CboEventi.Attributes.Add("style", "background-color:yellow");
                 }
 
                 if (CboCase.Attributes["MemId"] == "0")
                 {
-                    CboCase.Attributes.Add("style", "font-weight:bold");
+                    CboCase.Attributes.Add("style", "font-weight:bold;background-color:yellow");
+                    //CboCase.Attributes.Add("style", "background-color:yellow");
                 }
 
                 if (CboLandlord.Attributes["MemId"] == "0")
                 {
-                    CboLandlord.Attributes.Add("style", "font-weight:bold");
+                    CboLandlord.Attributes.Add("style", "font-weight:bold;background-color:yellow");
+                    //CboLandlord.Attributes.Add("style", "background-color:yellow");
+                }
+
+                if (CboParty.Attributes["MemId"] == "0")
+                {
+                    CboParty.Attributes.Add("style", "font-weight:bold;background-color:yellow");
+                    //CboParty.Attributes.Add("style", "background-color:yellow");
                 }
 
                 //colora di verde o rosso l'importo a seconda che sia un credito o debito
@@ -484,6 +499,23 @@ namespace Ls.Re2017.Contents
                 }
             }
             drop.Items.Add(new ListItem("--Select landlord--", "0"));
+            Utility.SetDropByValue(drop, "0");
+        }
+        private void PopolaCboParty(DropDownList drop)
+        {
+            if (LstParty != null)
+            {
+
+                foreach (PartyDTO Curr in LstParty)
+                {
+                    var listItem = new ListItem();
+                    listItem.Value = Curr.id.ToString();
+                    listItem.Text = Curr.name;
+                    drop.Items.Add(listItem);
+
+                }
+            }
+            drop.Items.Add(new ListItem("--Select party--", "0"));
             Utility.SetDropByValue(drop, "0");
         }
         #endregion

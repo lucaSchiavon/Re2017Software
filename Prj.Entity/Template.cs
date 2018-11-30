@@ -12,6 +12,6 @@ namespace Ls.Prj.Entity
         public int id { get; set; }
         public string description { get; set; }
         public int eventTypeId { get; set; }
-
+        public Boolean disabled { get; set; }
     }
 }

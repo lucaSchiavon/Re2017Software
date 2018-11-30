@@ -55,6 +55,7 @@
     <Compile Include="ApiDTO\ContainerDTO.cs" />
     <Compile Include="ErroreDto.cs" />
     <Compile Include="EventoDetailDto.cs" />
+    <Compile Include="PartyDto.cs" />
     <Compile Include="UpdateTemplateDto.cs" />
     <Compile Include="TemplateDto.cs" />
     <Compile Include="LandlordDto.cs" />

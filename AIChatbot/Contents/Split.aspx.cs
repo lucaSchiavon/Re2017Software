@@ -528,12 +528,12 @@ namespace Ls.Re2017.Contents
         private void PopolaCboTemplate(DropDownList drop)
         {
             TrackManagement2PageManager ObjTrackManagement2PageManager = new TrackManagement2PageManager();
-            List<TemplateDTO> LstTemplate;
-            LstTemplate = ObjTrackManagement2PageManager.GetTemplate();
+            List<Template> LstTemplate;
+            LstTemplate = ObjTrackManagement2PageManager.GetTemplate().Where(x=>x.disabled==false).ToList();
             if (LstTemplate != null)
             {
 
-                foreach (TemplateDTO Curr in LstTemplate)
+                foreach (Template Curr in LstTemplate)
                 {
                     var listItem = new ListItem();
                     listItem.Value = Curr.id.ToString();

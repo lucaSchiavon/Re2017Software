@@ -42,8 +42,8 @@ namespace Re2017.Classes
             //mapping su DTO
             TemplateDTO ObjTemplateDto = new TemplateDTO();
             var config = new MapperConfiguration(cfg => {
-                cfg.CreateMap<Template, TemplateDTO>();
-                //.ForMember(dest => dest.amount, opt => opt.MapFrom(src => string.Format(new System.Globalization.CultureInfo("en-US"), "{0:c}", src.amount)))
+                cfg.CreateMap<Template, TemplateDTO>()
+             .ForMember(dest => dest.enabled, opt => opt.MapFrom(src => (((bool)src.disabled) ? "NO" : "YES")));
                 //.ForMember(dest => dest.date, opt => opt.MapFrom(src => string.Format("{0:MM/dd/yyyy}", src.date)));
             });
 

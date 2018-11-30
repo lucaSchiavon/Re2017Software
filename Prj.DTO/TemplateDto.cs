@@ -13,6 +13,6 @@ namespace Ls.Prj.DTO
         public int id { get; set; }
         public string description { get; set; }
         public int eventTypeId { get; set; }
-
+        public string enabled { get; set; }
     }
 }

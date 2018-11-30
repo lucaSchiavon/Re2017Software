@@ -166,6 +166,15 @@ namespace Ls.Re2017.Contents {
         protected global::System.Web.UI.WebControls.Panel PnlSplitting;
         
         /// <summary>
+        /// Controllo CboEnable.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList CboEnable;
+        
+        /// <summary>
         /// Controllo CboSplitNumber.
         /// </summary>
         /// <remarks>

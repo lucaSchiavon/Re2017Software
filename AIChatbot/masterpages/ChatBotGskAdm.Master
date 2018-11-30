@@ -338,6 +338,53 @@
             });
        
                     };
+                    var UpdateParty = function (e) {
+
+                        var URL = CONFIG.get('API_URL');
+                        var IdEvt = e.getAttribute("MemIdEvt");
+                        var IdParty = e.options[e.selectedIndex].value
+                        if (e.preventDefault) {
+                            e.preventDefault();
+                        }
+                        else {
+                            e.returnValue = false;
+                        }
+
+                        var datiInput = '{"id": ' + IdEvt + ',"partyId":' + IdParty + '}'
+                        $.ajax({
+                            type: 'PUT', // Use POST with X-HTTP-Method-Override or a straight PUT if appropriate.
+                            dataType: 'json', // Set datatype - affects Accept header
+                            url: URL + "/events/" + IdEvt, // A valid URL
+                            headers: { "Content-Type": "application/json" }, // X-HTTP-Method-Override set to PUT.
+                            data: datiInput, // Some data e.g. Valid JSON as a string
+                            success: function (response) {
+
+                                var BtnChkOk = $(e).closest('tr').find('#BtnChkOk');
+                                BtnChkOk.attr("style", "display:block");
+                                BtnChkOk.attr("title", "party association correctly executed");
+
+                                var BtnChkErr = $(e).closest('tr').find('#BtnChkErr');
+                                BtnChkErr.attr("style", "display:none");
+
+                                $(e).attr('style', 'font-weight:normal');
+
+
+                            },
+                            error: function (xhr, ajaxOptions, thrownError) {
+                                var BtnChkOk = $(e).closest('tr').find('#BtnChkOk');
+                                BtnChkOk.attr("style", "display:none");
+
+                                var BtnChkErr = $(e).closest('tr').find('#BtnChkErr');
+                                BtnChkErr.attr("style", "display:block");
+                                BtnChkErr.attr("title", "association with party Error: " + xhr.responseText);
+
+                                $(e).attr('style', 'font-weight:normal');
+
+                            }
+                        });
+
+                    };
+
 
         var UpdateDesc2 = function (e) {
             var URL = CONFIG.get('API_URL');

@@ -354,6 +354,32 @@ namespace Re2017.Classes
 
 
         #region Landlord
+        public List<PartyDTO> GetParties()
+        {
+
+            //client.BaseAddress = new Uri(Utility.ReadSetting("Re2017ApiUrl"));
+            //client.DefaultRequestHeaders.Accept.Clear();
+            //client.DefaultRequestHeaders.Accept.Add(
+            //    new MediaTypeWithQualityHeaderValue("application/json"));
+            List<PartyDTO> Lst = new List<PartyDTO>();
+
+            Lst = GetAsyncParties("parties").Result;
+
+            return Lst;
+        }
+
+        async Task<List<PartyDTO>> GetAsyncParties(string path)
+        {
+            List<PartyDTO> Lst = null;
+
+
+            HttpResponseMessage response = await client.GetAsync(path, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
+            if (response.IsSuccessStatusCode)
+            {
+                Lst = await response.Content.ReadAsAsync<List<PartyDTO>>();
+            }
+            return Lst;
+        }
         public List<LandlordDTO> GetLandlords()
         {
 
@@ -367,6 +393,7 @@ namespace Re2017.Classes
 
             return Lst;
         }
+
         async Task<List<LandlordDTO>> GetAsyncLandlords(string path)
         {
             List<LandlordDTO> Lst = null;
@@ -394,26 +421,43 @@ namespace Re2017.Classes
 
 
         #region Model
-        public List<TemplateDTO> GetTemplate()
+        //public List<TemplateDTO> GetTemplate()
+        //{
+        //    List<TemplateDTO> LstModel = new List<TemplateDTO>();
+        //    LstModel = GetAsyncModel("events/templates").Result;
+        //    return LstModel;
+        //}
+        //async Task<List<TemplateDTO>> GetAsyncModel(string path)
+        //{
+        //    List<TemplateDTO> Lst = null;
+
+
+        //    HttpResponseMessage response = await client.GetAsync(path, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
+        //    if (response.IsSuccessStatusCode)
+        //    {
+        //        Lst = await response.Content.ReadAsAsync<List<TemplateDTO>>();
+        //    }
+        //    return Lst;
+        //}
+
+        public List<Template> GetTemplate()
         {
-            List<TemplateDTO> LstModel = new List<TemplateDTO>();
+            List<Template> LstModel = new List<Template>();
             LstModel = GetAsyncModel("events/templates").Result;
             return LstModel;
         }
-        async Task<List<TemplateDTO>> GetAsyncModel(string path)
+        async Task<List<Template>> GetAsyncModel(string path)
         {
-            List<TemplateDTO> Lst = null;
+            List<Template> Lst = null;
 
 
             HttpResponseMessage response = await client.GetAsync(path, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
             if (response.IsSuccessStatusCode)
             {
-                Lst = await response.Content.ReadAsAsync<List<TemplateDTO>>();
+                Lst = await response.Content.ReadAsAsync<List<Template>>();
             }
             return Lst;
         }
-
-       
         #endregion
     }
 }
