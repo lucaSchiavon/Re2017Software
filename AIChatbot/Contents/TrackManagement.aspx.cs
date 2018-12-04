@@ -384,7 +384,7 @@ namespace Ls.Re2017.Contents
             //    ViewState["LstEvtDto"] = TrackManagement2PageManager.GetEventi(Convert.ToDateTime(TxtDa.Text), Convert.ToDateTime(TxtA.Text));
             //}
             TrackManagement2PageManager ObjTrackManagement2PageManager = new TrackManagement2PageManager();
-            List<EventoDTO> LstEvtDto = ObjTrackManagement2PageManager.GetEventi(Convert.ToDateTime(TxtDa.Text), Convert.ToDateTime(TxtA.Text));
+            List<EventoDTO> LstEvtDto = ObjTrackManagement2PageManager.GetEventi(Convert.ToDateTime(TxtDa.Text), Convert.ToDateTime(TxtA.Text), ChkProcessed.Checked);
             //List<EventoDTO> LstEvtDto = TrackManagement2PageManager.GetEventi(Convert.ToDateTime(TxtDa.Text), Convert.ToDateTime(TxtA.Text));
 
             //Create the PagedDataSource that will be used in paging

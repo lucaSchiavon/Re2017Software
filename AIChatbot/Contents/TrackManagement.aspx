@@ -75,6 +75,13 @@
                                        <asp:TextBox ID="TxtA" runat="server" type="date" class="form-control"></asp:TextBox>                                        
                                         </div>
                                        </div>
+                             <div class="col-lg-3">
+                                  <div class="form-group">
+                                            <label>Processed</label>    
+                                      <asp:CheckBox ID="ChkProcessed" runat="server" Checked="false"  class="form-control"/>
+                                                                       
+                                        </div>
+                                       </div>
                            <%--  <div class="col-lg-3">
                                         <div class="form-group">
                                             <label>Users</label>

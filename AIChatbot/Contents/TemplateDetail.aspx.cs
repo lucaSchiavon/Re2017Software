@@ -385,7 +385,16 @@ namespace Ls.Re2017.Contents
             //recupera il template
             TemplateDTO ObjTemplateDTO; 
             ObjTemplateDTO = ObjTemplateDetailPageManager.GetTemplate(Convert.ToInt32(ViewState["MemIdTemp"].ToString()));
-            Utility.SetDropByValue(CboEnable, ObjTemplateDTO.enabled.ToString());
+                string CboAbilitato="";
+                if (ObjTemplateDTO.enabled.ToString() == "NO")
+                {
+                    CboAbilitato = "False";
+                }
+                else
+                {
+                    CboAbilitato = "True";
+                }
+                    Utility.SetDropByValue(CboEnable, CboAbilitato);
             TxtTemplatesName.Text = ObjTemplateDTO.description;
             //Recupera gli eventi del template
             List<EventoDTO> LstEvtDto = ObjTemplateDetailPageManager.GetTemplateEvents(ObjTemplateDTO.id);

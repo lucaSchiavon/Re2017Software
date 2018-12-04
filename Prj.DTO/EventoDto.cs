@@ -28,6 +28,7 @@ namespace Ls.Prj.DTO
         public string reminderMessage { get; set; }
         public object file { get; set; }
         public string filePath { get; set; }
+        public bool processed { get; set; }
 
 
     }

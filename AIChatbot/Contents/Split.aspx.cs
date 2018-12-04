@@ -412,7 +412,7 @@ namespace Ls.Re2017.Contents
             //List<EventoDTO> LstEvtDto = new List<EventoDTO>();
             //LstEvtDto.Add(ObjEvtDto);
             List<EventoDTO> LstEvtDto = new List<EventoDTO>();
-            LstEvtDto = ObjTrackManagement2PageManager.GetEventi(Convert.ToDateTime("1000-01-01"), Convert.ToDateTime("3000-01-01"), Convert.ToInt32(Request.QueryString["bankReportEntryId"].ToString()));
+            LstEvtDto = ObjTrackManagement2PageManager.GetEventi(Convert.ToDateTime("1000-01-01"), Convert.ToDateTime("3000-01-01"),false,Convert.ToInt32(Request.QueryString["bankReportEntryId"].ToString()));
          
  
             RptSelEvt.DataSource = LstEvtDto;

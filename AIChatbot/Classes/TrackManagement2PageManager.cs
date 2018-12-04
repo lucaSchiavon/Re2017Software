@@ -123,7 +123,7 @@ namespace Re2017.Classes
             return ObjEvento;
         }
 
-        public List<EventoDTO> GetEventi(DateTime Da, DateTime A, int BankReportEntryId=0)
+        public List<EventoDTO> GetEventi(DateTime Da, DateTime A, bool processed=false,int BankReportEntryId=0)
         {
 
             List<Evento> LstEventi = new List<Evento>();
@@ -132,7 +132,16 @@ namespace Re2017.Classes
 
             if (BankReportEntryId == 0)
             {
-                LstEventi = GetAsyncEventi("events?startDate=" + da + "&endDate=" + a).Result;
+               
+                    if (processed)
+                    {
+                        LstEventi = GetAsyncEventi("events?startDate=" + da + "&endDate=" + a + "&processed=true").Result;
+                    }
+                    else
+                    {
+                        LstEventi = GetAsyncEventi("events?startDate=" + da + "&endDate=" + a + "&processed=false").Result;
+                    }
+               
             }
             else
             {
