@@ -194,7 +194,20 @@ namespace Ls.Re2017.Contents
                 HyperLink HypLnkUpdDesc2 = e.Item.FindControl("HypLnkUpdDesc2") as HyperLink;
                 //HypLnkUpdDesc2.NavigateUrl = "javascript:UpdateDesc2(this)";
                 HypLnkUpdDesc2.Attributes.Add("onclick", "UpdateDesc2(this)");
+
+                HyperLink HypProc = e.Item.FindControl("HypProc") as HyperLink;
+
+                HypProc.Attributes.Add("onclick", "UpdateProc(this)");
+
                 Ls.Prj.DTO.EventoDTO drv = (Ls.Prj.DTO.EventoDTO)e.Item.DataItem;
+                if (drv.processed)
+                {
+                    HypProc.Text = "Unproc";
+                }
+                else
+                {
+                    HypProc.Text = "Proc";
+                }
 
                 CboCase.Attributes.Add("onchange", "UpdateHouse(this)");
                 CboEventi.Attributes.Add("onchange", "UpdateEvtType(this)");

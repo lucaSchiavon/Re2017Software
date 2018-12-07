@@ -459,6 +459,61 @@
        
                     };
 
+                    var UpdateProc = function (e) {
+                        var URL = CONFIG.get('API_URL');
+                        var IdEvt = e.getAttribute("MemIdEvt");
+                        debugger;
+                        var testoBottone = e.text;
+                        //var TxtDescrizione2 = $(e).closest('tr').find('.Desc2');
+                        //var Descrizione = TxtDescrizione2.val();
+                        var processed = false;
+                        if (testoBottone == "Proc") {
+                            processed = true;
+                        }
+
+                        if (e.preventDefault) {
+                            e.preventDefault();
+                        }
+                        else {
+                            e.returnValue = false;
+                        }
+
+                        var datiInput = '{"id": ' + IdEvt + ',"processed":' + processed + '}'
+                        $.ajax({
+                            type: 'PUT', // Use POST with X-HTTP-Method-Override or a straight PUT if appropriate.
+                            dataType: 'json', // Set datatype - affects Accept header
+                            url: URL + "/events/" + IdEvt, // A valid URL
+                            headers: { "Content-Type": "application/json" }, // X-HTTP-Method-Override set to PUT.
+                            data: datiInput, // Some data e.g. Valid JSON as a string
+                            success: function (response) {
+                                debugger;
+                                var BtnChkOk = $(e).closest('tr').find('#BtnChkOk');
+                                BtnChkOk.attr("style", "display:block");
+                                BtnChkOk.attr("title", "description 2 correctly updated");
+
+                                var BtnChkErr = $(e).closest('tr').find('#BtnChkErr');
+                                BtnChkErr.attr("style", "display:none");
+
+                                var riga = $(e).closest('tr')
+                               setInterval(function () { riga.remove(); }, 2000);
+                                
+                            },
+                            error: function (xhr, ajaxOptions, thrownError) {
+                              
+                                var BtnChkOk = $(e).closest('tr').find('#BtnChkOk');
+                                BtnChkOk.attr("style", "display:none");
+
+                                var BtnChkErr = $(e).closest('tr').find('#BtnChkErr');
+                                BtnChkErr.attr("style", "display:block");
+                                BtnChkErr.attr("title", "description 2 updating Error: " + xhr.responseText);
+
+                               
+                            }
+                        });
+
+                    };
+
+
 
     var TmpUpdateHouse = function (e) {
 
